@@ -1,0 +1,298 @@
+[
+  {
+    "name": "studentProject",
+    "duration_s": 23.584873864,
+    "message_count": 3304,
+    "topics": {
+      "/velodyne/points_raw": {
+        "type": "sensor_msgs/msg/PointCloud2",
+        "count": 236,
+        "receipt_rate_hz": 10.0018929386794,
+        "frame_id": "velodyne",
+        "fields": [
+          "x",
+          "y",
+          "z",
+          "intensity",
+          "ring"
+        ],
+        "sample_receipt_minus_header_s": {
+          "min": 1775644925.4691882,
+          "max": 1775644925.471124,
+          "median": 1775644925.4694672
+        }
+      },
+      "/velodyne/imu": {
+        "type": "sensor_msgs/msg/Imu",
+        "count": 2359,
+        "receipt_rate_hz": 99.99710340451577,
+        "frame_id": "ouster/imu_link",
+        "sample_receipt_minus_header_s": {
+          "min": 1775644925.355154,
+          "max": 1775644925.355837,
+          "median": 1775644925.3554785
+        }
+      },
+      "/tf_static": {
+        "type": "tf2_msgs/msg/TFMessage",
+        "count": 3,
+        "receipt_rate_hz": 69652.43435258062
+      },
+      "/blackfly_s/cam0/image_rectified": {
+        "type": "sensor_msgs/msg/Image",
+        "count": 235,
+        "receipt_rate_hz": 10.000703220815996,
+        "frame_id": "cam0",
+        "sample_receipt_minus_header_s": {
+          "min": 0.074355239,
+          "max": 0.078429894,
+          "median": 0.075557109
+        }
+      },
+      "/PointCloudDetection": {
+        "type": "sensor_msgs/msg/PointCloud2",
+        "count": 471,
+        "receipt_rate_hz": 20.001783547974156,
+        "frame_id": "radar",
+        "fields": [
+          "x",
+          "y",
+          "z",
+          "v",
+          "r",
+          "RCS",
+          "azimuth",
+          "elevation"
+        ],
+        "sample_receipt_minus_header_s": {
+          "min": 5.1052e-05,
+          "max": 0.000305348,
+          "median": 0.000170386
+        }
+      }
+    },
+    "camera_intrinsics_present": false,
+    "transforms": [
+      {
+        "parent": "velodyne",
+        "child": "os_lidar",
+        "translation": [
+          0.0,
+          0.0,
+          0.078296
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "ouster/imu_link",
+        "translation": [
+          -0.006253,
+          0.011775,
+          0.011644999999999999
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "cam0",
+        "translation": [
+          0.692,
+          0.0,
+          -0.18
+        ],
+        "quaternion_xyzw": [
+          -0.5343302749739842,
+          0.5433569000732584,
+          -0.46407345948726086,
+          0.4515420917129775
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "radar",
+        "translation": [
+          1.563,
+          0.0,
+          -0.867
+        ],
+        "quaternion_xyzw": [
+          0.0002324605837070069,
+          0.007496326260071177,
+          -0.03099416334062899,
+          0.9994914271235616
+        ]
+      }
+    ],
+    "nearest_receipt_delta_ms": {
+      "/velodyne/points_raw": {
+        "p50": 48.209338,
+        "p95": 49.6999916,
+        "max": 50.45518
+      },
+      "/PointCloudDetection": {
+        "p50": 7.085047,
+        "p95": 10.301987699999998,
+        "max": 13.802895
+      }
+    }
+  },
+  {
+    "name": "studentProject1",
+    "duration_s": 16.375414971,
+    "message_count": 2294,
+    "topics": {
+      "/PointCloudDetection": {
+        "type": "sensor_msgs/msg/PointCloud2",
+        "count": 327,
+        "receipt_rate_hz": 20.00087549108329,
+        "frame_id": "radar",
+        "fields": [
+          "x",
+          "y",
+          "z",
+          "v",
+          "r",
+          "RCS",
+          "azimuth",
+          "elevation"
+        ],
+        "sample_receipt_minus_header_s": {
+          "min": 9.8161e-05,
+          "max": 0.001272203,
+          "median": 0.0002147225
+        }
+      },
+      "/tf_static": {
+        "type": "tf2_msgs/msg/TFMessage",
+        "count": 3,
+        "receipt_rate_hz": 136230.5020093999
+      },
+      "/velodyne/imu": {
+        "type": "sensor_msgs/msg/Imu",
+        "count": 1638,
+        "receipt_rate_hz": 100.00035223703789,
+        "frame_id": "ouster/imu_link",
+        "sample_receipt_minus_header_s": {
+          "min": 1775644925.3572197,
+          "max": 1775644925.358303,
+          "median": 1775644925.3572934
+        }
+      },
+      "/velodyne/points_raw": {
+        "type": "sensor_msgs/msg/PointCloud2",
+        "count": 164,
+        "receipt_rate_hz": 10.0022165513238,
+        "frame_id": "velodyne",
+        "fields": [
+          "x",
+          "y",
+          "z",
+          "intensity",
+          "ring"
+        ],
+        "sample_receipt_minus_header_s": {
+          "min": 1775644925.4712598,
+          "max": 1775644925.4751782,
+          "median": 1775644925.4720721
+        }
+      },
+      "/blackfly_s/cam0/image_rectified": {
+        "type": "sensor_msgs/msg/Image",
+        "count": 162,
+        "receipt_rate_hz": 10.001146376123256,
+        "frame_id": "cam0",
+        "sample_receipt_minus_header_s": {
+          "min": 0.074659319,
+          "max": 0.079243646,
+          "median": 0.0764977025
+        }
+      }
+    },
+    "camera_intrinsics_present": false,
+    "transforms": [
+      {
+        "parent": "velodyne",
+        "child": "os_lidar",
+        "translation": [
+          0.0,
+          0.0,
+          0.078296
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "ouster/imu_link",
+        "translation": [
+          -0.006253,
+          0.011775,
+          0.011644999999999999
+        ],
+        "quaternion_xyzw": [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "radar",
+        "translation": [
+          1.563,
+          0.0,
+          -0.867
+        ],
+        "quaternion_xyzw": [
+          0.0002324605837070069,
+          0.007496326260071177,
+          -0.03099416334062899,
+          0.9994914271235616
+        ]
+      },
+      {
+        "parent": "velodyne",
+        "child": "cam0",
+        "translation": [
+          0.692,
+          0.0,
+          -0.18
+        ],
+        "quaternion_xyzw": [
+          -0.5343302749739842,
+          0.5433569000732584,
+          -0.46407345948726086,
+          0.4515420917129775
+        ]
+      }
+    ],
+    "nearest_receipt_delta_ms": {
+      "/velodyne/points_raw": {
+        "p50": 32.658234500000006,
+        "p95": 34.82308405,
+        "max": 36.326397
+      },
+      "/PointCloudDetection": {
+        "p50": 14.9522405,
+        "p95": 17.650085999999998,
+        "max": 21.988494
+      }
+    }
+  }
+]

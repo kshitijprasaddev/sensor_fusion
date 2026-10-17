@@ -1,0 +1,32 @@
+# This bag has NO CameraInfo. These values are a starting assumption, not a calibration.
+camera:
+  width: 1920
+  height: 1200
+  status: approximate
+  allow_approximate: true
+  K: [1100.0, 0.0, 960.0, 0.0, 1100.0, 600.0, 0.0, 0.0, 1.0]
+model:
+  weights: /models/yolo11n.pt
+  device: '0'
+  imgsz: 640
+  confidence: 0.30
+synchronization:
+  # Receipt time is a documented fallback because LiDAR uses a device clock.
+  tolerance_ms: 100
+lidar:
+  roi_min: [-15.0, -20.0, -2.8]
+  roi_max: [65.0, 20.0, 4.0]
+  voxel: 0.25
+  ground_threshold: 0.22
+  cluster_eps: 0.65
+  min_points: 5
+radar:
+  max_range: 65.0
+  max_lateral: 20.0
+  cluster_eps: 1.5
+  min_points: 2
+  association_gate: 2.5
+tracking:
+  gate: 3.0
+  max_age: 0.7
+  min_hits: 2

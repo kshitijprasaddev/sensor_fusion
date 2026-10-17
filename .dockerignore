@@ -1,0 +1,12 @@
+.git
+build
+install
+log
+results
+data
+models/*
+!models/.gitkeep
+__pycache__
+.pytest_cache
+*.db3
+*.mcap

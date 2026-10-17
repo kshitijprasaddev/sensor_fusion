@@ -1,0 +1,16 @@
+build/
+install/
+log/
+results/
+data/
+models/*
+!models/.gitkeep
+__pycache__/
+.pytest_cache/
+.venv/
+*.db3
+*.mcap
+*.pt
+*.onnx
+*.engine
+.env
