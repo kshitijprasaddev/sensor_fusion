@@ -35,7 +35,7 @@ case "$command" in
       python3 scripts/import_calibration.py /tmp/camera.yaml --output /results/fusion_calibrated.yaml "$@" ;;
   demo)
     if [[ -z "${DISPLAY:-}" ]]; then echo 'DISPLAY is required for RViz. Use shell or headless launch otherwise.' >&2; exit 1; fi
-    args+=(-e "DISPLAY=$DISPLAY" -e NVIDIA_DRIVER_CAPABILITIES=all -v /tmp/.X11-unix:/tmp/.X11-unix:rw)
+    args+=(--name "${FUSION_CONTAINER_NAME:-group8-rviz}" -e "DISPLAY=$DISPLAY" -e NVIDIA_DRIVER_CAPABILITIES=all -v /tmp/.X11-unix:/tmp/.X11-unix:rw)
     if [[ -f "${XAUTHORITY:-}" ]]; then args+=(-e XAUTHORITY=/tmp/host.xauth -v "$XAUTHORITY:/tmp/host.xauth:ro"); fi
     if [[ ! -f results/fusion.rviz ]]; then cp src/group8_fusion/config/fusion.rviz results/fusion.rviz; fi
     exec docker run "${args[@]}" "$image" ros2 launch group8_fusion demo.launch.py rviz_config:=/results/fusion.rviz "$@" ;;

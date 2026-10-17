@@ -12,6 +12,14 @@ real calibration later requires a new configuration and a rerun, not code change
 
 ![Live RViz2 with camera, LiDAR, radar and fused tracks](docs/assets/rviz.png)
 
+For this workstation, the checkout is `/home/kshitij0/sensor_fusion`. See the
+[presentation guide](docs/PRESENTATION.md) for startup, stopping, recording and a
+short presentation walkthrough.
+
+[Watch or download the full RViz2 recording](https://github.com/kshitijprasaddev/sensor_fusion/raw/refs/heads/main/docs/videos/rviz-full-demo.mp4).
+The video shows both recorded bags at half speed. Camera calibration remains
+approximate, as labeled in the demo.
+
 ## Run the project
 
 Requirements: Linux x86_64, Docker access, an NVIDIA driver, NVIDIA Container
@@ -55,7 +63,8 @@ in `results/fusion.rviz`, so your view settings persist between runs.
 The supplied root should contain `studentProject/metadata.yaml` and
 `studentProject1/metadata.yaml` beside their `.db3` files. Raw recordings are
 mounted read-only. Models, engines, logs and generated videos stay local under
-`models` and `results`; they are excluded from Git.
+`models` and `results`; they are excluded from Git. The presentation recording
+in `docs/videos` is intentionally included in the repository.
 
 ## How it works
 
