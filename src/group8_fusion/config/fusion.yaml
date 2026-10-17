@@ -30,3 +30,7 @@ tracking:
   gate: 3.0
   max_age: 0.7
   min_hits: 2
+visualization:
+  # Full tracks are always exported. Hide structural obstacle labels in the GUI.
+  show_unclassified: false
+  preview_width: 960

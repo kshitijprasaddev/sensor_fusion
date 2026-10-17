@@ -50,6 +50,13 @@ Display access uses the existing X11 socket and Xauthority cookie. The script
 does not disable X server access control with `xhost +`. On a headless machine,
 launch `ros2 launch group8_fusion demo.launch.py rviz:=false` in a shell.
 
+The helper runs with the host user's UID so exported files can be edited normally.
+NVIDIA PRIME/GLX variables select the RTX renderer on hybrid graphics laptops.
+The container uses `docker/fastdds.xml` with a 128 MiB shared-memory segment and
+UDP discovery. This accommodates the approximately 6.9 MB uncompressed camera
+messages. Fast DDS's smaller default segments caused observed image loss during
+live testing. See the [Fast DDS 2.6 shared-memory documentation](https://fast-dds.docs.eprosima.com/en/2.6.x/fastdds/transport/shared_memory/shared_memory.html).
+
 ## Jetson deployment
 
 The x86 image cannot run natively on ARM64. For JetPack 6.0, start from the

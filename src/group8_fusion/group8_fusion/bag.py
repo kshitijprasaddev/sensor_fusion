@@ -1,6 +1,7 @@
 """Read-only access to the supplied SQLite ROS bags. No raw data is rewritten."""
 from pathlib import Path
 import sqlite3
+import struct
 import numpy as np
 from rclpy.serialization import deserialize_message
 from rosidl_runtime_py.utilities import get_message
@@ -9,6 +10,20 @@ from .geometry import transform_matrix
 CAMERA = '/blackfly_s/cam0/image_rectified'
 LIDAR = '/velodyne/points_raw'
 RADAR = '/PointCloudDetection'
+
+
+def restamp_sensor_cdr(serialized, timestamp):
+    """Restamp a CDR1 sensor message whose first member is std_msgs/Header.
+
+    Image, PointCloud2 and Imu all have this layout. Preserve every byte after
+    the Time fields, and reject other encodings rather than guessing a layout.
+    This avoids deserializing and reserializing multi-megabyte image payloads.
+    """
+    if len(serialized) < 12 or serialized[:2] not in (b'\x00\x00', b'\x00\x01'):
+        raise ValueError('Expected CDR1 sensor message with a leading Header')
+    endian = '<' if serialized[1] == 1 else '>'
+    seconds, nanoseconds = divmod(int(timestamp), 10**9)
+    return serialized[:4] + struct.pack(endian + 'iI', seconds, nanoseconds) + serialized[12:]
 
 
 class Bag:
@@ -64,8 +79,11 @@ class Bag:
         raise ValueError(f'Missing velodyne -> {child} calibration in bag')
 
     def messages(self):
-        by_id = {v[0]: (name, v[1]) for name, v in self.topics.items()}
+        for name, timestamp, raw in self.serialized_messages():
+            yield name, timestamp, deserialize_message(raw, self.topics[name][1])
+
+    def serialized_messages(self):
+        by_id = {v[0]: name for name, v in self.topics.items()}
         for tid, timestamp, raw in self.db.execute(
                 'SELECT topic_id,timestamp,data FROM messages ORDER BY timestamp,id'):
-            name, typ = by_id[tid]
-            yield name, timestamp, deserialize_message(raw, typ)
+            yield by_id[tid], timestamp, raw

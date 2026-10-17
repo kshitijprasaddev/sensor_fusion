@@ -1,5 +1,7 @@
 # Group 8 | Multi-sensor perception
 
+[![Numerical pipeline](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml/badge.svg)](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml)
+
 Camera, LiDAR and radar object fusion for the THI automated-vehicle project.
 Built in the requested NVIDIA TensorRT 23.08 container with ROS 2 Humble,
 YOLO11n, geometric point-cloud detection, Kalman tracking and RViz2.
@@ -7,6 +9,8 @@ YOLO11n, geometric point-cloud detection, Kalman tracking and RViz2.
 **Calibration status:** the recordings contain sensor extrinsics but no camera
 intrinsics. The default projection is clearly marked approximate. Importing the
 real calibration later requires a new configuration and a rerun, not code changes.
+
+![Live RViz2 with camera, LiDAR, radar and fused tracks](docs/assets/rviz.png)
 
 ## Run the project
 
@@ -29,6 +33,11 @@ RViz opens with the camera overlay, LiDAR, radar, frame tree, fused boxes, track
 IDs and relative-velocity arrows. Playback loops at half speed to accommodate
 processing and GUI load. Use `rate:=1.0` to test the original rate, and inspect
 `/fusion/metrics` for dropped frames. This is a recorded-data demonstrator.
+The camera labels semantic tracks; RViz also shows radar targets. Unclassified
+structural tracks remain in the exported topics. Set
+`visualization.show_unclassified: true` in the config to display them as well.
+The RViz preview is 960 pixels wide. The helper saves editable display preferences
+in `results/fusion.rviz`, so your view settings persist between runs.
 
 ```bash
 # Second recording

@@ -1,0 +1,81 @@
+{
+  "bag": "studentProject1",
+  "modality": "lidar_radar",
+  "frames": 162,
+  "skipped_no_lidar": 0,
+  "wall_time_s": 23.62828239800001,
+  "calibration_status": "approximate",
+  "timestamp_policy": "bag_receipt_time",
+  "configuration": {
+    "camera": {
+      "width": 1920,
+      "height": 1200,
+      "status": "approximate",
+      "allow_approximate": true,
+      "K": [
+        1100.0,
+        0.0,
+        960.0,
+        0.0,
+        1100.0,
+        600.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "model": {
+      "weights": "/models/yolo11n.pt",
+      "device": "0",
+      "imgsz": 640,
+      "confidence": 0.3
+    },
+    "synchronization": {
+      "tolerance_ms": 100
+    },
+    "lidar": {
+      "roi_min": [
+        -15.0,
+        -20.0,
+        -2.8
+      ],
+      "roi_max": [
+        65.0,
+        20.0,
+        4.0
+      ],
+      "voxel": 0.25,
+      "ground_threshold": 0.22,
+      "cluster_eps": 0.65,
+      "min_points": 5
+    },
+    "radar": {
+      "max_range": 65.0,
+      "max_lateral": 20.0,
+      "cluster_eps": 1.5,
+      "min_points": 2,
+      "association_gate": 2.5
+    },
+    "tracking": {
+      "gate": 3.0,
+      "max_age": 0.7,
+      "min_hits": 2
+    }
+  },
+  "weights_sha256": null,
+  "latency_ms": {
+    "p50": 138.0387740000515,
+    "p95": 145.0394663989755,
+    "max": 156.4148090001254
+  },
+  "totals": {
+    "camera_detections": 0,
+    "lidar_objects": 8440,
+    "radar_objects": 2203,
+    "camera_matches": 0,
+    "radar_matches": 980,
+    "three_sensor_objects": 0
+  },
+  "unique_confirmed_tracks": 145,
+  "accuracy_metrics": "Unavailable: no labeled ground truth, true camera intrinsics or ego pose supplied."
+}

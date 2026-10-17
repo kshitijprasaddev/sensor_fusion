@@ -20,9 +20,9 @@ if mode == 'auto':
     mode = 'cdi' if has_cdi else ('toolkit' if 'nvidia' in info else 'direct')
 args = []
 if mode == 'cdi':
-    args = ['--device=nvidia.com/gpu=all']
+    args = ['--device=nvidia.com/gpu=all', '-e', '__NV_PRIME_RENDER_OFFLOAD=1', '-e', '__GLX_VENDOR_LIBRARY_NAME=nvidia']
 elif mode == 'toolkit':
-    args = ['--gpus', 'all']
+    args = ['--gpus', 'all', '-e', '__NV_PRIME_RENDER_OFFLOAD=1', '-e', '__GLX_VENDOR_LIBRARY_NAME=nvidia']
 else:
     for name in ('nvidia0', 'nvidiactl', 'nvidia-uvm'):
         path = Path('/dev') / name

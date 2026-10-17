@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 import time
 import cv2
@@ -74,7 +75,7 @@ def main():
                 cv2.imwrite(str(out / f'frame_{i:04d}.jpg'), annotated)
             if args.video:
                 if video is None:
-                    video = cv2.VideoWriter(str(out / 'fusion.mp4'), cv2.VideoWriter_fourcc(*'mp4v'),
+                    video = cv2.VideoWriter(str(out / 'fusion_raw.mp4'), cv2.VideoWriter_fourcc(*'mp4v'),
                                             10 / args.stride, (960, 600))
                     if not video.isOpened():
                         raise RuntimeError('Unable to open MP4 video writer')
@@ -84,6 +85,11 @@ def main():
                   f'radar matches={sum(r["radar_matches"] for r in rows)}', flush=True)
     if video:
         video.release()
+        subprocess.run(['ffmpeg', '-hide_banner', '-loglevel', 'error', '-y',
+                        '-i', str(out / 'fusion_raw.mp4'), '-c:v', 'libx264', '-preset', 'fast',
+                        '-crf', '23', '-pix_fmt', 'yuv420p', '-movflags', '+faststart',
+                        str(out / 'fusion.mp4')], check=True)
+        (out / 'fusion_raw.mp4').unlink()
     bag.close()
     if not rows:
         raise RuntimeError('No synchronized camera/LiDAR frames processed')

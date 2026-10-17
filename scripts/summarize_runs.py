@@ -15,7 +15,9 @@ args = p.parse_args()
 runs = [json.loads((Path(d) / 'summary.json').read_text()) for d in args.runs]
 out = Path(args.output)
 out.mkdir(parents=True, exist_ok=True)
-labels = [f"{r['bag']}\n{r['modality']}" for r in runs]
+bag_names = {'studentProject': 'Bag 1', 'studentProject1': 'Bag 2'}
+mode_names = {'lidar': 'L', 'camera_lidar': 'C+L', 'lidar_radar': 'L+R', 'all': 'C+L+R'}
+labels = [f"{bag_names.get(r['bag'], r['bag'])}\n{mode_names[r['modality']]}" for r in runs]
 fig, axes = plt.subplots(1, 2, figsize=(13, 5), constrained_layout=True)
 fig.patch.set_facecolor('#f5f8fc')
 x = np.arange(len(runs))
@@ -34,6 +36,7 @@ for ax in axes:
     ax.set_axisbelow(True)
     ax.legend(frameon=False, fontsize=9)
 fig.suptitle('Group 8 | Recorded-data validation | Approximate camera intrinsics', fontsize=14, fontweight='bold')
+fig.supxlabel('C: camera   L: LiDAR   R: radar     |     Bag 1: studentProject     Bag 2: studentProject1', fontsize=9)
 fig.savefig(out / 'comparison.png', dpi=180)
 plt.close(fig)
 table = ['| Recording | Mode | Frames | Median ms | P95 ms | Camera matches | Radar matches |',

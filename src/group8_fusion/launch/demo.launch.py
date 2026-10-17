@@ -19,12 +19,13 @@ def generate_launch_description():
         DeclareLaunchArgument('rate', default_value='0.5'),
         DeclareLaunchArgument('loop', default_value='true'),
         DeclareLaunchArgument('rviz', default_value='true'),
+        DeclareLaunchArgument('rviz_config', default_value=str(share / 'config/fusion.rviz')),
         Node(package='group8_fusion', executable='bag_player', output='screen', parameters=[{
             'bag': arg('bag'), 'rate': ParameterValue(arg('rate'), value_type=float),
             'loop': ParameterValue(arg('loop'), value_type=bool), 'startup_delay': 8.0}]),
         Node(package='group8_fusion', executable='fusion_node', output='screen', parameters=[{
             'bag': arg('bag'), 'config': arg('config'), 'weights': arg('weights'),
             'device': ParameterValue(arg('device'), value_type=str), 'use_sim_time': True}]),
-        Node(package='rviz2', executable='rviz2', arguments=['-d', str(share / 'config/fusion.rviz')],
+        Node(package='rviz2', executable='rviz2', arguments=['-d', arg('rviz_config')],
              parameters=[{'use_sim_time': True}], condition=IfCondition(arg('rviz')), output='screen'),
     ])

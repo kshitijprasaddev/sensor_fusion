@@ -1,0 +1,12 @@
+{
+  "samples": 20,
+  "pytorch_boxes": 43,
+  "tensorrt_boxes": 43,
+  "same_class_matches_iou_ge_0_5": 43,
+  "matched_iou_median": 0.9985879363737798,
+  "camera_latency_median_ms": {
+    "pytorch": 6.514994999633927,
+    "tensorrt": 3.471846000138612
+  },
+  "interpretation": "Backend agreement only. Neither backend is ground truth."
+}

@@ -4,7 +4,6 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
-import shutil
 from ultralytics import YOLO
 
 p = argparse.ArgumentParser()
@@ -15,8 +14,7 @@ out = Path(args.output)
 out.mkdir(parents=True, exist_ok=True)
 target = out / 'yolo11n.pt'
 if not target.exists():
-    model = YOLO('yolo11n.pt')
-    shutil.copy2(model.ckpt_path, target)
+    YOLO(str(target))
 model = YOLO(str(target))
 if args.engine:
     # Fixed 640 input, ONNX opset 17 and no embedded NMS work with TensorRT 8.6.

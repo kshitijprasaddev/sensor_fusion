@@ -9,6 +9,11 @@ merely because objects were detected or messages were published.
 
 ## Reproduce
 
+After building and preparing the engine, `./scripts/run.sh validate` repeats the
+numerical tests, dependency check, environment capture, dataset audit, backend
+comparison and all four sensor ablations on both recordings. It writes its
+evidence under `results/validation`. The individual commands are:
+
 ```bash
 ./scripts/run.sh build
 ./scripts/run.sh test
@@ -25,10 +30,13 @@ pipeline uses `--modality all`. Latency includes detector, geometric processing,
 association and tracking, but excludes deserialization, image annotation, video
 encoding and ROS transport. It is not end-to-end sensor latency.
 
-`scripts/verify_ros.py` subscribes to the live outputs. It requires actual images,
+`scripts/verify_ros.py --rviz --min-images 100` subscribes to the live outputs. It requires actual images,
 filtered clouds, markers, object messages, metrics, static sensor frames and
 confirmed track IDs. It rejects nonfinite object coordinates. This checks the
-ROS wiring, not perception accuracy. RViz is additionally checked on the display.
+ROS wiring, not perception accuracy. The `--rviz` option also checks the actual
+RViz subscriptions; a separate screenshot verifies the visible result. The
+`node_latency_ms` metric includes annotation and publishing, while the offline
+latency table measures the shared processing stage only.
 
 ## Accuracy evaluation once prerequisites arrive
 

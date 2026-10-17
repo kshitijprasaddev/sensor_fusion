@@ -32,11 +32,11 @@ class CameraDetector:
             raise FileNotFoundError(f'Model not found: {path}. Run scripts/prepare_model.py first.')
         self.model = YOLO(str(path), task='detect')
         self.model.predict(np.zeros((640, 640, 3), np.uint8), imgsz=cfg['imgsz'],
-                           device=cfg['device'], verbose=False)
+                           device=cfg['device'], rect=False, verbose=False)
 
     def detect(self, image):
         result = self.model.predict(image, imgsz=self.cfg['imgsz'], conf=self.cfg['confidence'],
-                                    device=self.cfg['device'], verbose=False)[0]
+                                    device=self.cfg['device'], rect=False, verbose=False)[0]
         boxes = []
         for b, c, p in zip(result.boxes.xyxy.cpu().numpy(), result.boxes.cls.cpu().numpy(),
                            result.boxes.conf.cpu().numpy()):
@@ -92,6 +92,8 @@ class Processor:
             cv2.putText(out, f"{box['label']} {box['confidence']:.2f}", (x1, max(25, y1 - 10)),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (80, 220, 255), 2)
         for track in result['tracks']:
+            if not self.cfg.get('visualization', {}).get('show_unclassified', False) and track.object.label in ('obstacle', 'radar_target'):
+                continue
             xyz = np.r_[track.state[:2], track.object.center[2]].reshape(1, 3)
             pixel, valid, _ = project(xyz, self.camera_from_lidar, self.K, image.shape[1], image.shape[0])
             if valid[0]:

@@ -80,7 +80,7 @@ Visualization Manager:
   - Class: rviz_default_plugins/MarkerArray
     Name: Fused tracks
     Enabled: true
-    Marker Topic:
+    Topic:
       Value: /fusion/markers
       Depth: 5
       Durability Policy: Volatile
@@ -94,7 +94,7 @@ Visualization Manager:
       Depth: 5
       Durability Policy: Volatile
       History Policy: Keep Last
-      Reliability Policy: Reliable
+      Reliability Policy: Best Effort
     Normalize Range: true
     Min Value: 0
     Max Value: 1

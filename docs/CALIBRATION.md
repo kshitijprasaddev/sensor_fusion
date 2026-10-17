@@ -61,6 +61,9 @@ receipt times. It does not change the original bags. Static transforms are
 combined and published with transient-local durability so late RViz subscribers
 receive the whole frame tree. A time rewind clears synchronization queues and
 the Kalman state; track IDs continue increasing within a running process.
+Static transforms are also republished once per wall second to recover TF buffers
+cleared by a loop restart. Sensor payloads use tested serialized replay; only the
+leading Header timestamp bytes are changed in memory.
 
 The camera anchors each fusion step. The nearest LiDAR and radar sample must lie
 within 100 ms; missing LiDAR causes the frame to be skipped and missing radar is

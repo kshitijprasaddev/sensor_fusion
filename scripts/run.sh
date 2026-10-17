@@ -10,7 +10,8 @@ fi
 data="${DATA_DIR:-/home/kshitij0/Downloads/studentProject1}"
 if [[ ! -d "$data" ]]; then echo "Set DATA_DIR to the directory containing studentProject and studentProject1" >&2; exit 1; fi
 mkdir -p models results
-args=(--rm --init --ipc=host --shm-size=2g
+args=(--rm --init --ipc=host --shm-size=2g --user "$(id -u):$(id -g)" -e HOME=/tmp/group8
+  -e YOLO_CONFIG_DIR=/tmp/ultralytics
   -v "$data:/data:ro" -v "$PWD/models:/models" -v "$PWD/results:/results")
 if [[ "${GPU:-1}" == 1 ]]; then
   gpu_args_file=$(mktemp)
@@ -26,6 +27,7 @@ case "$command" in
   audit) exec docker run "${args[@]}" "$image" python3 scripts/audit_bags.py /data/studentProject /data/studentProject1 --output /results/dataset_audit.json "$@" ;;
   evaluate) exec docker run "${args[@]}" "$image" python3 scripts/evaluate.py "$@" ;;
   test) exec docker run "${args[@]}" "$image" python3 -m pytest -q tests "$@" ;;
+  validate) exec docker run "${args[@]}" "$image" bash scripts/validate_all.sh "$@" ;;
   calibrate)
     calibration_file=$(realpath "${1:?Provide the ROS camera calibration YAML path}")
     shift
@@ -35,7 +37,8 @@ case "$command" in
     if [[ -z "${DISPLAY:-}" ]]; then echo 'DISPLAY is required for RViz. Use shell or headless launch otherwise.' >&2; exit 1; fi
     args+=(-e "DISPLAY=$DISPLAY" -e NVIDIA_DRIVER_CAPABILITIES=all -v /tmp/.X11-unix:/tmp/.X11-unix:rw)
     if [[ -f "${XAUTHORITY:-}" ]]; then args+=(-e XAUTHORITY=/tmp/host.xauth -v "$XAUTHORITY:/tmp/host.xauth:ro"); fi
-    exec docker run "${args[@]}" "$image" ros2 launch group8_fusion demo.launch.py "$@" ;;
+    if [[ ! -f results/fusion.rviz ]]; then cp src/group8_fusion/config/fusion.rviz results/fusion.rviz; fi
+    exec docker run "${args[@]}" "$image" ros2 launch group8_fusion demo.launch.py rviz_config:=/results/fusion.rviz "$@" ;;
   shell) exec docker run -it "${args[@]}" "$image" bash ;;
-  *) echo "Usage: $0 {build|prepare|audit|evaluate|test|calibrate|demo|shell} [arguments]" >&2; exit 1 ;;
+  *) echo "Usage: $0 {build|prepare|audit|evaluate|test|validate|calibrate|demo|shell} [arguments]" >&2; exit 1 ;;
 esac

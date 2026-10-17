@@ -6,7 +6,7 @@ from rclpy.node import Node
 from rclpy.qos import QoSProfile, ReliabilityPolicy, DurabilityPolicy
 from rosgraph_msgs.msg import Clock
 from tf2_msgs.msg import TFMessage
-from .bag import Bag
+from .bag import Bag, restamp_sensor_cdr
 
 
 def set_stamp(stamp, nanoseconds):
@@ -46,7 +46,8 @@ class Player(Node):
             self.get_logger().warning('Replay uses BAG RECEIPT timestamps, not acquisition synchronization.')
             while rclpy.ok() and not self.stop.is_set():
                 start_wall = time.monotonic()
-                for name, timestamp, msg in self.bag.messages():
+                last_static = 0.0
+                for name, timestamp, raw in self.bag.serialized_messages():
                     if name == '/tf_static':
                         continue
                     target = start_wall + (timestamp - self.bag.start) / 1e9 / self.rate
@@ -55,9 +56,13 @@ class Player(Node):
                     clock = Clock()
                     set_stamp(clock.clock, timestamp)
                     self.clock_pub.publish(clock)
-                    if hasattr(msg, 'header'):
-                        set_stamp(msg.header.stamp, timestamp)
-                    self.publishers_by_topic[name].publish(msg)
+                    # Recover late subscribers and TF buffers cleared by loop clock rewinds.
+                    if time.monotonic() - last_static > 1.0:
+                        self.static_pub.publish(TFMessage(transforms=transforms))
+                        last_static = time.monotonic()
+                    if not self.bag.topics[name][2].startswith('sensor_msgs/msg/'):
+                        raise ValueError(f'Unsupported replay topic without known Header layout: {name}')
+                    self.publishers_by_topic[name].publish(restamp_sensor_cdr(raw, timestamp))
                 self.get_logger().info('Playback pass complete')
                 if not self.get_parameter('loop').value:
                     return

@@ -28,10 +28,15 @@ RUN python3 -m pip install --no-cache-dir torch==2.4.0 torchvision==0.19.0 \
       --index-url https://download.pytorch.org/whl/cu121
 COPY requirements.txt /tmp/requirements.txt
 RUN python3 -m pip install --no-cache-dir -r /tmp/requirements.txt
+RUN apt-get update && apt-get install -y --no-install-recommends ffmpeg && rm -rf /var/lib/apt/lists/*
+# The distro's old regular mpl_toolkits package otherwise hides pip's namespace.
+RUN rm -f /usr/lib/python3/dist-packages/mpl_toolkits/__init__.py
 ENV OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=1
 
 WORKDIR /workspace/sensor_fusion
 COPY . .
+ENV FASTRTPS_DEFAULT_PROFILES_FILE=/workspace/sensor_fusion/docker/fastdds.xml \
+    RMW_IMPLEMENTATION=rmw_fastrtps_cpp RMW_FASTRTPS_PUBLICATION_MODE=ASYNCHRONOUS
 RUN source /opt/ros/humble/setup.bash && colcon build --symlink-install \
     && python3 -m pytest -q tests
 ENTRYPOINT ["/workspace/sensor_fusion/docker/entrypoint.sh"]

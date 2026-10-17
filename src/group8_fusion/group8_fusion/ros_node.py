@@ -1,13 +1,14 @@
 """ROS adapter with bounded synchronization queues and RViz outputs."""
 from collections import deque
+from array import array
 import json
 import time
+import cv2
 import numpy as np
 import rclpy
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
-from sensor_msgs.msg import Image, PointCloud2
-from sensor_msgs_py import point_cloud2
+from sensor_msgs.msg import Image, PointCloud2, PointField
 from std_msgs.msg import Header, String
 from visualization_msgs.msg import Marker, MarkerArray
 from geometry_msgs.msg import Point
@@ -19,6 +20,15 @@ from .processor import load_config, CameraDetector, Processor
 
 def stamp_ns(msg):
     return msg.header.stamp.sec * 10**9 + msg.header.stamp.nanosec
+
+
+def xyz_cloud(header, points):
+    points = np.ascontiguousarray(points, dtype='<f4')
+    return PointCloud2(header=header, height=1, width=len(points),
+        fields=[PointField(name=name, offset=offset, datatype=PointField.FLOAT32, count=1)
+                for name, offset in [('x', 0), ('y', 4), ('z', 8)]],
+        is_bigendian=False, point_step=12, row_step=len(points) * 12,
+        data=array('B', points.tobytes()), is_dense=bool(np.isfinite(points).all()))
 
 
 class FusionNode(Node):
@@ -39,8 +49,8 @@ class FusionNode(Node):
         self.images = deque(maxlen=4)
         self.last_stamp = None
         self.stats = {'processed': 0, 'dropped_no_lidar': 0, 'dropped_images': 0}
-        self.image_pub = self.create_publisher(Image, '/fusion/image', 2)
-        self.cloud_pub = self.create_publisher(PointCloud2, '/fusion/nonground', 2)
+        self.image_pub = self.create_publisher(Image, '/fusion/image', qos_profile_sensor_data)
+        self.cloud_pub = self.create_publisher(PointCloud2, '/fusion/nonground', qos_profile_sensor_data)
         self.marker_pub = self.create_publisher(MarkerArray, '/fusion/markers', 2)
         self.detection_pub = self.create_publisher(Detection3DArray, '/fusion/objects', 2)
         self.track_pub = self.create_publisher(String, '/fusion/tracks', 2)
@@ -87,28 +97,34 @@ class FusionNode(Node):
         timestamp = stamp_ns(msg)
         latest = self.clouds[LIDAR][-1] if self.clouds[LIDAR] else None
         # Allow future cloud samples to arrive. Bound the wait at low replay rates.
-        if time.monotonic() - received < 0.5 and (latest is None or stamp_ns(latest) < timestamp + self.tolerance):
+        if time.monotonic() - received < 0.5 and (latest is None or stamp_ns(latest) < timestamp):
             return
         self.images.popleft()
         lidar, radar = self.nearest(LIDAR, timestamp), self.nearest(RADAR, timestamp)
         if lidar is None:
             self.stats['dropped_no_lidar'] += 1
             return
+        node_started = time.perf_counter()
         image = image_array(msg)
         result = self.processor.process(image, cloud_array(lidar),
             cloud_array(radar, ('x', 'y', 'z', 'v')) if radar else None, timestamp / 1e9)
         self.stats['processed'] += 1
         annotated = self.processor.annotate(image, result)
+        preview_width = int(self.processor.cfg.get('visualization', {}).get('preview_width', 960))
+        if preview_width > 0 and annotated.shape[1] > preview_width:
+            preview_height = round(annotated.shape[0] * preview_width / annotated.shape[1])
+            annotated = cv2.resize(annotated, (preview_width, preview_height), interpolation=cv2.INTER_AREA)
         output = Image(header=msg.header, height=annotated.shape[0], width=annotated.shape[1],
                        encoding='bgr8', is_bigendian=0, step=annotated.shape[1] * 3,
-                       data=annotated.tobytes())
+                       data=array('B', annotated.tobytes()))
         self.image_pub.publish(output)
         header = Header(stamp=msg.header.stamp, frame_id='velodyne')
-        self.cloud_pub.publish(point_cloud2.create_cloud_xyz32(header, result['nonground'].astype(np.float32)))
+        self.cloud_pub.publish(xyz_cloud(header, result['nonground']))
         self.publish_objects(header, result['tracks'])
         metrics = dict(result['metrics'], **self.stats)
         metrics['lidar_delta_ms'] = (stamp_ns(lidar) - timestamp) / 1e6
         metrics['radar_delta_ms'] = (stamp_ns(radar) - timestamp) / 1e6 if radar else None
+        metrics['node_latency_ms'] = (time.perf_counter() - node_started) * 1000
         self.metrics_pub.publish(String(data=json.dumps(metrics)))
         if self.stats['processed'] % 25 == 0:
             self.get_logger().info(f"Processed {self.stats['processed']} frames; "
@@ -153,6 +169,9 @@ class FusionNode(Node):
             hypothesis.hypothesis.class_id = obj.label
             hypothesis.hypothesis.score = float(obj.confidence)
             hypothesis.pose.pose = cube.pose
+            hypothesis.pose.covariance[14] = 1.0  # Heuristic z variance; not tracked.
+            for axis in (3, 4, 5):
+                hypothesis.pose.covariance[axis * 6 + axis] = 1e3  # Orientation is not estimated.
             for r in range(2):
                 for c in range(2):
                     hypothesis.pose.covariance[r * 6 + c] = float(track.covariance[r, c])
@@ -163,6 +182,10 @@ class FusionNode(Node):
                 'state_covariance': track.covariance.tolist(), 'label': obj.label,
                 'sources': obj.sources, 'measured': track.measured,
                 'radial_velocity_sensor': obj.radial_velocity})
+        show_unclassified = self.processor.cfg.get('visualization', {}).get('show_unclassified', False)
+        if not show_unclassified:
+            visible_ids = {t.id for t in tracks if t.object.label != 'obstacle'}
+            markers = [clear] + [m for m in markers[1:] if m.id in visible_ids]
         self.marker_pub.publish(MarkerArray(markers=markers))
         self.detection_pub.publish(detections)
         self.track_pub.publish(String(data=json.dumps({'frame_id': header.frame_id,

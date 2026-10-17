@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "counts": {
+    "tf_static": 21,
+    "image": 101,
+    "cloud": 100,
+    "markers": 100,
+    "objects": 100,
+    "tracks": 100,
+    "metrics": 100
+  },
+  "static_children": [
+    "cam0",
+    "os_lidar",
+    "ouster/imu_link",
+    "radar"
+  ],
+  "unique_track_ids": 147,
+  "errors": [],
+  "rviz_subscriptions": {
+    "/fusion/markers": true,
+    "/fusion/image": true,
+    "/fusion/nonground": true,
+    "/velodyne/points_raw": true,
+    "/PointCloudDetection": true
+  },
+  "last_metrics": {
+    "time": 1775649777.6420815,
+    "latency_ms": 124.11324000095192,
+    "camera_detections": 3,
+    "lidar_objects": 51,
+    "radar_objects": 14,
+    "camera_matches": 2,
+    "radar_matches": 6,
+    "tracks": 75,
+    "measured_tracks": 58,
+    "three_sensor_objects": 1,
+    "processed": 1086,
+    "dropped_no_lidar": 0,
+    "dropped_images": 0,
+    "lidar_delta_ms": 49.236425,
+    "radar_delta_ms": -7.194034,
+    "node_latency_ms": 142.7821489996859
+  }
+}
