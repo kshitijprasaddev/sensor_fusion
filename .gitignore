@@ -14,3 +14,7 @@ __pycache__/
 *.onnx
 *.engine
 .env
+
+# Keep presentation materials and full videos local.
+docs/PRESENTATION.md
+docs/videos/
