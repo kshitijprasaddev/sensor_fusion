@@ -24,6 +24,11 @@ not a reproduced end-to-end BEVFusion or a road-ready perception system.
 [step-by-step terminal commands](docs/RUN_GUIDE.md), and
 [v2 improvements and tradeoffs](docs/FUSION_V2.md).
 
+The current display emphasizes **camera masks and colored LiDAR object points**.
+Misleading image-space cuboids are off, while 3D boxes and redesigned relative
+motion vectors are optional RViz layers. A runtime continuity check withholds
+abrupt association jumps. Read [display and robustness changes](docs/DISPLAY_AND_ROBUSTNESS.md).
+
 Read the [literature review](docs/LITERATURE_REVIEW.md),
 [architecture and commands](docs/AI_PIPELINE.md), and
 [measured neural results](docs/AI_RESULTS.md).
@@ -35,10 +40,10 @@ from 79.9% to 91.0% and exact radar-point agreement from 37.5% to 62.2%.
 Motion weak-target error increased from 0.53 to 0.62 m/s. These are disclosed
 development diagnostics, not ground-truth accuracy or a state-of-the-art result.
 
-![Neural v2 RViz preview](docs/assets/neural-v2-demo.gif)
+![Camera masks and colored LiDAR object points in RViz](docs/assets/masks-scene-demo.gif)
 
 Accelerated excerpt from the actual neural v2 RViz session.
-[Full-resolution screenshot](docs/assets/neural-v2-rviz.png).
+[Full-resolution screenshot](docs/assets/masks-scene-rviz.png).
 
 ## Run the neural demo on this workstation
 
@@ -55,10 +60,14 @@ cd /home/kshitij0/sensor_fusion
 The helper selects the neural image/configuration and starts at `rate:=0.1` to
 leave processing headroom. Replay repeats by default. Stop with Ctrl+C or
 `docker stop group8-rviz`. Stop one demo before starting the next.
+The launcher uses ROS domain 8 by default; container shells inherit it.
 
 ```bash
 # Second recorded bag
 ./scripts/run.sh ai-demo bag:=/data/studentProject1
+
+# Top-down view, after stopping the first demo
+./scripts/run.sh ai-birdseye
 
 # One pass
 ./scripts/run.sh ai-demo loop:=false
@@ -144,7 +153,11 @@ limitations and feature-ablation regressions are reported without hiding them.
 | --- | --- |
 | `/fusion/image` | Camera overlay with SAM masks/IDs and matched 3D information |
 | `/fusion/nonground` | Neural profile: sampled LiDAR model input, including ground; baseline: ground-filtered points |
-| `/fusion/markers` | Oriented boxes, IDs and relative-velocity arrows |
+| `/fusion/markers` | Compact IDs, range labels and distance guides |
+| `/fusion/instance_points` | Real LiDAR returns inside matched detections, colored by ID |
+| `/fusion/boxes` | Optional oriented boxes |
+| `/fusion/motion` | Optional relative-motion vectors |
+| `/fusion/proposals` | Optional unfused LiDAR proposals |
 | `/fusion/objects` | `vision_msgs/Detection3DArray` |
 | `/fusion/tracks` | IDs, source provenance, positions, relative velocity and heuristic covariance |
 | `/fusion/metrics` | Pipeline name, counts, attention summaries, timing and drop counters |

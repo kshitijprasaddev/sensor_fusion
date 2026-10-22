@@ -11,6 +11,7 @@ from .robust_fusion import load_fusion_model
 from .neural_models import VoxelNeXtDetector, SAMMemoryTracker
 from .perception import Object3D
 from .processor import Processor
+from .quality import observation_issue
 
 
 class NeuralProcessor:
@@ -42,6 +43,7 @@ class NeuralProcessor:
         self.tracks = []
         self.hidden = {}
         self.previous = {}
+        self.quality_rejections = 0
         self.tracker = self
         self.network = None
         if not training_features:
@@ -68,6 +70,7 @@ class NeuralProcessor:
         self.tracks = []
         self.hidden.clear()
         self.previous.clear()
+        self.quality_rejections = 0
 
     def extract(self, image, lidar, radar, timestamp):
         if self.last_time is not None and (
@@ -98,6 +101,7 @@ class NeuralProcessor:
         return record, visual, boxes
 
     def infer_record(self, record):
+        self.tracks = []
         if self.network is None:
             raise RuntimeError("Untrained fusion is disabled")
         if not len(record["query"]):
@@ -119,13 +123,24 @@ class NeuralProcessor:
             hidden = []
             accepted = []
             timestamp = float(record["time"])
+            rejected = 0
             for j, index in enumerate(selected):
+                if not np.isfinite(lp[j]).all() or not np.isfinite(rp[j]).all():
+                    rejected += 1
+                    continue
                 if (
                     index == len(record["boxes"])
                     or lp[j, index] < self.cfg["neural"]["fusion"]["min_confidence"]
                 ):
                     continue
                 identifier = int(record["ids"][j])
+                issue = observation_issue(
+                    record["boxes"][index], timestamp, self.previous.get(identifier),
+                    self.cfg["neural"].get("quality", {}),
+                )
+                if issue is not None:
+                    rejected += 1
+                    continue
                 pos = record["boxes"][index, :3]
                 old = self.previous.get(identifier)
                 dt = timestamp - old[0] if old else 0
@@ -142,7 +157,8 @@ class NeuralProcessor:
                 )
                 accepted.append(j)
             if not accepted:
-                return [], {"neural_null_tracks": len(record["ids"])}
+                self.quality_rejections += rejected
+                return [], {"neural_null_tracks": len(record["ids"]), "rejected_3d_observations": rejected}
             position = torch.as_tensor(np.asarray(positions), device="cuda")
             velocity, state = self.network.predict_motion(
                 fused[accepted],
@@ -164,6 +180,9 @@ class NeuralProcessor:
         for row, j in enumerate(accepted):
             index = int(selected[j])
             if best[index] != j:
+                continue
+            if not np.isfinite(velocity[row]).all():
+                rejected += 1
                 continue
             identifier = int(record["ids"][j])
             box = record["boxes"][index]
@@ -204,7 +223,9 @@ class NeuralProcessor:
                 )
             )
         self.tracks = tracks
+        self.quality_rejections += rejected
         return tracks, {
+            "rejected_3d_observations": rejected,
             "neural_null_tracks": len(record["ids"]) - len(tracks),
             "radar_matches": radar_matches,
             "mean_lidar_attention": float(lp.max(1).mean()),
@@ -245,6 +266,8 @@ class NeuralProcessor:
             "mean_radar_attention": 0.0,
             "visual_tracks": len(visual),
             "sam_capacity_rejections": self.visual_tracker.capacity_rejections,
+            "rejected_3d_observations": 0,
+            "quality_rejections_total": self.quality_rejections,
             **extra,
         }
         # Camera masks/IDs remain visible even when no valid 3D observation exists.
@@ -256,4 +279,12 @@ class NeuralProcessor:
             "radar_points": record["radar_xyz"],
             "metrics": metrics,
             "visual_tracks": visual,
+            "lidar_proposals": [
+                {"box": box, "label": name, "confidence": float(score)}
+                for box, name, score in zip(
+                    record["boxes"],
+                    (self.lidar_detector.names[int(label)] for label in record["lidar_labels"]),
+                    record["lidar_scores"],
+                )
+            ],
         }

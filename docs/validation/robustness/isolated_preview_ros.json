@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "counts": {
+    "tf_static": 16,
+    "image": 15,
+    "cloud": 15,
+    "instance_points": 15,
+    "markers": 15,
+    "objects": 15,
+    "tracks": 15,
+    "boxes": 15,
+    "motion": 15,
+    "metrics": 15,
+    "proposals": 15
+  },
+  "static_children": [
+    "cam0",
+    "os_lidar",
+    "ouster/imu_link",
+    "radar"
+  ],
+  "unique_track_ids": 1,
+  "errors": [],
+  "rviz_subscriptions": {
+    "/fusion/markers": true,
+    "/fusion/image": true,
+    "/velodyne/points_raw": true,
+    "/PointCloudDetection": true,
+    "/fusion/instance_points": true
+  },
+  "last_metrics": {
+    "time": 1775649765.4420233,
+    "latency_ms": 280.6401340003504,
+    "camera_detections": 1,
+    "lidar_objects": 8,
+    "radar_objects": 53,
+    "camera_matches": 1,
+    "radar_matches": 1,
+    "tracks": 1,
+    "measured_tracks": 1,
+    "three_sensor_objects": 1,
+    "pipeline": "neural",
+    "fusion_schema": "group8-query-fusion-v2",
+    "radar_count_unit": "filtered_points_not_clusters",
+    "neural_null_tracks": 0,
+    "mean_lidar_attention": 0.999993085861206,
+    "mean_radar_attention": 0.37610676884651184,
+    "visual_tracks": 1,
+    "sam_capacity_rejections": 0,
+    "rejected_3d_observations": 0,
+    "quality_rejections_total": 0,
+    "processed": 24,
+    "dropped_no_lidar": 0,
+    "dropped_images": 0,
+    "lidar_delta_ms": -48.28933,
+    "radar_delta_ms": -5.942867,
+    "node_latency_ms": 298.1582789998356
+  },
+  "marker_namespaces": [
+    "box_fill",
+    "box_footprints",
+    "box_heading",
+    "box_outlines",
+    "distance_labels",
+    "distance_rings",
+    "label_leaders",
+    "rig_origin",
+    "track_labels",
+    "unfused_lidar_boxes",
+    "unfused_lidar_labels"
+  ],
+  "colored_point_observations": 1188
+}

@@ -30,6 +30,16 @@ container is named **`group8-rviz`**. The recording plays at 0.1 speed and loops
 Slow playback gives the neural models time to process. It is not a measurement
 of full-rate performance.
 
+The default view uses camera masks and colored LiDAR object points. 3D boxes,
+relative-motion estimates and unfused proposals are optional display layers.
+See [display controls and safeguards](DISPLAY_AND_ROBUSTNESS.md).
+
+For a top-down view, stop the first demo and run:
+
+```bash
+./scripts/run.sh ai-birdseye
+```
+
 For the second bag, stop the first demo and run:
 
 ```bash
@@ -73,6 +83,8 @@ docker stop group8-rviz
 
 The helper removes the stopped container. Models, results and the raw data
 remain in their mounted host directories. A new launch creates a new container.
+The helper uses ROS domain 8 by default. Stop one playback before starting
+another; parallel independent playbacks need separate domains and container names.
 
 ## 5. Evaluate without opening RViz
 

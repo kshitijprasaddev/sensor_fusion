@@ -46,8 +46,24 @@ tracking:
 visualization:
   show_unclassified: false
   preview_width: 960
+  range_rings: true
+  reference_z: -1.7
+  # Approximate intrinsics do not justify image-space cuboids.
+  projected_boxes: false
+  camera_points: false
+  camera_proposals: false
+  label_size: 0.32
+  detailed_labels: false
+  velocity_min_speed: 1.0
+  velocity_horizon_s: 0.75
+  velocity_max_length: 4.0
 pipeline: neural
 neural:
+  quality:
+    # A disclosed short-range demo motion envelope, not a universal road limit.
+    continuity_window_s: 0.5
+    max_relative_speed_mps: 30.0
+    position_slack_m: 1.0
   lidar:
     weights: /models/voxelnext_nuscenes.pth
     confidence: 0.25

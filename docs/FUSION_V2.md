@@ -1,5 +1,10 @@
 # QueryFusion v2: what improved and what did not
 
+The deployed runtime now adds validity/continuity checks and a mask/point-focused
+display. See [current display and robustness evidence](DISPLAY_AND_ROBUSTNESS.md).
+This page preserves the original head comparison and pre-guard runtime results.
+The checkpoint and its weak-label training results have not changed.
+
 Measured on 22 October 2026. Read the [plain-language project guide](START_HERE.md)
 first if the terminology is unfamiliar. The original results in
 [AI_RESULTS.md](AI_RESULTS.md) describe v1 and remain available for comparison.

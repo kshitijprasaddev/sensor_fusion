@@ -155,6 +155,7 @@ class SAMMemoryTracker:
         self.confidences.clear()
         self.last_masks.clear()
         self.next_slot = 0
+        self.capacity_rejections = 0
 
     def update(self, image, detections):
         torch = self.torch

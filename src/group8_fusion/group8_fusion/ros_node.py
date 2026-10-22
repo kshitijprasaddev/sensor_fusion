@@ -10,12 +10,14 @@ from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import Image, PointCloud2, PointField
 from std_msgs.msg import Header, String
-from visualization_msgs.msg import Marker, MarkerArray
-from geometry_msgs.msg import Point
+from visualization_msgs.msg import MarkerArray
 from vision_msgs.msg import Detection3D, Detection3DArray, ObjectHypothesisWithPose
 from .bag import Bag, CAMERA, LIDAR, RADAR
 from .geometry import cloud_array, image_array
 from .processor import load_config, CameraDetector, make_processor
+from .scene import SceneRenderer
+from .quality import instance_points
+from .display import PALETTE
 
 
 def stamp_ns(msg):
@@ -29,6 +31,19 @@ def xyz_cloud(header, points):
                 for name, offset in [('x', 0), ('y', 4), ('z', 8)]],
         is_bigendian=False, point_step=12, row_step=len(points) * 12,
         data=array('B', points.tobytes()), is_dense=bool(np.isfinite(points).all()))
+
+
+def instance_cloud(header, points, identifiers):
+    packed = np.empty(len(points), dtype=[('x', '<f4'), ('y', '<f4'), ('z', '<f4'), ('rgb', '<u4')])
+    if len(points):
+        packed['x'], packed['y'], packed['z'] = np.asarray(points).T
+        colors = np.asarray(PALETTE, dtype=np.uint32)[(np.asarray(identifiers) - 1) % len(PALETTE)]
+        packed['rgb'] = (colors[:, 0] << 16) | (colors[:, 1] << 8) | colors[:, 2]
+    return PointCloud2(header=header, height=1, width=len(points),
+        fields=[PointField(name=name, offset=offset, datatype=PointField.FLOAT32, count=1)
+                for name, offset in [('x', 0), ('y', 4), ('z', 8), ('rgb', 12)]],
+        is_bigendian=False, point_step=16, row_step=len(points) * 16,
+        data=array('B', packed.tobytes()), is_dense=True)
 
 
 class FusionNode(Node):
@@ -51,7 +66,12 @@ class FusionNode(Node):
         self.stats = {'processed': 0, 'dropped_no_lidar': 0, 'dropped_images': 0}
         self.image_pub = self.create_publisher(Image, '/fusion/image', qos_profile_sensor_data)
         self.cloud_pub = self.create_publisher(PointCloud2, '/fusion/nonground', qos_profile_sensor_data)
+        self.instance_pub = self.create_publisher(PointCloud2, '/fusion/instance_points', qos_profile_sensor_data)
         self.marker_pub = self.create_publisher(MarkerArray, '/fusion/markers', 2)
+        self.box_pub = self.create_publisher(MarkerArray, '/fusion/boxes', 2)
+        self.motion_pub = self.create_publisher(MarkerArray, '/fusion/motion', 2)
+        self.proposal_pub = self.create_publisher(MarkerArray, '/fusion/proposals', 2)
+        self.scene = SceneRenderer(cfg.get('visualization', {}))
         self.detection_pub = self.create_publisher(Detection3DArray, '/fusion/objects', 2)
         self.track_pub = self.create_publisher(String, '/fusion/tracks', 2)
         self.metrics_pub = self.create_publisher(String, '/fusion/metrics', 10)
@@ -62,7 +82,7 @@ class FusionNode(Node):
         from rclpy.clock import Clock, ClockType
         self.create_timer(0.04, self.process_pending, clock=Clock(clock_type=ClockType.STEADY_TIME))
         if cfg['camera']['status'] != 'calibrated':
-            self.get_logger().warning('APPROXIMATE camera intrinsics. Projection is a demonstration until calibrated.')
+            self.get_logger().warning('APPROXIMATE camera intrinsics. Fusion geometry is unverified; any enabled image projection is diagnostic only.')
 
     def on_cloud(self, topic, msg):
         queue = self.clouds[topic]
@@ -119,7 +139,10 @@ class FusionNode(Node):
         self.image_pub.publish(output)
         header = Header(stamp=msg.header.stamp, frame_id='velodyne')
         self.cloud_pub.publish(xyz_cloud(header, result['nonground']))
+        points, identifiers = instance_points(result['nonground'], result['tracks'])
+        self.instance_pub.publish(instance_cloud(header, points, identifiers))
         self.publish_objects(header, result['tracks'])
+        self.proposal_pub.publish(self.scene.proposals(header, result.get('lidar_proposals', [])))
         metrics = dict(result['metrics'], **self.stats)
         metrics['lidar_delta_ms'] = (stamp_ns(lidar) - timestamp) / 1e6
         metrics['radar_delta_ms'] = (stamp_ns(radar) - timestamp) / 1e6 if radar else None
@@ -130,46 +153,26 @@ class FusionNode(Node):
                 f"tracks={len(result['tracks'])}, latency={metrics['latency_ms']:.1f}ms")
 
     def publish_objects(self, header, tracks):
-        clear = Marker(action=Marker.DELETEALL)
-        markers = [clear]
+        scene = getattr(self, 'scene', None)
+        if scene is None:
+            scene = SceneRenderer(self.processor.cfg.get('visualization', {}))
         detections = Detection3DArray(header=header)
         track_data = []
         for track in tracks:
             obj = track.object
             x, y = map(float, track.state[:2])
             z = float(obj.center[2])
-            color = (0.25, 1., 0.5) if len(obj.sources) >= 2 else (0.2, 0.65, 1.)
-            cube = Marker(header=header, ns='tracks', id=track.id, type=Marker.CUBE, action=Marker.ADD)
-            cube.pose.position.x, cube.pose.position.y, cube.pose.position.z = x, y, z
-            yaw = getattr(obj, 'yaw', 0.)
-            cube.pose.orientation.z = float(np.sin(yaw / 2))
-            cube.pose.orientation.w = float(np.cos(yaw / 2))
-            cube.scale.x, cube.scale.y, cube.scale.z = map(float, obj.size)
-            cube.color.r, cube.color.g, cube.color.b = color
-            cube.color.a = 0.4 if track.measured else 0.15
-            cube.lifetime.sec = 1
-            markers.append(cube)
-            text = Marker(header=header, ns='labels', id=track.id, type=Marker.TEXT_VIEW_FACING, action=Marker.ADD)
-            text.pose.position.x, text.pose.position.y, text.pose.position.z = x, y, z + float(obj.size[2]) / 2 + 0.5
-            text.pose.orientation.w = 1.
-            text.scale.z = 0.45
-            text.color.r = text.color.g = text.color.b = text.color.a = 1.
-            text.text = f'#{track.id} {obj.label}\n{"+".join(obj.sources)} | v_rel {np.linalg.norm(track.state[2:]):.1f}m/s'
-            text.lifetime.sec = 1
-            markers.append(text)
-            arrow = Marker(header=header, ns='velocity', id=track.id, type=Marker.ARROW, action=Marker.ADD)
-            arrow.points = [Point(x=x, y=y, z=z), Point(x=x + float(track.state[2]), y=y + float(track.state[3]), z=z)]
-            arrow.scale.x, arrow.scale.y, arrow.scale.z = 0.08, 0.16, 0.2
-            arrow.color.r, arrow.color.g, arrow.color.b, arrow.color.a = 1., 0.7, 0.2, 1.
-            arrow.lifetime.sec = 1
-            markers.append(arrow)
             detection = Detection3D(header=header, id=str(track.id))
-            detection.bbox.center = cube.pose
-            detection.bbox.size = cube.scale
+            pose = detection.bbox.center
+            pose.position.x, pose.position.y, pose.position.z = x, y, z
+            yaw = getattr(obj, 'yaw', 0.)
+            pose.orientation.z = float(np.sin(yaw / 2))
+            pose.orientation.w = float(np.cos(yaw / 2))
+            detection.bbox.size.x, detection.bbox.size.y, detection.bbox.size.z = map(float, obj.size)
             hypothesis = ObjectHypothesisWithPose()
             hypothesis.hypothesis.class_id = obj.label
             hypothesis.hypothesis.score = float(obj.confidence)
-            hypothesis.pose.pose = cube.pose
+            hypothesis.pose.pose = pose
             hypothesis.pose.covariance[14] = 1.0  # Heuristic z variance; not tracked.
             for axis in (3, 4, 5):
                 hypothesis.pose.covariance[axis * 6 + axis] = 1e3  # Orientation is not estimated.
@@ -183,11 +186,10 @@ class FusionNode(Node):
                 'state_covariance': track.covariance.tolist(), 'label': obj.label,
                 'sources': obj.sources, 'measured': track.measured,
                 'radial_velocity_sensor': obj.radial_velocity})
-        show_unclassified = self.processor.cfg.get('visualization', {}).get('show_unclassified', False)
-        if not show_unclassified:
-            visible_ids = {t.id for t in tracks if t.object.label != 'obstacle'}
-            markers = [clear] + [m for m in markers[1:] if m.id in visible_ids]
-        self.marker_pub.publish(MarkerArray(markers=markers))
+        self.marker_pub.publish(scene.tracks(header, tracks))
+        if hasattr(self, 'box_pub'):
+            self.box_pub.publish(scene.tracks(header, tracks, layer='boxes'))
+            self.motion_pub.publish(scene.tracks(header, tracks, layer='motion'))
         self.detection_pub.publish(detections)
         self.track_pub.publish(String(data=json.dumps({'frame_id': header.frame_id,
             'timestamp_ns': header.stamp.sec * 10**9 + header.stamp.nanosec, 'tracks': track_data})))

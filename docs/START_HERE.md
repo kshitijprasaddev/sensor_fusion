@@ -3,6 +3,8 @@
 This guide explains what we built and what you can honestly tell the supervisor.
 For exact measurements, read [results](AI_RESULTS.md) and [v2 experiments](FUSION_V2.md).
 For terminal instructions, use the [run guide](RUN_GUIDE.md).
+For the current mask/point display and runtime safeguards, read
+[display and robustness](DISPLAY_AND_ROBUSTNESS.md).
 
 ## Have we achieved a modern AI solution?
 
@@ -64,7 +66,9 @@ sensor detections do not automatically mean three different cars.
    identity and predicts XY velocity from fused features and position history.
    Without validated ego motion this is not absolute road speed.
 10. **Publish and display.** ROS publishes objects, IDs, masks, boxes, motion
-    arrows and timing information. RViz displays them. RViz is a viewer of
+    arrows and timing information. The default RViz view shows camera masks,
+    colored LiDAR object points, IDs and distance guides. Boxes and motion
+    vectors are optional. RViz is a viewer of
     recorded sensor playback, not a physics simulator or an accuracy test.
 
 ## Which parts were trained by us?

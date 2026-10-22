@@ -1,0 +1,73 @@
+{
+  "warning": "Output consistency only; sensor frame, approximate calibration, no ground truth.",
+  "envelope": {
+    "position_slack_m": 1.0,
+    "max_relative_speed_mps": 30.0,
+    "window_s": 0.5
+  },
+  "bags": {
+    "studentProject": {
+      "before": {
+        "observations": 359,
+        "issue_count": 2,
+        "issues": [
+          {
+            "type": "outside_demo_motion_envelope",
+            "frame": 192,
+            "id": 4,
+            "distance_m": 9.15730546434572,
+            "dt_s": 0.09936666488647461
+          },
+          {
+            "type": "outside_demo_motion_envelope",
+            "frame": 193,
+            "id": 4,
+            "distance_m": 9.387597537224895,
+            "dt_s": 0.1016695499420166
+          }
+        ],
+        "short_gap_steps": 354,
+        "implied_relative_speed_mps": {
+          "p50": 0.6863953162818724,
+          "p95": 2.8109948104395848,
+          "max": 92.33440634466031
+        }
+      },
+      "after": {
+        "observations": 358,
+        "issue_count": 0,
+        "issues": [],
+        "short_gap_steps": 353,
+        "implied_relative_speed_mps": {
+          "p50": 0.6789205510634367,
+          "p95": 2.7969622554669207,
+          "max": 3.6833332499126685
+        }
+      }
+    },
+    "studentProject1": {
+      "before": {
+        "observations": 186,
+        "issue_count": 0,
+        "issues": [],
+        "short_gap_steps": 183,
+        "implied_relative_speed_mps": {
+          "p50": 0.4135537268506175,
+          "p95": 2.8051872872034203,
+          "max": 3.308957513185625
+        }
+      },
+      "after": {
+        "observations": 186,
+        "issue_count": 0,
+        "issues": [],
+        "short_gap_steps": 183,
+        "implied_relative_speed_mps": {
+          "p50": 0.4135537268506175,
+          "p95": 2.8051872872034203,
+          "max": 3.308957513185625
+        }
+      }
+    }
+  }
+}

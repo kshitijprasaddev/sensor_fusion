@@ -48,6 +48,8 @@ visualization:
   preview_width: 960
 pipeline: neural
 neural:
+  quality:
+    enabled: false
   lidar:
     weights: /models/voxelnext_nuscenes.pth
     confidence: 0.25

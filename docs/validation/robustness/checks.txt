@@ -1,0 +1,6 @@
+22 October 2026, RTX 4060 Laptop GPU, TensorRT 23.08 / ROS Humble container.
+43 tests passed. pip check: No broken requirements found.
+235 + 162 frames processed; zero missing-LiDAR skips.
+Five-frame GPU guard: passed, zero forbidden classical calls.
+Continuity audit: one withheld observation; zero remaining envelope violations in either bag.
+Live road and birdseye launches: see road_ros.json and birdseye_ros.json.

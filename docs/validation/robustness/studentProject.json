@@ -1,0 +1,121 @@
+{
+  "bag": "studentProject",
+  "modality": "all",
+  "frames": 235,
+  "skipped_no_lidar": 0,
+  "wall_time_s": 68.51945349499874,
+  "calibration_status": "approximate",
+  "timestamp_policy": "bag_receipt_time",
+  "configuration": {
+    "camera": {
+      "width": 1920,
+      "height": 1200,
+      "status": "approximate",
+      "allow_approximate": true,
+      "K": [
+        1100.0,
+        0.0,
+        960.0,
+        0.0,
+        1100.0,
+        600.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "model": {
+      "weights": "/models/yolo11n.engine",
+      "device": "0",
+      "imgsz": 640,
+      "confidence": 0.3
+    },
+    "synchronization": {
+      "tolerance_ms": 100
+    },
+    "lidar": {
+      "roi_min": [
+        -15.0,
+        -20.0,
+        -2.8
+      ],
+      "roi_max": [
+        65.0,
+        20.0,
+        4.0
+      ],
+      "voxel": 0.25,
+      "ground_threshold": 0.22,
+      "cluster_eps": 0.65,
+      "min_points": 5
+    },
+    "radar": {
+      "max_range": 65.0,
+      "max_lateral": 20.0,
+      "cluster_eps": 1.5,
+      "min_points": 2,
+      "association_gate": 2.5
+    },
+    "tracking": {
+      "gate": 3.0,
+      "max_age": 0.7,
+      "min_hits": 2
+    },
+    "visualization": {
+      "show_unclassified": false,
+      "preview_width": 960,
+      "range_rings": true,
+      "reference_z": -1.7,
+      "projected_boxes": false,
+      "camera_points": false,
+      "camera_proposals": false,
+      "label_size": 0.5,
+      "velocity_min_speed": 1.0,
+      "velocity_horizon_s": 0.75,
+      "velocity_max_length": 4.0
+    },
+    "pipeline": "neural",
+    "neural": {
+      "quality": {
+        "continuity_window_s": 0.5,
+        "max_relative_speed_mps": 30.0,
+        "position_slack_m": 1.0
+      },
+      "lidar": {
+        "weights": "/models/voxelnext_nuscenes.pth",
+        "confidence": 0.25,
+        "intensity_scale": 255.0
+      },
+      "tracking": {
+        "weights": "/models/sam2.1_t.pt",
+        "max_objects": 8,
+        "memory_frames": 3
+      },
+      "fusion": {
+        "weights": "/models/query_fusion_v2.pt",
+        "min_confidence": 0.65,
+        "min_radar_confidence": 0.35
+      }
+    }
+  },
+  "weights_sha256": "02190707c4789e15bbbdbadffa5c8609d10ebb3bf574e967215343e9ccfb7710",
+  "latency_ms": {
+    "p50": 259.29705099952116,
+    "p95": 270.59127439933945,
+    "max": 1166.9288980010606
+  },
+  "totals": {
+    "camera_detections": 491,
+    "lidar_objects": 1452,
+    "radar_objects": 13351,
+    "camera_matches": 358,
+    "radar_matches": 313,
+    "three_sensor_objects": 313
+  },
+  "unique_confirmed_tracks": 4,
+  "pipeline": "neural",
+  "fusion_schema": "group8-query-fusion-v2",
+  "fusion_weights_sha256": "45af5f681d1259ba12909ea2e6fe5c35713833b7dfcaa7d165c51c6dd8ffb687",
+  "radar_count_unit": "filtered_points",
+  "accuracy_metrics": "Unavailable: no labeled ground truth, true camera intrinsics or ego pose supplied."
+}

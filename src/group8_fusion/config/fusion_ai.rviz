@@ -7,7 +7,7 @@ Visualization Manager:
   Class: ''
   Global Options:
     Fixed Frame: velodyne
-    Background Color: 14; 20; 30
+    Background Color: 13; 19; 28
     Frame Rate: 30
   Displays:
   - Class: rviz_default_plugins/Grid
@@ -16,7 +16,7 @@ Visualization Manager:
     Cell Size: 2
     Plane Cell Count: 40
     Color: 50; 65; 85
-    Alpha: 0.4
+    Alpha: 0.18
   - Class: rviz_default_plugins/PointCloud2
     Name: LiDAR raw
     Enabled: true
@@ -27,16 +27,33 @@ Visualization Manager:
       History Policy: Keep Last
       Reliability Policy: Best Effort
     Style: Points
-    Size (Pixels): 2
+    Size (Pixels): 1
     Color Transformer: FlatColor
-    Color: 75; 155; 210
+    Color: 100; 135; 164
     Position Transformer: XYZ
     Decay Time: 0.0
-    Alpha: 0.75
+    Alpha: 0.22
+    Use Fixed Frame: true
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Colored object points
+    Enabled: true
+    Topic:
+      Value: /fusion/instance_points
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Style: Points
+    Size (Pixels): 5
+    Color Transformer: RGB8
+    Color: 100; 135; 164
+    Position Transformer: XYZ
+    Decay Time: 0.0
+    Alpha: 1.0
     Use Fixed Frame: true
   - Class: rviz_default_plugins/PointCloud2
     Name: LiDAR model input
-    Enabled: true
+    Enabled: false
     Topic:
       Value: /fusion/nonground
       Depth: 5
@@ -61,16 +78,16 @@ Visualization Manager:
       History Policy: Keep Last
       Reliability Policy: Best Effort
     Style: Points
-    Size (Pixels): 7
+    Size (Pixels): 5
     Color Transformer: FlatColor
     Color: 255; 110; 70
     Position Transformer: XYZ
     Decay Time: 0.0
-    Alpha: 0.75
+    Alpha: 0.7
     Use Fixed Frame: true
   - Class: rviz_default_plugins/TF
     Name: Sensor frames
-    Enabled: true
+    Enabled: false
     Show Axes: true
     Show Names: true
     Marker Scale: 1.5
@@ -78,10 +95,37 @@ Visualization Manager:
     Frames:
       All Enabled: true
   - Class: rviz_default_plugins/MarkerArray
-    Name: Neural fused tracks
+    Name: Track labels and distance rings
     Enabled: true
     Topic:
       Value: /fusion/markers
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Relative motion estimates (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/motion
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: 3D boxes (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/boxes
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Unfused LiDAR proposals (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/proposals
       Depth: 5
       Durability Policy: Volatile
       History Policy: Keep Last
@@ -109,16 +153,24 @@ Visualization Manager:
     Current:
       Class: rviz_default_plugins/Orbit
       Name: Road view
-      Distance: 48
+      Distance: 36
       Yaw: 3.14
-      Pitch: 0.9
+      Pitch: 0.55
       Focal Point:
-        X: 15
+        X: 16
         Y: 0
-        Z: 0
+        Z: -1
       Target Frame: velodyne
       Near Clip Distance: 0.01
-    Saved: []
+    Saved:
+    - Class: rviz_default_plugins/TopDownOrtho
+      Name: Bird's-eye view
+      Target Frame: velodyne
+      Scale: 22
+      Angle: -1.5707963267948966
+      X: 20
+      Y: 0
+      Near Clip Distance: 0.01
 Window Geometry:
   Width: 1600
   Height: 1000

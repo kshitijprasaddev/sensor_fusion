@@ -30,6 +30,17 @@ def box_corners(center, size):
     return center + signs * np.asarray(size) / 2
 
 
+# Edges for the binary x/y/z corner order returned by box_corners.
+BOX_EDGES = tuple((i, i ^ bit) for i in range(8) for bit in (1, 2, 4) if i < (i ^ bit))
+
+
+def oriented_corners(center, size, yaw=0.):
+    corners = box_corners(np.zeros(3), size)
+    c, s = np.cos(yaw), np.sin(yaw)
+    rotation = np.array([[c, -s, 0.], [s, c, 0.], [0., 0., 1.]])
+    return corners @ rotation.T + np.asarray(center)
+
+
 def iou(a, b):
     lo = np.maximum(a[:2], b[:2])
     hi = np.minimum(a[2:], b[2:])

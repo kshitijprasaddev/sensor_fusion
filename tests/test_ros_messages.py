@@ -33,6 +33,56 @@ def test_humble_track_outputs_serialize():
     assert state['tracks'][0]['sources'] == ['camera', 'lidar']
 
 
+def test_oriented_scene_serializes_and_preserves_real_box_geometry():
+    from visualization_msgs.msg import Marker
+    from group8_fusion.scene import SceneRenderer
+    from group8_fusion.geometry import oriented_corners
+
+    obj = Object3D(np.array([10., 1., 0.]), np.array([4., 2., 1.5]), 'car', .9, ['camera', 'lidar'])
+    obj.yaw = np.pi / 2
+    track = Track(4, np.array([10., 1., 100., 0.]), np.eye(4), obj, 0., 2)
+    renderer = SceneRenderer({'range_rings': False})
+    message = renderer.tracks(Header(frame_id='velodyne'), [track], layer='boxes')
+    assert serialize_message(message)
+    outline = next(m for m in message.markers if m.ns == 'box_outlines')
+    assert len(outline.points) == 24
+    points = np.array([[p.x, p.y, p.z] for p in outline.points])
+    expected = oriented_corners(obj.center, obj.size, obj.yaw)
+    assert {tuple(p) for p in points} == {tuple(p) for p in expected}
+    motion = renderer.tracks(Header(frame_id='velodyne'), [track], layer='motion')
+    arrow = next(m for m in motion.markers if m.ns == 'relative_velocity')
+    a, b = arrow.points
+    assert np.isclose(np.linalg.norm([b.x-a.x, b.y-a.y, b.z-a.z]), 4.)
+    # Disappearance and rewind cannot leave old object markers behind.
+    empty = renderer.tracks(Header(frame_id='velodyne'), [])
+    assert len(empty.markers) == 1 and empty.markers[0].action == Marker.DELETEALL
+
+
+def test_unfused_proposals_are_a_separate_layer_and_invalid_boxes_are_ignored():
+    from group8_fusion.scene import SceneRenderer
+
+    proposals = [dict(box=np.array([10., 0, 0, 4, 2, 1.5, .2]), label='car'),
+                 dict(box=np.array([np.nan, 0, 0, 4, 2, 1.5, 0]), label='invalid')]
+    message = SceneRenderer().proposals(Header(frame_id='velodyne'), proposals)
+    assert serialize_message(message)
+    assert len(message.markers) == 3
+    assert all(m.ns.startswith('unfused_') for m in message.markers[1:])
+    assert 'LiDAR only' in message.markers[-1].text
+
+
+def test_colored_instance_cloud_preserves_real_points_and_identity_colors():
+    from group8_fusion.ros_node import instance_cloud
+    from group8_fusion.display import PALETTE
+
+    points = np.array([[10., 1., .5], [11., 2., .8]], np.float32)
+    message = instance_cloud(Header(frame_id='velodyne'), points, [1, 2])
+    restored = deserialize_message(serialize_message(message), PointCloud2)
+    assert np.allclose(cloud_array(restored), points)
+    assert restored.point_step == 16 and restored.header.frame_id == 'velodyne'
+    color = np.frombuffer(restored.data, dtype='<u4').reshape(-1, 4)[:, 3]
+    assert [(int(c) >> 16, (int(c) >> 8) & 255, int(c) & 255) for c in color] == list(PALETTE[:2])
+
+
 def test_cloud_cdr_roundtrip_preserves_coordinates_and_frame():
     points = np.array([[1.25, -2.5, 3.], [4., 5., 6.]], dtype=np.float32)
     header = Header(frame_id='velodyne')
