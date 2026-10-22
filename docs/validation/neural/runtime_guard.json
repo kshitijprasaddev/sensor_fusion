@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "frames": 5,
+  "forbidden_classical_calls": 0,
+  "torch_peak_allocated_mb": 932.83984375,
+  "checkpoint_sha256": "5f567032efc60aac8dbbc6bf7e7575a99e4e5eb1621295222393c03196a1e290",
+  "observations": [
+    {
+      "frame": 0,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.1445737,
+        "latency_ms": 1401.5071260000695,
+        "camera_detections": 1,
+        "lidar_objects": 8,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 1.0,
+        "mean_radar_attention": 0.999087393283844,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 1,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.2436028,
+        "latency_ms": 326.87489899990396,
+        "camera_detections": 1,
+        "lidar_objects": 4,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 1.0,
+        "mean_radar_attention": 0.9989078044891357,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 2,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.3433843,
+        "latency_ms": 359.0168790001371,
+        "camera_detections": 1,
+        "lidar_objects": 7,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 1.0,
+        "mean_radar_attention": 0.9988940954208374,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 3,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.4422045,
+        "latency_ms": 358.37374199991245,
+        "camera_detections": 1,
+        "lidar_objects": 5,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 1.0,
+        "mean_radar_attention": 0.9930139780044556,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 4,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.5433679,
+        "latency_ms": 355.1837719996911,
+        "camera_detections": 1,
+        "lidar_objects": 8,
+        "radar_objects": 57,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 1.0,
+        "mean_radar_attention": 0.9987180233001709,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    }
+  ]
+}

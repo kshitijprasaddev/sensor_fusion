@@ -17,4 +17,9 @@ data = {'python': platform.python_version(), 'architecture': platform.machine(),
         'ros_packages': subprocess.check_output(['dpkg-query', '-W', '-f=${Package} ${Version}\n',
             'ros-humble-rclpy', 'ros-humble-cv-bridge', 'ros-humble-sensor-msgs',
             'ros-humble-tf2-ros', 'ros-humble-rviz2'], text=True).strip().splitlines()}
+for package in ('spconv-cu120', 'cumm-cu120', 'pcdet', 'numba', 'easydict', 'kornia', 'gdown'):
+    try:
+        data['packages'][package] = importlib.metadata.version(package)
+    except importlib.metadata.PackageNotFoundError:
+        pass
 print(json.dumps(data, indent=2))

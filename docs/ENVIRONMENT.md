@@ -68,3 +68,22 @@ performance do not constitute a tested Jetson deployment.
 Sources: [NVIDIA TensorRT container release notes](https://docs.nvidia.com/deeplearning/frameworks/container-release-notes/),
 [ROS Humble Ubuntu installation](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debians.html),
 [Ultralytics package metadata](https://pypi.org/project/ultralytics/8.4.95/).
+
+## Neural profile extension, 22 October 2026
+
+`Dockerfile.ai` derives from the established Humble image and adds spconv-cu120
+2.3.6, numba 0.60.0, easydict 1.13, tensorboardX 2.6.2.2, SharedArray 3.2.4,
+scikit-image 0.22.0, ninja 1.11.1.3, gdown 5.2.0 and kornia 0.7.4. CUDA extensions
+are compiled for the RTX 4060's compute capability 8.9 with PTX. PyTorch, ROS,
+Ultralytics and TensorRT retain the base versions.
+
+VoxelNeXt is pinned to upstream commit `b5b7d393cd1d0ecbbaeaca365b453b488791035d`.
+The explicit deployment patch copies namespace helper files missed by upstream
+wheel packaging and disables eager Argoverse SDK registration. It does not
+change network layers, learned weights or detector thresholds. The runtime uses
+DatasetTemplate on recorded ROS clouds rather than installing the AV2 dataset SDK.
+
+SAM 2.1 executes through Ultralytics; the separate Meta package and its different
+PyTorch requirements are not installed. This distinction avoids an implicit
+framework upgrade. The verified published checkpoint hashes and custom head
+provenance are retained. See [AI pipeline](AI_PIPELINE.md).

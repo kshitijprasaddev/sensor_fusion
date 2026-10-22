@@ -15,7 +15,7 @@ from geometry_msgs.msg import Point
 from vision_msgs.msg import Detection3D, Detection3DArray, ObjectHypothesisWithPose
 from .bag import Bag, CAMERA, LIDAR, RADAR
 from .geometry import cloud_array, image_array
-from .processor import load_config, CameraDetector, Processor
+from .processor import load_config, CameraDetector, make_processor
 
 
 def stamp_ns(msg):
@@ -42,7 +42,7 @@ class FusionNode(Node):
             if value:
                 cfg['model'][key] = value
         bag = Bag(self.get_parameter('bag').value)
-        self.processor = Processor(cfg, bag.lidar_from('cam0'), bag.lidar_from('radar'), CameraDetector(cfg['model']))
+        self.processor = make_processor(cfg, bag.lidar_from('cam0'), bag.lidar_from('radar'), CameraDetector(cfg['model']))
         bag.close()
         self.tolerance = int(cfg['synchronization']['tolerance_ms'] * 1e6)
         self.clouds = {LIDAR: deque(maxlen=40), RADAR: deque(maxlen=60)}
@@ -76,8 +76,7 @@ class FusionNode(Node):
             self.images.clear()
             for queue in self.clouds.values():
                 queue.clear()
-            self.processor.tracker.tracks.clear()
-            self.processor.tracker.last_time = None
+            self.processor.reset_tracking()
         self.last_stamp = timestamp
         if len(self.images) == self.images.maxlen:
             self.stats['dropped_images'] += 1
@@ -106,8 +105,8 @@ class FusionNode(Node):
             return
         node_started = time.perf_counter()
         image = image_array(msg)
-        result = self.processor.process(image, cloud_array(lidar),
-            cloud_array(radar, ('x', 'y', 'z', 'v')) if radar else None, timestamp / 1e9)
+        result = self.processor.process(image, cloud_array(lidar, self.processor.lidar_fields),
+            cloud_array(radar, self.processor.radar_fields) if radar else None, timestamp / 1e9)
         self.stats['processed'] += 1
         annotated = self.processor.annotate(image, result)
         preview_width = int(self.processor.cfg.get('visualization', {}).get('preview_width', 960))
@@ -142,7 +141,9 @@ class FusionNode(Node):
             color = (0.25, 1., 0.5) if len(obj.sources) >= 2 else (0.2, 0.65, 1.)
             cube = Marker(header=header, ns='tracks', id=track.id, type=Marker.CUBE, action=Marker.ADD)
             cube.pose.position.x, cube.pose.position.y, cube.pose.position.z = x, y, z
-            cube.pose.orientation.w = 1.
+            yaw = getattr(obj, 'yaw', 0.)
+            cube.pose.orientation.z = float(np.sin(yaw / 2))
+            cube.pose.orientation.w = float(np.cos(yaw / 2))
             cube.scale.x, cube.scale.y, cube.scale.z = map(float, obj.size)
             cube.color.r, cube.color.g, cube.color.b = color
             cube.color.a = 0.4 if track.measured else 0.15

@@ -1,0 +1,105 @@
+{
+  "bag": "studentProject1",
+  "modality": "all",
+  "frames": 162,
+  "skipped_no_lidar": 0,
+  "wall_time_s": 67.56720078800026,
+  "calibration_status": "approximate",
+  "timestamp_policy": "bag_receipt_time",
+  "configuration": {
+    "camera": {
+      "width": 1920,
+      "height": 1200,
+      "status": "approximate",
+      "allow_approximate": true,
+      "K": [
+        1100.0,
+        0.0,
+        960.0,
+        0.0,
+        1100.0,
+        600.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "model": {
+      "weights": "/models/yolo11n.engine",
+      "device": "0",
+      "imgsz": 640,
+      "confidence": 0.3
+    },
+    "synchronization": {
+      "tolerance_ms": 100
+    },
+    "lidar": {
+      "roi_min": [
+        -15.0,
+        -20.0,
+        -2.8
+      ],
+      "roi_max": [
+        65.0,
+        20.0,
+        4.0
+      ],
+      "voxel": 0.25,
+      "ground_threshold": 0.22,
+      "cluster_eps": 0.65,
+      "min_points": 5
+    },
+    "radar": {
+      "max_range": 65.0,
+      "max_lateral": 20.0,
+      "cluster_eps": 1.5,
+      "min_points": 2,
+      "association_gate": 2.5
+    },
+    "tracking": {
+      "gate": 3.0,
+      "max_age": 0.7,
+      "min_hits": 2
+    },
+    "visualization": {
+      "show_unclassified": false,
+      "preview_width": 960
+    },
+    "pipeline": "neural",
+    "neural": {
+      "lidar": {
+        "weights": "/models/voxelnext_nuscenes.pth",
+        "confidence": 0.25,
+        "intensity_scale": 255.0
+      },
+      "tracking": {
+        "weights": "/models/sam2.1_t.pt",
+        "max_objects": 8,
+        "memory_frames": 3
+      },
+      "fusion": {
+        "weights": "/models/query_fusion.pt",
+        "min_confidence": 0.35
+      }
+    }
+  },
+  "weights_sha256": "02190707c4789e15bbbdbadffa5c8609d10ebb3bf574e967215343e9ccfb7710",
+  "latency_ms": {
+    "p50": 369.9296545000834,
+    "p95": 399.4514990999732,
+    "max": 1349.1924199997811
+  },
+  "totals": {
+    "camera_detections": 283,
+    "lidar_objects": 823,
+    "radar_objects": 9770,
+    "camera_matches": 177,
+    "radar_matches": 158,
+    "three_sensor_objects": 158
+  },
+  "unique_confirmed_tracks": 3,
+  "pipeline": "neural",
+  "fusion_weights_sha256": "5f567032efc60aac8dbbc6bf7e7575a99e4e5eb1621295222393c03196a1e290",
+  "radar_count_unit": "filtered_points",
+  "accuracy_metrics": "Unavailable: no labeled ground truth, true camera intrinsics or ego pose supplied."
+}

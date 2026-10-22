@@ -1,5 +1,9 @@
 # AI-based multi-sensor fusion for automated vehicles
 
+> Historical classical baseline, validated 17 October 2026. The neural extension
+> added 22 October 2026 is documented in [AI pipeline](AI_PIPELINE.md),
+> [results](AI_RESULTS.md) and [literature review](LITERATURE_REVIEW.md).
+
 Team Project Group 8, THI. Implementation and local validation: 17 October 2026.
 
 ## Scope and outcome

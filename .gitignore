@@ -18,3 +18,6 @@ __pycache__/
 # Keep presentation materials and full videos local.
 docs/PRESENTATION.md
 docs/videos/
+
+# Small locally trained head is delivered; upstream model binaries stay ignored.
+!models/query_fusion.pt

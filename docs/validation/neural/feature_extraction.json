@@ -1,0 +1,3677 @@
+{
+  "supervision": "weak_geometry",
+  "accuracy": "not ground truth",
+  "bags": {
+    "studentProject": {
+      "frames": 235,
+      "wall_time_s": 92.50918005299991,
+      "peak_torch_allocated_mb": 1071.2685546875,
+      "capacity_rejections": 0,
+      "per_frame": [
+        {
+          "frame": 0,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 1580.0670710000304
+        },
+        {
+          "frame": 1,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 323.69689899996956
+        },
+        {
+          "frame": 2,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.6775209999141
+        },
+        {
+          "frame": 3,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.78735199994117
+        },
+        {
+          "frame": 4,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.05592400005116
+        },
+        {
+          "frame": 5,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 383.5171480000099
+        },
+        {
+          "frame": 6,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 343.1940330001453
+        },
+        {
+          "frame": 7,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.2117129999606
+        },
+        {
+          "frame": 8,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 400.41850599982354
+        },
+        {
+          "frame": 9,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.53714699996453
+        },
+        {
+          "frame": 10,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 338.5895899998559
+        },
+        {
+          "frame": 11,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 328.35973099986404
+        },
+        {
+          "frame": 12,
+          "visual_tracks": 1,
+          "lidar_detections": 9,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 352.9199580000295
+        },
+        {
+          "frame": 13,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 325.93550899991897
+        },
+        {
+          "frame": 14,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.247508000024
+        },
+        {
+          "frame": 15,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 363.7543520001145
+        },
+        {
+          "frame": 16,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 350.1307540000198
+        },
+        {
+          "frame": 17,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 349.75274799990075
+        },
+        {
+          "frame": 18,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 317.5508510000782
+        },
+        {
+          "frame": 19,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 335.88576199986164
+        },
+        {
+          "frame": 20,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 346.75894499991955
+        },
+        {
+          "frame": 21,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 345.3188860000864
+        },
+        {
+          "frame": 22,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 346.6540250001344
+        },
+        {
+          "frame": 23,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 370.59565200002
+        },
+        {
+          "frame": 24,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 50,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 408.3457429999271
+        },
+        {
+          "frame": 25,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 399.73826200002804
+        },
+        {
+          "frame": 26,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 375.29080099989187
+        },
+        {
+          "frame": 27,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.94421199994576
+        },
+        {
+          "frame": 28,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 370.6099160001486
+        },
+        {
+          "frame": 29,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.96706099992116
+        },
+        {
+          "frame": 30,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.106365000036
+        },
+        {
+          "frame": 31,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.315326000029
+        },
+        {
+          "frame": 32,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 51,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 336.5515289999621
+        },
+        {
+          "frame": 33,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 340.13657100013006
+        },
+        {
+          "frame": 34,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.43881900019915
+        },
+        {
+          "frame": 35,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 345.06870500013065
+        },
+        {
+          "frame": 36,
+          "visual_tracks": 1,
+          "lidar_detections": 9,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.17951100013124
+        },
+        {
+          "frame": 37,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 383.8557660001243
+        },
+        {
+          "frame": 38,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 365.3743550000854
+        },
+        {
+          "frame": 39,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.02936099993167
+        },
+        {
+          "frame": 40,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 397.64183400006914
+        },
+        {
+          "frame": 41,
+          "visual_tracks": 1,
+          "lidar_detections": 10,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 382.2137299998758
+        },
+        {
+          "frame": 42,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.1162200001145
+        },
+        {
+          "frame": 43,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.551148999979
+        },
+        {
+          "frame": 44,
+          "visual_tracks": 1,
+          "lidar_detections": 10,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 390.7247119998374
+        },
+        {
+          "frame": 45,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 343.76959899987014
+        },
+        {
+          "frame": 46,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 378.03562799990686
+        },
+        {
+          "frame": 47,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 412.73916699992697
+        },
+        {
+          "frame": 48,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 385.77923000002556
+        },
+        {
+          "frame": 49,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 52,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 365.9859219999362
+        },
+        {
+          "frame": 50,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 348.64033200005906
+        },
+        {
+          "frame": 51,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.6231769998758
+        },
+        {
+          "frame": 52,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.3401590000649
+        },
+        {
+          "frame": 53,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.8591519999809
+        },
+        {
+          "frame": 54,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 378.7016930000391
+        },
+        {
+          "frame": 55,
+          "visual_tracks": 1,
+          "lidar_detections": 9,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 380.3001169999334
+        },
+        {
+          "frame": 56,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 377.3653809998905
+        },
+        {
+          "frame": 57,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 359.6303489998718
+        },
+        {
+          "frame": 58,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.3288279999033
+        },
+        {
+          "frame": 59,
+          "visual_tracks": 1,
+          "lidar_detections": 3,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 373.9362560002064
+        },
+        {
+          "frame": 60,
+          "visual_tracks": 1,
+          "lidar_detections": 3,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.9161750000003
+        },
+        {
+          "frame": 61,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 375.3475519999938
+        },
+        {
+          "frame": 62,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 381.9921209999393
+        },
+        {
+          "frame": 63,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 51,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.6775090000647
+        },
+        {
+          "frame": 64,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 336.6826229998878
+        },
+        {
+          "frame": 65,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.8498859999545
+        },
+        {
+          "frame": 66,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 376.2906409999687
+        },
+        {
+          "frame": 67,
+          "visual_tracks": 1,
+          "lidar_detections": 9,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.388012000054
+        },
+        {
+          "frame": 68,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 381.23179700005494
+        },
+        {
+          "frame": 69,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.08536099994126
+        },
+        {
+          "frame": 70,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 345.1630660001683
+        },
+        {
+          "frame": 71,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.0532089999906
+        },
+        {
+          "frame": 72,
+          "visual_tracks": 1,
+          "lidar_detections": 10,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.26291000016863
+        },
+        {
+          "frame": 73,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 343.25793800007887
+        },
+        {
+          "frame": 74,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 350.5873959998098
+        },
+        {
+          "frame": 75,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.8080860000864
+        },
+        {
+          "frame": 76,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.2616490000564
+        },
+        {
+          "frame": 77,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.4332870001108
+        },
+        {
+          "frame": 78,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 373.72772899993834
+        },
+        {
+          "frame": 79,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.8227899999911
+        },
+        {
+          "frame": 80,
+          "visual_tracks": 1,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.5100850001527
+        },
+        {
+          "frame": 81,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 359.2366729999412
+        },
+        {
+          "frame": 82,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.5787430001801
+        },
+        {
+          "frame": 83,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 438.1698120000692
+        },
+        {
+          "frame": 84,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 474.9748679998902
+        },
+        {
+          "frame": 85,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 473.78956699981245
+        },
+        {
+          "frame": 86,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 344.9483689998942
+        },
+        {
+          "frame": 87,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 334.103228999993
+        },
+        {
+          "frame": 88,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 382.6138859999446
+        },
+        {
+          "frame": 89,
+          "visual_tracks": 2,
+          "lidar_detections": 10,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 370.7267590000356
+        },
+        {
+          "frame": 90,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 353.8653810001051
+        },
+        {
+          "frame": 91,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 353.46855899979346
+        },
+        {
+          "frame": 92,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 362.45296400011284
+        },
+        {
+          "frame": 93,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 378.87573700004396
+        },
+        {
+          "frame": 94,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 364.2166270001326
+        },
+        {
+          "frame": 95,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 381.72283700009757
+        },
+        {
+          "frame": 96,
+          "visual_tracks": 2,
+          "lidar_detections": 11,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 367.0132960000956
+        },
+        {
+          "frame": 97,
+          "visual_tracks": 2,
+          "lidar_detections": 11,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 374.15606900003695
+        },
+        {
+          "frame": 98,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 412.101888000052
+        },
+        {
+          "frame": 99,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 398.12033900011556
+        },
+        {
+          "frame": 100,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 391.86830700009523
+        },
+        {
+          "frame": 101,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 376.744484000028
+        },
+        {
+          "frame": 102,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 344.4877819999874
+        },
+        {
+          "frame": 103,
+          "visual_tracks": 2,
+          "lidar_detections": 10,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 356.2179870000364
+        },
+        {
+          "frame": 104,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 357.845745999839
+        },
+        {
+          "frame": 105,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 355.1400100000137
+        },
+        {
+          "frame": 106,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 365.3685360000054
+        },
+        {
+          "frame": 107,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 354.13886400010597
+        },
+        {
+          "frame": 108,
+          "visual_tracks": 2,
+          "lidar_detections": 12,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 356.1904709999908
+        },
+        {
+          "frame": 109,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 353.8913820000289
+        },
+        {
+          "frame": 110,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 374.3002260000594
+        },
+        {
+          "frame": 111,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 353.47466500002156
+        },
+        {
+          "frame": 112,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 368.4863029998269
+        },
+        {
+          "frame": 113,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 373.76123999979427
+        },
+        {
+          "frame": 114,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 400.6833349999397
+        },
+        {
+          "frame": 115,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 391.7601129999184
+        },
+        {
+          "frame": 116,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 371.70901300009973
+        },
+        {
+          "frame": 117,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 66,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 393.73572499994225
+        },
+        {
+          "frame": 118,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 378.0444980000084
+        },
+        {
+          "frame": 119,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 384.8975099999734
+        },
+        {
+          "frame": 120,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 360.2263549998952
+        },
+        {
+          "frame": 121,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 350.9160179999071
+        },
+        {
+          "frame": 122,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 327.14207199978773
+        },
+        {
+          "frame": 123,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 361.7600439999933
+        },
+        {
+          "frame": 124,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 352.0705230000658
+        },
+        {
+          "frame": 125,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 356.7470030000095
+        },
+        {
+          "frame": 126,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 346.5775859999667
+        },
+        {
+          "frame": 127,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 356.56558000005134
+        },
+        {
+          "frame": 128,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 334.88036199992166
+        },
+        {
+          "frame": 129,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 69,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 368.4548440000981
+        },
+        {
+          "frame": 130,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 346.0856080000667
+        },
+        {
+          "frame": 131,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 346.180583999967
+        },
+        {
+          "frame": 132,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 362.54657000017687
+        },
+        {
+          "frame": 133,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 66,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 343.074642999909
+        },
+        {
+          "frame": 134,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 67,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 342.9447500000151
+        },
+        {
+          "frame": 135,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 363.1958759999634
+        },
+        {
+          "frame": 136,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 69,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 358.03765300011037
+        },
+        {
+          "frame": 137,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 63,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 365.0193119999585
+        },
+        {
+          "frame": 138,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 66,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 357.0229599999948
+        },
+        {
+          "frame": 139,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 336.9015370001307
+        },
+        {
+          "frame": 140,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 338.41794900013156
+        },
+        {
+          "frame": 141,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 362.00723000001744
+        },
+        {
+          "frame": 142,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 359.33034900017446
+        },
+        {
+          "frame": 143,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 355.6981330000326
+        },
+        {
+          "frame": 144,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.610515000104
+        },
+        {
+          "frame": 145,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.442383000096
+        },
+        {
+          "frame": 146,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 370.6432540000151
+        },
+        {
+          "frame": 147,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 351.86701199995696
+        },
+        {
+          "frame": 148,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.8527140001406
+        },
+        {
+          "frame": 149,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 344.85425699995176
+        },
+        {
+          "frame": 150,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 381.0288549998404
+        },
+        {
+          "frame": 151,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 328.34358899981453
+        },
+        {
+          "frame": 152,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 363.3044810001138
+        },
+        {
+          "frame": 153,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 52,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.52540399997815
+        },
+        {
+          "frame": 154,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 389.77176399998825
+        },
+        {
+          "frame": 155,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 382.2047400001338
+        },
+        {
+          "frame": 156,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 397.4621059999208
+        },
+        {
+          "frame": 157,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 393.27757699993526
+        },
+        {
+          "frame": 158,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 397.3586990000513
+        },
+        {
+          "frame": 159,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.7434450000728
+        },
+        {
+          "frame": 160,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 376.07994100017095
+        },
+        {
+          "frame": 161,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 372.27427199991325
+        },
+        {
+          "frame": 162,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.7405500000077
+        },
+        {
+          "frame": 163,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.7823999999673
+        },
+        {
+          "frame": 164,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 343.5978739998973
+        },
+        {
+          "frame": 165,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 361.76770799988844
+        },
+        {
+          "frame": 166,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.3288480000847
+        },
+        {
+          "frame": 167,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.3235530000147
+        },
+        {
+          "frame": 168,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.39216999991186
+        },
+        {
+          "frame": 169,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 351.82518600004187
+        },
+        {
+          "frame": 170,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 342.57377700009783
+        },
+        {
+          "frame": 171,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 382.1144620001178
+        },
+        {
+          "frame": 172,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 375.20064900013494
+        },
+        {
+          "frame": 173,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 348.72820400005367
+        },
+        {
+          "frame": 174,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 66,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 360.5843069999537
+        },
+        {
+          "frame": 175,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 390.35883800011106
+        },
+        {
+          "frame": 176,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 366.04822200001763
+        },
+        {
+          "frame": 177,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 370.99058899980264
+        },
+        {
+          "frame": 178,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 68,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 351.135948999854
+        },
+        {
+          "frame": 179,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 412.9571250000481
+        },
+        {
+          "frame": 180,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 64,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 374.94954199996755
+        },
+        {
+          "frame": 181,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 365.5853440000101
+        },
+        {
+          "frame": 182,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 429.05579600005694
+        },
+        {
+          "frame": 183,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 409.7032219999619
+        },
+        {
+          "frame": 184,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 386.4761769998495
+        },
+        {
+          "frame": 185,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 51,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 363.27165300008346
+        },
+        {
+          "frame": 186,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 328.2122759999311
+        },
+        {
+          "frame": 187,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 378.39566800016655
+        },
+        {
+          "frame": 188,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 375.24573499990765
+        },
+        {
+          "frame": 189,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 347.80618599984336
+        },
+        {
+          "frame": 190,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 350.64422499999637
+        },
+        {
+          "frame": 191,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 49,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 402.849821000018
+        },
+        {
+          "frame": 192,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 368.3970120000595
+        },
+        {
+          "frame": 193,
+          "visual_tracks": 2,
+          "lidar_detections": 10,
+          "radar_points": 60,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 399.45269500003633
+        },
+        {
+          "frame": 194,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 377.8357720000258
+        },
+        {
+          "frame": 195,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 374.6812439999303
+        },
+        {
+          "frame": 196,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 396.5399190001335
+        },
+        {
+          "frame": 197,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 66,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 365.04713699991953
+        },
+        {
+          "frame": 198,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 350.6752030000371
+        },
+        {
+          "frame": 199,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 348.32070599986764
+        },
+        {
+          "frame": 200,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 369.8405750001257
+        },
+        {
+          "frame": 201,
+          "visual_tracks": 2,
+          "lidar_detections": 10,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 367.9632070000025
+        },
+        {
+          "frame": 202,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 352.2541109998656
+        },
+        {
+          "frame": 203,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 362.9155919998084
+        },
+        {
+          "frame": 204,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 380.3188730000784
+        },
+        {
+          "frame": 205,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 347.7745520001463
+        },
+        {
+          "frame": 206,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 59,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 370.5500020000727
+        },
+        {
+          "frame": 207,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 379.4670590000351
+        },
+        {
+          "frame": 208,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 355.6326479999825
+        },
+        {
+          "frame": 209,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 366.969188999974
+        },
+        {
+          "frame": 210,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 343.958068999882
+        },
+        {
+          "frame": 211,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 352.1299850001469
+        },
+        {
+          "frame": 212,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 357.1352050000769
+        },
+        {
+          "frame": 213,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 51,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 370.7661470000403
+        },
+        {
+          "frame": 214,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 50,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 363.49852300008934
+        },
+        {
+          "frame": 215,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 352.199839999912
+        },
+        {
+          "frame": 216,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 346.97646399990845
+        },
+        {
+          "frame": 217,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 360.27598400005445
+        },
+        {
+          "frame": 218,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 360.5803020000167
+        },
+        {
+          "frame": 219,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 352.37814500010245
+        },
+        {
+          "frame": 220,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 351.6186670001389
+        },
+        {
+          "frame": 221,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.220002000091
+        },
+        {
+          "frame": 222,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 376.34360699985336
+        },
+        {
+          "frame": 223,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 56,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 342.8643299998839
+        },
+        {
+          "frame": 224,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 55,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 344.81414099991525
+        },
+        {
+          "frame": 225,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 377.90899700007685
+        },
+        {
+          "frame": 226,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 50,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 376.7927599999439
+        },
+        {
+          "frame": 227,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 51,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 340.23224899988236
+        },
+        {
+          "frame": 228,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 357.0147979999092
+        },
+        {
+          "frame": 229,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.88298999991275
+        },
+        {
+          "frame": 230,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 388.34763800014116
+        },
+        {
+          "frame": 231,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 54,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 379.1778899999372
+        },
+        {
+          "frame": 232,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 49,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 400.2947779999886
+        },
+        {
+          "frame": 233,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 396.4123619998645
+        },
+        {
+          "frame": 234,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 373.6205149998568
+        }
+      ]
+    },
+    "studentProject1": {
+      "frames": 162,
+      "wall_time_s": 63.85359310500007,
+      "peak_torch_allocated_mb": 1072.0576171875,
+      "capacity_rejections": 3,
+      "per_frame": [
+        {
+          "frame": 0,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 332.10163100011414
+        },
+        {
+          "frame": 1,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 318.7911349996284
+        },
+        {
+          "frame": 2,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.19756699982463
+        },
+        {
+          "frame": 3,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 346.5742550001778
+        },
+        {
+          "frame": 4,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 345.1989729996967
+        },
+        {
+          "frame": 5,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 338.0763999998635
+        },
+        {
+          "frame": 6,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 344.78836600010254
+        },
+        {
+          "frame": 7,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.6740379997864
+        },
+        {
+          "frame": 8,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.2632660000527
+        },
+        {
+          "frame": 9,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 347.4048009998114
+        },
+        {
+          "frame": 10,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 325.5413070000941
+        },
+        {
+          "frame": 11,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 339.7373699999662
+        },
+        {
+          "frame": 12,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.4188749999885
+        },
+        {
+          "frame": 13,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.1100490000754
+        },
+        {
+          "frame": 14,
+          "visual_tracks": 1,
+          "lidar_detections": 3,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.3243670001466
+        },
+        {
+          "frame": 15,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 369.3694969997523
+        },
+        {
+          "frame": 16,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.9458410000407
+        },
+        {
+          "frame": 17,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.67660599980445
+        },
+        {
+          "frame": 18,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 363.32699400009005
+        },
+        {
+          "frame": 19,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 347.3002890000316
+        },
+        {
+          "frame": 20,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.30286000018896
+        },
+        {
+          "frame": 21,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.68347200020435
+        },
+        {
+          "frame": 22,
+          "visual_tracks": 1,
+          "lidar_detections": 2,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.7541889999011
+        },
+        {
+          "frame": 23,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 365.89544199978263
+        },
+        {
+          "frame": 24,
+          "visual_tracks": 1,
+          "lidar_detections": 2,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 349.1436240001349
+        },
+        {
+          "frame": 25,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.745919999943
+        },
+        {
+          "frame": 26,
+          "visual_tracks": 1,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.4874349999918
+        },
+        {
+          "frame": 27,
+          "visual_tracks": 1,
+          "lidar_detections": 1,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 363.7599300000147
+        },
+        {
+          "frame": 28,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.37559099980353
+        },
+        {
+          "frame": 29,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.02859499981787
+        },
+        {
+          "frame": 30,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 373.732105000272
+        },
+        {
+          "frame": 31,
+          "visual_tracks": 1,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.62685500014413
+        },
+        {
+          "frame": 32,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.7391779997706
+        },
+        {
+          "frame": 33,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 422.46310399968934
+        },
+        {
+          "frame": 34,
+          "visual_tracks": 2,
+          "lidar_detections": 1,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.8928090003392
+        },
+        {
+          "frame": 35,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 402.888350000012
+        },
+        {
+          "frame": 36,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 393.4155719998671
+        },
+        {
+          "frame": 37,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.5792370000345
+        },
+        {
+          "frame": 38,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 451.649180000004
+        },
+        {
+          "frame": 39,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 457.4145960000351
+        },
+        {
+          "frame": 40,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 420.92535800020414
+        },
+        {
+          "frame": 41,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 415.5411690003348
+        },
+        {
+          "frame": 42,
+          "visual_tracks": 1,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 417.52572199993665
+        },
+        {
+          "frame": 43,
+          "visual_tracks": 1,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 427.74159400005374
+        },
+        {
+          "frame": 44,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 53,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 344.04366800026764
+        },
+        {
+          "frame": 45,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.83061599988287
+        },
+        {
+          "frame": 46,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 342.36831399994117
+        },
+        {
+          "frame": 47,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.75461000002906
+        },
+        {
+          "frame": 48,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 339.9951710002824
+        },
+        {
+          "frame": 49,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.5119160002723
+        },
+        {
+          "frame": 50,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 359.7665390002476
+        },
+        {
+          "frame": 51,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.069936999982
+        },
+        {
+          "frame": 52,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.5934420001613
+        },
+        {
+          "frame": 53,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.3346989996935
+        },
+        {
+          "frame": 54,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.97464099989884
+        },
+        {
+          "frame": 55,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.3987089996772
+        },
+        {
+          "frame": 56,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.4072240000896
+        },
+        {
+          "frame": 57,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 61,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 346.7360730001019
+        },
+        {
+          "frame": 58,
+          "visual_tracks": 2,
+          "lidar_detections": 10,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 369.7240649999003
+        },
+        {
+          "frame": 59,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 376.9937239999308
+        },
+        {
+          "frame": 60,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.9296589999358
+        },
+        {
+          "frame": 61,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.6957910001729
+        },
+        {
+          "frame": 62,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 355.2307439999822
+        },
+        {
+          "frame": 63,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 359.4393680000394
+        },
+        {
+          "frame": 64,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.5055439999014
+        },
+        {
+          "frame": 65,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.76310599978024
+        },
+        {
+          "frame": 66,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 356.51994199997716
+        },
+        {
+          "frame": 67,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.632766999719
+        },
+        {
+          "frame": 68,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.36692499970013
+        },
+        {
+          "frame": 69,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 412.24294199992073
+        },
+        {
+          "frame": 70,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 383.6349359999076
+        },
+        {
+          "frame": 71,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 401.00742399999945
+        },
+        {
+          "frame": 72,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 412.4182639998253
+        },
+        {
+          "frame": 73,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 396.051811000234
+        },
+        {
+          "frame": 74,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 399.8694639999485
+        },
+        {
+          "frame": 75,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 373.0248000001666
+        },
+        {
+          "frame": 76,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 384.529030000067
+        },
+        {
+          "frame": 77,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 391.288890999931
+        },
+        {
+          "frame": 78,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.4380089999686
+        },
+        {
+          "frame": 79,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.33163199968476
+        },
+        {
+          "frame": 80,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.89919000016016
+        },
+        {
+          "frame": 81,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.9842739998894
+        },
+        {
+          "frame": 82,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 397.0272399997157
+        },
+        {
+          "frame": 83,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 350.1334970001153
+        },
+        {
+          "frame": 84,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.66879099974904
+        },
+        {
+          "frame": 85,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 347.0001430000593
+        },
+        {
+          "frame": 86,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.74097300015274
+        },
+        {
+          "frame": 87,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 424.5397459999367
+        },
+        {
+          "frame": 88,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 398.096627999621
+        },
+        {
+          "frame": 89,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.96625300019514
+        },
+        {
+          "frame": 90,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 352.5287830002526
+        },
+        {
+          "frame": 91,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 56,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.85999699975946
+        },
+        {
+          "frame": 92,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 54,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 355.8794900000066
+        },
+        {
+          "frame": 93,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.35506699990583
+        },
+        {
+          "frame": 94,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 369.6713310000632
+        },
+        {
+          "frame": 95,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 53,
+          "weak_lidar_matches": 2,
+          "weak_radar_matches": 2,
+          "latency_ms": 362.21724600000016
+        },
+        {
+          "frame": 96,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 346.5189769999597
+        },
+        {
+          "frame": 97,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.73044499998286
+        },
+        {
+          "frame": 98,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 365.4935990002741
+        },
+        {
+          "frame": 99,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 347.90660099997694
+        },
+        {
+          "frame": 100,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.91985499984
+        },
+        {
+          "frame": 101,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.4996880000617
+        },
+        {
+          "frame": 102,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 357.0202020000579
+        },
+        {
+          "frame": 103,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 353.95027999993545
+        },
+        {
+          "frame": 104,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 379.6942180001679
+        },
+        {
+          "frame": 105,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 403.3070370001042
+        },
+        {
+          "frame": 106,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 405.50829299991165
+        },
+        {
+          "frame": 107,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 376.71554799999285
+        },
+        {
+          "frame": 108,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 407.9577729999073
+        },
+        {
+          "frame": 109,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 396.74609500025326
+        },
+        {
+          "frame": 110,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 395.6739010000092
+        },
+        {
+          "frame": 111,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 398.2244229996468
+        },
+        {
+          "frame": 112,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 399.5864429998619
+        },
+        {
+          "frame": 113,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 57,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 422.4535400003333
+        },
+        {
+          "frame": 114,
+          "visual_tracks": 2,
+          "lidar_detections": 2,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 409.94098800001666
+        },
+        {
+          "frame": 115,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 410.6207419999919
+        },
+        {
+          "frame": 116,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 393.6488650001593
+        },
+        {
+          "frame": 117,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 392.4516820002282
+        },
+        {
+          "frame": 118,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.732456000027
+        },
+        {
+          "frame": 119,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.8823449996853
+        },
+        {
+          "frame": 120,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 374.2277979999926
+        },
+        {
+          "frame": 121,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 55,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 362.9978420003681
+        },
+        {
+          "frame": 122,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 349.9707910000325
+        },
+        {
+          "frame": 123,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 360.3616109999166
+        },
+        {
+          "frame": 124,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.1516210000191
+        },
+        {
+          "frame": 125,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 352.5158860002193
+        },
+        {
+          "frame": 126,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 359.89409700005126
+        },
+        {
+          "frame": 127,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 390.43905600010476
+        },
+        {
+          "frame": 128,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 66,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 410.6320159999086
+        },
+        {
+          "frame": 129,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 67,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 377.43387599994094
+        },
+        {
+          "frame": 130,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.66308799972103
+        },
+        {
+          "frame": 131,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 352.09040500012634
+        },
+        {
+          "frame": 132,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 368.431062000127
+        },
+        {
+          "frame": 133,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 369.468742999743
+        },
+        {
+          "frame": 134,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 66,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 364.37766500012003
+        },
+        {
+          "frame": 135,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 383.3865340002376
+        },
+        {
+          "frame": 136,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 383.7586339996051
+        },
+        {
+          "frame": 137,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.5264799999095
+        },
+        {
+          "frame": 138,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 424.88385399974504
+        },
+        {
+          "frame": 139,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 393.3156179996331
+        },
+        {
+          "frame": 140,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 402.8955280000446
+        },
+        {
+          "frame": 141,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 67,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 410.0376100000176
+        },
+        {
+          "frame": 142,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 372.31091000012384
+        },
+        {
+          "frame": 143,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 354.22325499985163
+        },
+        {
+          "frame": 144,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 355.2875810000842
+        },
+        {
+          "frame": 145,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.2611600001401
+        },
+        {
+          "frame": 146,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.4289099997404
+        },
+        {
+          "frame": 147,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 398.2646890003707
+        },
+        {
+          "frame": 148,
+          "visual_tracks": 2,
+          "lidar_detections": 7,
+          "radar_points": 67,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 394.9179189999086
+        },
+        {
+          "frame": 149,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 401.57199399982346
+        },
+        {
+          "frame": 150,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 64,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 381.090408000091
+        },
+        {
+          "frame": 151,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 366.27707600018766
+        },
+        {
+          "frame": 152,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 61,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 395.36753700031113
+        },
+        {
+          "frame": 153,
+          "visual_tracks": 2,
+          "lidar_detections": 6,
+          "radar_points": 58,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 395.55792800001655
+        },
+        {
+          "frame": 154,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 63,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 384.1655440000977
+        },
+        {
+          "frame": 155,
+          "visual_tracks": 2,
+          "lidar_detections": 5,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 358.6643749999894
+        },
+        {
+          "frame": 156,
+          "visual_tracks": 2,
+          "lidar_detections": 3,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 369.85186999982034
+        },
+        {
+          "frame": 157,
+          "visual_tracks": 2,
+          "lidar_detections": 9,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 361.7918869999812
+        },
+        {
+          "frame": 158,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 65,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 367.9391660002693
+        },
+        {
+          "frame": 159,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 60,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 341.92847700023776
+        },
+        {
+          "frame": 160,
+          "visual_tracks": 2,
+          "lidar_detections": 8,
+          "radar_points": 62,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 343.8850120001007
+        },
+        {
+          "frame": 161,
+          "visual_tracks": 2,
+          "lidar_detections": 4,
+          "radar_points": 59,
+          "weak_lidar_matches": 1,
+          "weak_radar_matches": 1,
+          "latency_ms": 388.93442800008415
+        }
+      ]
+    }
+  },
+  "configuration": {
+    "camera": {
+      "width": 1920,
+      "height": 1200,
+      "status": "approximate",
+      "allow_approximate": true,
+      "K": [
+        1100.0,
+        0.0,
+        960.0,
+        0.0,
+        1100.0,
+        600.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "model": {
+      "weights": "/models/yolo11n.engine",
+      "device": "0",
+      "imgsz": 640,
+      "confidence": 0.3
+    },
+    "synchronization": {
+      "tolerance_ms": 100
+    },
+    "lidar": {
+      "roi_min": [
+        -15.0,
+        -20.0,
+        -2.8
+      ],
+      "roi_max": [
+        65.0,
+        20.0,
+        4.0
+      ],
+      "voxel": 0.25,
+      "ground_threshold": 0.22,
+      "cluster_eps": 0.65,
+      "min_points": 5
+    },
+    "radar": {
+      "max_range": 65.0,
+      "max_lateral": 20.0,
+      "cluster_eps": 1.5,
+      "min_points": 2,
+      "association_gate": 2.5
+    },
+    "tracking": {
+      "gate": 3.0,
+      "max_age": 0.7,
+      "min_hits": 2
+    },
+    "visualization": {
+      "show_unclassified": false,
+      "preview_width": 960
+    },
+    "pipeline": "neural",
+    "neural": {
+      "lidar": {
+        "weights": "/models/voxelnext_nuscenes.pth",
+        "confidence": 0.25,
+        "intensity_scale": 255.0
+      },
+      "tracking": {
+        "weights": "/models/sam2.1_t.pt",
+        "max_objects": 8,
+        "memory_frames": 3
+      },
+      "fusion": {
+        "weights": "/models/query_fusion.pt",
+        "min_confidence": 0.35
+      }
+    }
+  },
+  "model_hashes": {
+    "voxelnext_nuscenes.pth": "9409dd8c13c8c8ca546c8c5af024856d03029e2def8d5fc0fa3bfe4477e7d88b",
+    "yolo11n.engine": "02190707c4789e15bbbdbadffa5c8609d10ebb3bf574e967215343e9ccfb7710",
+    "sam2.1_t.pt": "3c1e81ca9b037dd39d70a014ddb9a813d6c4c4e12555420db7eaff31689bd4e3"
+  }
+}

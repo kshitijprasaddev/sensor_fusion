@@ -1,0 +1,16 @@
+# Build the established NVIDIA 23.08 / ROS Humble base with scripts/run.sh build first.
+FROM group8-sensor-fusion:humble
+ARG VOXELNEXT_REV=b5b7d393cd1d0ecbbaeaca365b453b488791035d
+ENV TORCH_CUDA_ARCH_LIST="8.9+PTX" MAX_JOBS=2
+RUN apt-get update && apt-get install -y --no-install-recommends git build-essential && rm -rf /var/lib/apt/lists/*
+RUN python3 -m pip install --no-cache-dir spconv-cu120==2.3.6 numba==0.60.0 \
+    easydict==1.13 tensorboardX==2.6.2.2 SharedArray==3.2.4 scikit-image==0.22.0 \
+    ninja==1.11.1.3 gdown==5.2.0 kornia==0.7.4
+RUN git clone https://github.com/dvlab-research/VoxelNeXt.git /opt/voxelnext && \
+    cd /opt/voxelnext && git checkout "$VOXELNEXT_REV" && \
+    python3 -m pip install --no-build-isolation --no-deps .
+COPY docker/patch_voxelnext.py /tmp/patch_voxelnext.py
+RUN python3 /tmp/patch_voxelnext.py && python3 -c "from pcdet.datasets import DatasetTemplate; from pcdet.models import build_network"
+WORKDIR /workspace/sensor_fusion
+COPY . .
+RUN source /opt/ros/humble/setup.bash && colcon build --symlink-install && python3 -m pytest -q tests

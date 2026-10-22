@@ -1,0 +1,851 @@
+{
+  "supervision": "weak_geometry",
+  "metric_warning": "All agreement and velocity errors use pseudo-labels, NOT ground truth accuracy.",
+  "seed": 8,
+  "epochs": 100,
+  "best_epoch": 47,
+  "parameter_count": 96968,
+  "split": {
+    "train_bag": "studentProject",
+    "train_frames": [
+      0,
+      163
+    ],
+    "purged_frames": [
+      164,
+      187
+    ],
+    "validation_frames": [
+      188,
+      234
+    ],
+    "held_out_bag": "studentProject1",
+    "held_out_frames": 162
+  },
+  "feature_manifest_sha256": "fabc71789b0082ed63943efb069df6e71e98ea0b2ba1e7ddcae7fa0755169a2a",
+  "initial_validation": {
+    "queries": 94,
+    "lidar_correct": 1,
+    "radar_correct": 0,
+    "lidar_positive": 91,
+    "lidar_positive_correct": 1,
+    "radar_positive": 91,
+    "radar_positive_correct": 0,
+    "predicted_lidar_nonnull": 94,
+    "predicted_radar_nonnull": 94,
+    "velocity_samples": 182,
+    "velocity_absolute_error_sum": 313.0374994277954,
+    "loss": 199.52822971343994,
+    "frames": 47,
+    "lidar_teacher_agreement": 0.010638297872340425,
+    "radar_teacher_agreement": 0.0,
+    "lidar_positive_teacher_recall": 0.01098901098901099,
+    "radar_positive_teacher_recall": 0.0,
+    "velocity_weak_target_mae_mps": 1.7199862605922824
+  },
+  "validation": {
+    "queries": 94,
+    "lidar_correct": 87,
+    "radar_correct": 71,
+    "lidar_positive": 91,
+    "lidar_positive_correct": 85,
+    "radar_positive": 91,
+    "radar_positive_correct": 71,
+    "predicted_lidar_nonnull": 88,
+    "predicted_radar_nonnull": 92,
+    "velocity_samples": 182,
+    "velocity_absolute_error_sum": 119.66527950763702,
+    "loss": 45.46962094306946,
+    "frames": 47,
+    "lidar_teacher_agreement": 0.925531914893617,
+    "radar_teacher_agreement": 0.7553191489361702,
+    "lidar_positive_teacher_recall": 0.9340659340659341,
+    "radar_positive_teacher_recall": 0.7802197802197802,
+    "velocity_weak_target_mae_mps": 0.6575015357562474
+  },
+  "held_out": {
+    "queries": 288,
+    "lidar_correct": 230,
+    "radar_correct": 108,
+    "lidar_positive": 166,
+    "lidar_positive_correct": 164,
+    "radar_positive": 166,
+    "radar_positive_correct": 81,
+    "predicted_lidar_nonnull": 222,
+    "predicted_radar_nonnull": 261,
+    "velocity_samples": 324,
+    "velocity_absolute_error_sum": 172.5647007599473,
+    "loss": 541.4679069490521,
+    "frames": 162,
+    "lidar_teacher_agreement": 0.7986111111111112,
+    "radar_teacher_agreement": 0.375,
+    "lidar_positive_teacher_recall": 0.9879518072289156,
+    "radar_positive_teacher_recall": 0.4879518072289157,
+    "velocity_weak_target_mae_mps": 0.5326071011109484
+  },
+  "feature_ablations": {
+    "camera_features": {
+      "queries": 288,
+      "lidar_correct": 257,
+      "radar_correct": 80,
+      "lidar_positive": 166,
+      "lidar_positive_correct": 165,
+      "radar_positive": 166,
+      "radar_positive_correct": 79,
+      "predicted_lidar_nonnull": 195,
+      "predicted_radar_nonnull": 287,
+      "velocity_samples": 324,
+      "velocity_absolute_error_sum": 160.33314299583435,
+      "loss": 266.3493670647731,
+      "frames": 162,
+      "lidar_teacher_agreement": 0.8923611111111112,
+      "radar_teacher_agreement": 0.2777777777777778,
+      "lidar_positive_teacher_recall": 0.9939759036144579,
+      "radar_positive_teacher_recall": 0.4759036144578313,
+      "velocity_weak_target_mae_mps": 0.4948553796167727
+    },
+    "lidar_features": {
+      "queries": 288,
+      "lidar_correct": 210,
+      "radar_correct": 113,
+      "lidar_positive": 166,
+      "lidar_positive_correct": 137,
+      "radar_positive": 166,
+      "radar_positive_correct": 90,
+      "predicted_lidar_nonnull": 213,
+      "predicted_radar_nonnull": 265,
+      "velocity_samples": 324,
+      "velocity_absolute_error_sum": 318.2679732441902,
+      "loss": 460.4946364699863,
+      "frames": 162,
+      "lidar_teacher_agreement": 0.7291666666666666,
+      "radar_teacher_agreement": 0.3923611111111111,
+      "lidar_positive_teacher_recall": 0.8253012048192772,
+      "radar_positive_teacher_recall": 0.5421686746987951,
+      "velocity_weak_target_mae_mps": 0.9823085593956488
+    },
+    "radar_features": {
+      "queries": 288,
+      "lidar_correct": 230,
+      "radar_correct": 46,
+      "lidar_positive": 166,
+      "lidar_positive_correct": 164,
+      "radar_positive": 166,
+      "radar_positive_correct": 0,
+      "predicted_lidar_nonnull": 222,
+      "predicted_radar_nonnull": 215,
+      "velocity_samples": 324,
+      "velocity_absolute_error_sum": 226.83417377620935,
+      "loss": 637.1850355863571,
+      "frames": 162,
+      "lidar_teacher_agreement": 0.7986111111111112,
+      "radar_teacher_agreement": 0.1597222222222222,
+      "lidar_positive_teacher_recall": 0.9879518072289156,
+      "radar_positive_teacher_recall": 0.0,
+      "velocity_weak_target_mae_mps": 0.7001054746179302
+    }
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 607.0833386182785,
+      "validation_loss": 109.06808650493622,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.10638297872340426
+    },
+    {
+      "epoch": 2,
+      "train_loss": 396.07554030418396,
+      "validation_loss": 103.7647579908371,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.20212765957446807
+    },
+    {
+      "epoch": 3,
+      "train_loss": 339.283380150795,
+      "validation_loss": 181.21821570396423,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.24468085106382978
+    },
+    {
+      "epoch": 4,
+      "train_loss": 312.69367468357086,
+      "validation_loss": 120.73345458507538,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.2872340425531915
+    },
+    {
+      "epoch": 5,
+      "train_loss": 279.6004114151001,
+      "validation_loss": 172.18406355381012,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.3829787234042553
+    },
+    {
+      "epoch": 6,
+      "train_loss": 210.43133491277695,
+      "validation_loss": 153.1075576543808,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.43617021276595747
+    },
+    {
+      "epoch": 7,
+      "train_loss": 200.37845930457115,
+      "validation_loss": 113.13546907901764,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.3723404255319149
+    },
+    {
+      "epoch": 8,
+      "train_loss": 162.79348450899124,
+      "validation_loss": 96.66289365291595,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.43617021276595747
+    },
+    {
+      "epoch": 9,
+      "train_loss": 156.6898137629032,
+      "validation_loss": 100.50815868377686,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.44680851063829785
+    },
+    {
+      "epoch": 10,
+      "train_loss": 142.5678347349167,
+      "validation_loss": 132.67002630233765,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.44680851063829785
+    },
+    {
+      "epoch": 11,
+      "train_loss": 131.02903166413307,
+      "validation_loss": 119.43347799777985,
+      "validation_lidar_agreement": 0.5531914893617021,
+      "validation_radar_agreement": 0.425531914893617
+    },
+    {
+      "epoch": 12,
+      "train_loss": 169.96858689188957,
+      "validation_loss": 129.5687119960785,
+      "validation_lidar_agreement": 0.648936170212766,
+      "validation_radar_agreement": 0.425531914893617
+    },
+    {
+      "epoch": 13,
+      "train_loss": 132.56109541654587,
+      "validation_loss": 80.10989528894424,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.5638297872340425
+    },
+    {
+      "epoch": 14,
+      "train_loss": 184.66372586786747,
+      "validation_loss": 116.89210331439972,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.40425531914893614
+    },
+    {
+      "epoch": 15,
+      "train_loss": 107.18934819102287,
+      "validation_loss": 154.09114575386047,
+      "validation_lidar_agreement": 0.5,
+      "validation_radar_agreement": 0.44680851063829785
+    },
+    {
+      "epoch": 16,
+      "train_loss": 88.04683169722557,
+      "validation_loss": 111.2644339799881,
+      "validation_lidar_agreement": 0.48936170212765956,
+      "validation_radar_agreement": 0.46808510638297873
+    },
+    {
+      "epoch": 17,
+      "train_loss": 103.74034304916859,
+      "validation_loss": 91.83900234103203,
+      "validation_lidar_agreement": 0.6914893617021277,
+      "validation_radar_agreement": 0.5319148936170213
+    },
+    {
+      "epoch": 18,
+      "train_loss": 76.48915752768517,
+      "validation_loss": 57.43919539451599,
+      "validation_lidar_agreement": 0.8723404255319149,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 19,
+      "train_loss": 70.82470698654652,
+      "validation_loss": 56.94995158910751,
+      "validation_lidar_agreement": 0.8936170212765957,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 20,
+      "train_loss": 70.84973987936974,
+      "validation_loss": 51.162581980228424,
+      "validation_lidar_agreement": 0.8936170212765957,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 21,
+      "train_loss": 73.10175156034529,
+      "validation_loss": 67.17786290496588,
+      "validation_lidar_agreement": 0.7978723404255319,
+      "validation_radar_agreement": 0.6808510638297872
+    },
+    {
+      "epoch": 22,
+      "train_loss": 60.242646295111626,
+      "validation_loss": 58.62699172645807,
+      "validation_lidar_agreement": 0.8936170212765957,
+      "validation_radar_agreement": 0.7659574468085106
+    },
+    {
+      "epoch": 23,
+      "train_loss": 67.91560462582856,
+      "validation_loss": 73.57566696405411,
+      "validation_lidar_agreement": 0.8936170212765957,
+      "validation_radar_agreement": 0.4787234042553192
+    },
+    {
+      "epoch": 24,
+      "train_loss": 96.55786243069451,
+      "validation_loss": 71.17498425766826,
+      "validation_lidar_agreement": 0.851063829787234,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 25,
+      "train_loss": 65.56156518196804,
+      "validation_loss": 53.336657874286175,
+      "validation_lidar_agreement": 0.8723404255319149,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 26,
+      "train_loss": 52.539740880718455,
+      "validation_loss": 62.75464403629303,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 27,
+      "train_loss": 52.72665117428551,
+      "validation_loss": 54.63007172755897,
+      "validation_lidar_agreement": 0.9148936170212766,
+      "validation_radar_agreement": 0.7021276595744681
+    },
+    {
+      "epoch": 28,
+      "train_loss": 46.40375050707371,
+      "validation_loss": 52.56458869576454,
+      "validation_lidar_agreement": 0.8723404255319149,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 29,
+      "train_loss": 44.54073709878139,
+      "validation_loss": 54.60546972230077,
+      "validation_lidar_agreement": 0.7872340425531915,
+      "validation_radar_agreement": 0.723404255319149
+    },
+    {
+      "epoch": 30,
+      "train_loss": 38.06620674242731,
+      "validation_loss": 65.15125993639231,
+      "validation_lidar_agreement": 0.8404255319148937,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 31,
+      "train_loss": 56.08154965675203,
+      "validation_loss": 59.78470304561779,
+      "validation_lidar_agreement": 0.8617021276595744,
+      "validation_radar_agreement": 0.7446808510638298
+    },
+    {
+      "epoch": 32,
+      "train_loss": 60.29898710537236,
+      "validation_loss": 49.248576221987605,
+      "validation_lidar_agreement": 0.9361702127659575,
+      "validation_radar_agreement": 0.7446808510638298
+    },
+    {
+      "epoch": 33,
+      "train_loss": 44.81976259460498,
+      "validation_loss": 57.00513357296586,
+      "validation_lidar_agreement": 0.8085106382978723,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 34,
+      "train_loss": 35.263000845967326,
+      "validation_loss": 68.15253653004766,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6808510638297872
+    },
+    {
+      "epoch": 35,
+      "train_loss": 54.528036072602845,
+      "validation_loss": 78.41016127355397,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.7340425531914894
+    },
+    {
+      "epoch": 36,
+      "train_loss": 43.98963035954148,
+      "validation_loss": 84.71215350180864,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.723404255319149
+    },
+    {
+      "epoch": 37,
+      "train_loss": 57.245918658038136,
+      "validation_loss": 92.49196528457105,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 38,
+      "train_loss": 62.00301930648766,
+      "validation_loss": 75.13610026333481,
+      "validation_lidar_agreement": 0.7659574468085106,
+      "validation_radar_agreement": 0.7340425531914894
+    },
+    {
+      "epoch": 39,
+      "train_loss": 44.58260552097636,
+      "validation_loss": 103.68178164958954,
+      "validation_lidar_agreement": 0.6914893617021277,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 40,
+      "train_loss": 48.52669620147208,
+      "validation_loss": 60.0500788516365,
+      "validation_lidar_agreement": 0.8829787234042553,
+      "validation_radar_agreement": 0.7340425531914894
+    },
+    {
+      "epoch": 41,
+      "train_loss": 50.24568586640817,
+      "validation_loss": 76.85198547493201,
+      "validation_lidar_agreement": 0.7659574468085106,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 42,
+      "train_loss": 46.806113212544005,
+      "validation_loss": 152.44784715771675,
+      "validation_lidar_agreement": 0.6808510638297872,
+      "validation_radar_agreement": 0.574468085106383
+    },
+    {
+      "epoch": 43,
+      "train_loss": 49.47495862134383,
+      "validation_loss": 78.82316260784864,
+      "validation_lidar_agreement": 0.7978723404255319,
+      "validation_radar_agreement": 0.5957446808510638
+    },
+    {
+      "epoch": 44,
+      "train_loss": 61.22388263593166,
+      "validation_loss": 71.01815194357187,
+      "validation_lidar_agreement": 0.8936170212765957,
+      "validation_radar_agreement": 0.7021276595744681
+    },
+    {
+      "epoch": 45,
+      "train_loss": 50.43172363784106,
+      "validation_loss": 62.9989778669551,
+      "validation_lidar_agreement": 0.9148936170212766,
+      "validation_radar_agreement": 0.723404255319149
+    },
+    {
+      "epoch": 46,
+      "train_loss": 35.91958560589774,
+      "validation_loss": 52.30281540006399,
+      "validation_lidar_agreement": 0.9042553191489362,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 47,
+      "train_loss": 35.40756713796873,
+      "validation_loss": 45.46962094306946,
+      "validation_lidar_agreement": 0.925531914893617,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 48,
+      "train_loss": 30.821011963969795,
+      "validation_loss": 93.46910604089499,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.7127659574468085
+    },
+    {
+      "epoch": 49,
+      "train_loss": 38.887672027776716,
+      "validation_loss": 52.80782733057276,
+      "validation_lidar_agreement": 0.8723404255319149,
+      "validation_radar_agreement": 0.7446808510638298
+    },
+    {
+      "epoch": 50,
+      "train_loss": 29.00055857980624,
+      "validation_loss": 50.376981563982554,
+      "validation_lidar_agreement": 0.8617021276595744,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 51,
+      "train_loss": 27.470145946223056,
+      "validation_loss": 46.95057556536631,
+      "validation_lidar_agreement": 0.9468085106382979,
+      "validation_radar_agreement": 0.7659574468085106
+    },
+    {
+      "epoch": 52,
+      "train_loss": 26.95824350941257,
+      "validation_loss": 68.83148882980458,
+      "validation_lidar_agreement": 0.776595744680851,
+      "validation_radar_agreement": 0.723404255319149
+    },
+    {
+      "epoch": 53,
+      "train_loss": 40.753297218452644,
+      "validation_loss": 57.5839559250453,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 54,
+      "train_loss": 43.62289418864384,
+      "validation_loss": 57.814252940006554,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.7659574468085106
+    },
+    {
+      "epoch": 55,
+      "train_loss": 31.225230852447567,
+      "validation_loss": 64.51468730269698,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.7659574468085106
+    },
+    {
+      "epoch": 56,
+      "train_loss": 29.98945609296061,
+      "validation_loss": 66.65366863366216,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.7446808510638298
+    },
+    {
+      "epoch": 57,
+      "train_loss": 30.734761430961953,
+      "validation_loss": 57.42584369331598,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.7659574468085106
+    },
+    {
+      "epoch": 58,
+      "train_loss": 33.82988766350536,
+      "validation_loss": 65.75219660345465,
+      "validation_lidar_agreement": 0.7872340425531915,
+      "validation_radar_agreement": 0.7553191489361702
+    },
+    {
+      "epoch": 59,
+      "train_loss": 28.456640436023008,
+      "validation_loss": 74.45339271373814,
+      "validation_lidar_agreement": 0.776595744680851,
+      "validation_radar_agreement": 0.7446808510638298
+    },
+    {
+      "epoch": 60,
+      "train_loss": 34.984889128907525,
+      "validation_loss": 90.21158940717578,
+      "validation_lidar_agreement": 0.7446808510638298,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 61,
+      "train_loss": 38.29172346082487,
+      "validation_loss": 172.92037266120315,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6595744680851063
+    },
+    {
+      "epoch": 62,
+      "train_loss": 23.832084331929764,
+      "validation_loss": 128.2870290440478,
+      "validation_lidar_agreement": 0.7553191489361702,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 63,
+      "train_loss": 21.123136092661298,
+      "validation_loss": 145.493957691142,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 64,
+      "train_loss": 22.13201293317252,
+      "validation_loss": 47.57202410661557,
+      "validation_lidar_agreement": 0.925531914893617,
+      "validation_radar_agreement": 0.7872340425531915
+    },
+    {
+      "epoch": 65,
+      "train_loss": 19.328987913446326,
+      "validation_loss": 118.03683687269222,
+      "validation_lidar_agreement": 0.8191489361702128,
+      "validation_radar_agreement": 0.6914893617021277
+    },
+    {
+      "epoch": 66,
+      "train_loss": 25.614443494829175,
+      "validation_loss": 97.99849957249535,
+      "validation_lidar_agreement": 0.7978723404255319,
+      "validation_radar_agreement": 0.7127659574468085
+    },
+    {
+      "epoch": 67,
+      "train_loss": 17.290835761483322,
+      "validation_loss": 154.68934627313865,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 68,
+      "train_loss": 18.268030337356322,
+      "validation_loss": 159.14630115759792,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 69,
+      "train_loss": 19.713359887689876,
+      "validation_loss": 161.6941450561053,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6170212765957447
+    },
+    {
+      "epoch": 70,
+      "train_loss": 18.547678309319963,
+      "validation_loss": 159.5030654111324,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 71,
+      "train_loss": 14.563456804280577,
+      "validation_loss": 165.9711533478112,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6170212765957447
+    },
+    {
+      "epoch": 72,
+      "train_loss": 20.15783042149542,
+      "validation_loss": 169.0450460435368,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6595744680851063
+    },
+    {
+      "epoch": 73,
+      "train_loss": 16.40824104249782,
+      "validation_loss": 167.7291429741308,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6170212765957447
+    },
+    {
+      "epoch": 74,
+      "train_loss": 20.569008095744266,
+      "validation_loss": 168.76001026062477,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 75,
+      "train_loss": 13.671013722550242,
+      "validation_loss": 164.3418751998688,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6276595744680851
+    },
+    {
+      "epoch": 76,
+      "train_loss": 15.233405996797956,
+      "validation_loss": 163.03390239435794,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 77,
+      "train_loss": 17.249305213059415,
+      "validation_loss": 166.05952025541774,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6595744680851063
+    },
+    {
+      "epoch": 78,
+      "train_loss": 14.417516309127677,
+      "validation_loss": 161.1617925041046,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 79,
+      "train_loss": 14.02365140486927,
+      "validation_loss": 161.10161843472451,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 80,
+      "train_loss": 12.447700795673882,
+      "validation_loss": 158.78887101536384,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 81,
+      "train_loss": 18.50250528444849,
+      "validation_loss": 166.3962293365912,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.5957446808510638
+    },
+    {
+      "epoch": 82,
+      "train_loss": 19.09549279880048,
+      "validation_loss": 157.55217783635817,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 83,
+      "train_loss": 18.326587941566686,
+      "validation_loss": 159.6865577151475,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.5851063829787234
+    },
+    {
+      "epoch": 84,
+      "train_loss": 13.26989855906686,
+      "validation_loss": 153.28953216946684,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 85,
+      "train_loss": 18.71603259270887,
+      "validation_loss": 151.89479860800202,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 86,
+      "train_loss": 13.3788375104632,
+      "validation_loss": 152.35965732447949,
+      "validation_lidar_agreement": 0.7127659574468085,
+      "validation_radar_agreement": 0.648936170212766
+    },
+    {
+      "epoch": 87,
+      "train_loss": 13.83484601100281,
+      "validation_loss": 150.71715571045934,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6170212765957447
+    },
+    {
+      "epoch": 88,
+      "train_loss": 11.842581664990576,
+      "validation_loss": 149.68727272402612,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6595744680851063
+    },
+    {
+      "epoch": 89,
+      "train_loss": 11.184043968103651,
+      "validation_loss": 154.17013576419413,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.5638297872340425
+    },
+    {
+      "epoch": 90,
+      "train_loss": 11.80932797944115,
+      "validation_loss": 150.86182823016134,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6595744680851063
+    },
+    {
+      "epoch": 91,
+      "train_loss": 12.231592401079979,
+      "validation_loss": 152.38445259375658,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 92,
+      "train_loss": 14.04064154754451,
+      "validation_loss": 153.41699459496886,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 93,
+      "train_loss": 14.453699611050979,
+      "validation_loss": 154.06971565079948,
+      "validation_lidar_agreement": 0.723404255319149,
+      "validation_radar_agreement": 0.6808510638297872
+    },
+    {
+      "epoch": 94,
+      "train_loss": 11.965092756363447,
+      "validation_loss": 156.64124643665855,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 95,
+      "train_loss": 12.812914688082401,
+      "validation_loss": 150.19815285736513,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6702127659574468
+    },
+    {
+      "epoch": 96,
+      "train_loss": 17.539058921491232,
+      "validation_loss": 155.58826207672246,
+      "validation_lidar_agreement": 0.6914893617021277,
+      "validation_radar_agreement": 0.6382978723404256
+    },
+    {
+      "epoch": 97,
+      "train_loss": 17.98898460509622,
+      "validation_loss": 136.51853910677892,
+      "validation_lidar_agreement": 0.7340425531914894,
+      "validation_radar_agreement": 0.6808510638297872
+    },
+    {
+      "epoch": 98,
+      "train_loss": 10.774261159154776,
+      "validation_loss": 112.14919796033064,
+      "validation_lidar_agreement": 0.7659574468085106,
+      "validation_radar_agreement": 0.6808510638297872
+    },
+    {
+      "epoch": 99,
+      "train_loss": 10.759444849189094,
+      "validation_loss": 109.00709917472705,
+      "validation_lidar_agreement": 0.7872340425531915,
+      "validation_radar_agreement": 0.7021276595744681
+    },
+    {
+      "epoch": 100,
+      "train_loss": 9.877490704802767,
+      "validation_loss": 106.39333630182955,
+      "validation_lidar_agreement": 0.7978723404255319,
+      "validation_radar_agreement": 0.6914893617021277
+    }
+  ],
+  "checkpoint_sha256": "5f567032efc60aac8dbbc6bf7e7575a99e4e5eb1621295222393c03196a1e290"
+}

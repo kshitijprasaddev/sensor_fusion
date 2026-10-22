@@ -12,6 +12,8 @@ from .tracking import Tracker
 def load_config(path):
     with open(path, encoding='utf-8') as stream:
         config = yaml.safe_load(stream)
+    if config.get('pipeline', 'classical') not in ('classical', 'neural'):
+        raise ValueError('Unknown perception pipeline')
     camera = config['camera']
     K = np.array(camera['K'], dtype=float).reshape(3, 3)
     if not np.isfinite(K).all() or K[0, 0] <= 0 or K[1, 1] <= 0 or not np.allclose(K[2], [0, 0, 1]):
@@ -45,6 +47,9 @@ class CameraDetector:
 
 
 class Processor:
+    lidar_fields = ('x', 'y', 'z')
+    radar_fields = ('x', 'y', 'z', 'v')
+
     def __init__(self, cfg, lidar_from_camera, lidar_from_radar, detector=None):
         self.cfg = cfg
         self.camera_from_lidar = np.linalg.inv(lidar_from_camera)
@@ -52,6 +57,10 @@ class Processor:
         self.K = np.array(cfg['camera']['K']).reshape(3, 3)
         self.detector = detector
         self.tracker = Tracker(**cfg['tracking'])
+
+    def reset_tracking(self):
+        self.tracker.tracks.clear()
+        self.tracker.last_time = None
 
     def process(self, image, lidar, radar, timestamp, modality='all'):
         start = time.perf_counter()
@@ -81,6 +90,14 @@ class Processor:
 
     def annotate(self, image, result):
         out = image.copy()
+        for visual in result.get('visual_tracks', []):
+            mask = visual['mask']
+            out[mask] = (out[mask].astype(float) * .65 + np.array([40, 180, 80]) * .35).astype(np.uint8)
+            x,y = visual['bbox'][:2].astype(int)
+            matched = next((t for t in result['tracks'] if t.id == visual['id']), None)
+            label = f"#{visual['id']} {visual['label']}"
+            label += f" | {np.linalg.norm(matched.state[:2]):.1f}m" if matched else ' | 3D unassociated'
+            cv2.putText(out, label, (x,max(y-16,110)), cv2.FONT_HERSHEY_SIMPLEX,.7,(80,255,130),2)
         pixels, valid, depths = project(result['nonground'], self.camera_from_lidar, self.K,
                                          image.shape[1], image.shape[0])
         for (u, v), depth in zip(pixels[valid][::2], depths[valid][::2]):
@@ -89,9 +106,12 @@ class Processor:
         for box in result['boxes']:
             x1, y1, x2, y2 = map(int, box['xyxy'])
             cv2.rectangle(out, (x1, y1), (x2, y2), (80, 220, 255), 2)
-            cv2.putText(out, f"{box['label']} {box['confidence']:.2f}", (x1, max(25, y1 - 10)),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (80, 220, 255), 2)
+            if not result.get('visual_tracks'):
+                cv2.putText(out, f"{box['label']} {box['confidence']:.2f}", (x1, max(25, y1 - 10)),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.7, (80, 220, 255), 2)
         for track in result['tracks']:
+            if any(v['id'] == track.id for v in result.get('visual_tracks', [])):
+                continue
             if not self.cfg.get('visualization', {}).get('show_unclassified', False) and track.object.label in ('obstacle', 'radar_target'):
                 continue
             xyz = np.r_[track.state[:2], track.object.center[2]].reshape(1, 3)
@@ -102,9 +122,16 @@ class Processor:
                 cv2.putText(out, label, (u, v), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (90, 255, 100), 2)
         cv2.rectangle(out, (0, 0), (image.shape[1], 100), (22, 28, 38), -1)
         status = 'APPROXIMATE CAMERA INTRINSICS' if self.cfg['camera']['status'] != 'calibrated' else 'CALIBRATED'
-        cv2.putText(out, f'GROUP 8 | Camera + LiDAR + Radar | {status}', (24, 36),
+        cv2.putText(out, f"GROUP 8 | {result['metrics'].get('pipeline', 'classical').upper()} | {status}", (24, 36),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.8, (245, 245, 245), 2)
         m = result['metrics']
         cv2.putText(out, f"YOLO: {m['camera_detections']} | Camera matches: {m['camera_matches']} | Radar matches: {m['radar_matches']} | Tracks: {m['tracks']}",
                     (24, 76), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (120, 220, 255), 2)
         return out
+
+
+def make_processor(cfg, lidar_from_camera, lidar_from_radar, detector=None):
+    if cfg.get('pipeline', 'classical') == 'neural':
+        from .neural import NeuralProcessor
+        return NeuralProcessor(cfg, lidar_from_camera, lidar_from_radar, detector)
+    return Processor(cfg, lidar_from_camera, lidar_from_radar, detector)

@@ -1,149 +1,176 @@
-# Group 8 | Multi-sensor perception
+# Group 8 | Learned camera, LiDAR and radar perception
 
-[![Numerical pipeline](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml/badge.svg)](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml)
+[![Tests](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml/badge.svg)](https://github.com/kshitijprasaddev/sensor_fusion/actions/workflows/tests.yml)
 
-Camera, LiDAR and radar object fusion for the THI automated-vehicle project.
-Built in the requested NVIDIA TensorRT 23.08 container with ROS 2 Humble,
-YOLO11n, geometric point-cloud detection, Kalman tracking and RViz2.
+A ROS 2 research project with **pretrained LiDAR detection, neural temporal mask
+tracking and locally trained cross-modal attention**, running on the RTX 4060
+inside the requested NVIDIA TensorRT 23.08 container.
 
-**Calibration status:** the recordings contain sensor extrinsics but no camera
-intrinsics. The default projection is clearly marked approximate. Importing the
-real calibration later requires a new configuration and a rerun, not code changes.
+The neural profile combines:
 
-![RViz2 preview with camera, LiDAR, radar and fused tracks](docs/assets/rviz-demo.gif)
+- **YOLO11n** for camera proposals and automatic object prompts.
+- **VoxelNeXt** for learned 3D LiDAR boxes and sparse features.
+- **SAM 2.1 tiny** for visual mask identities through transformer memory.
+- **QueryFusion**, our trained attention head, for camera/LiDAR/radar association.
+- A trained **GRU motion head** for relative XY velocity.
 
-Animated preview of both bags at twice the recorded sensor speed. Camera
-calibration is approximate. [Full-resolution screenshot](docs/assets/rviz.png).
+**Research status:** camera intrinsics are approximate and sensor alignment uses
+bag receipt times. The custom head learns from explicitly disclosed weak labels,
+not annotated ground truth. Execution and teacher agreement do not establish
+real detection/tracking accuracy. This is hybrid object-query feature fusion,
+not a reproduced end-to-end BEVFusion or a road-ready perception system.
 
-## Run the project
+Read the [literature review](docs/LITERATURE_REVIEW.md),
+[architecture and commands](docs/AI_PIPELINE.md), and
+[measured neural results](docs/AI_RESULTS.md).
 
-Requirements: Linux x86_64, Docker access, an NVIDIA driver, NVIDIA Container
-Toolkit, about 25 GB free disk for the image/build, and the supplied bag directory.
-The helper supports NVIDIA CDI and the registered Docker runtime. See the
-[environment notes](docs/ENVIRONMENT.md) for CPU and direct-device fallback modes.
+![Neural RViz preview](docs/assets/neural-demo.gif)
+
+Accelerated excerpt from the actual neural RViz session.
+[Full-resolution screenshot](docs/assets/neural-rviz.png).
+
+## Run the neural demo on this workstation
+
+The checkout is `/home/kshitij0/sensor_fusion`. Models and images have already
+been prepared locally. Use a graphical Ubuntu terminal:
 
 ```bash
-git clone https://github.com/kshitijprasaddev/sensor_fusion.git
-cd sensor_fusion
-export DATA_DIR=/home/kshitij0/Downloads/studentProject1
+sudo systemctl start docker
+sudo setfacl -m u:kshitij0:rw /var/run/docker.sock
+cd /home/kshitij0/sensor_fusion
+./scripts/run.sh ai-demo
+```
 
+The helper selects the neural image/configuration and starts at `rate:=0.1` to
+leave processing headroom. Replay repeats by default. Stop with Ctrl+C or
+`docker stop group8-rviz`. Stop one demo before starting the next.
+
+```bash
+# Second recorded bag
+./scripts/run.sh ai-demo bag:=/data/studentProject1
+
+# One pass
+./scripts/run.sh ai-demo loop:=false
+
+# Tests and full neural evaluation on both bags
+./scripts/run.sh ai-test
+./scripts/run.sh ai-validate
+```
+
+The original data directory is `/home/kshitij0/Downloads/studentProject1`,
+containing `studentProject/` and `studentProject1/`. Set `DATA_DIR` if relocated.
+Bags are mounted read-only; models and results persist in local folders.
+
+## Build on the tested RTX workstation
+
+Requirements: Linux x86_64, Docker access, NVIDIA driver and Container Toolkit,
+the supplied data, and sufficient disk space for the NVIDIA/ROS/CUDA build.
+The neural CUDA extensions target compute capability 8.9; other architectures
+need a suitable rebuild. This is not a tested Jetson image.
+
+```bash
 ./scripts/run.sh build
 ./scripts/run.sh prepare --engine
-./scripts/run.sh demo weights:=/models/yolo11n.engine
+./scripts/run.sh ai-build
+./scripts/run.sh ai-prepare
+./scripts/run.sh ai-demo
 ```
 
-RViz opens with the camera overlay, LiDAR, radar, frame tree, fused boxes, track
-IDs and relative-velocity arrows. Playback loops at half speed to accommodate
-processing and GUI load. Use `rate:=1.0` to test the original rate, and inspect
-`/fusion/metrics` for dropped frames. This is a recorded-data demonstrator.
-The camera labels semantic tracks; RViz also shows radar targets. Unclassified
-structural tracks remain in the exported topics. Set
-`visualization.show_unclassified: true` in the config to display them as well.
-The RViz preview is 960 pixels wide. The helper saves editable display preferences
-in `results/fusion.rviz`, so your view settings persist between runs.
+The small trained `models/query_fusion.pt` is included in Git. The published
+VoxelNeXt and SAM checkpoints are downloaded with verified hashes. Upstream
+model binaries, TensorRT engines, raw bags, feature caches and full videos are
+excluded from Git. See [environment details](docs/ENVIRONMENT.md) and
+[third-party notices](THIRD_PARTY_NOTICES.md).
 
-```bash
-# Second recording
-./scripts/run.sh demo bag:=/data/studentProject1 weights:=/models/yolo11n.engine
-
-# Complete offline runs, with annotated videos and per-frame exports
-./scripts/run.sh evaluate /data/studentProject --weights /models/yolo11n.engine --output /results/studentProject --video
-./scripts/run.sh evaluate /data/studentProject1 --weights /models/yolo11n.engine --output /results/studentProject1 --video
-
-# Numerical tests and a read-only dataset audit
-./scripts/run.sh test
-./scripts/run.sh audit
-```
-
-The supplied root should contain `studentProject/metadata.yaml` and
-`studentProject1/metadata.yaml` beside their `.db3` files. Raw recordings are
-mounted read-only. Models, engines, logs and generated videos stay local under
-`models` and `results`; they are excluded from Git. Only the compact animated
-RViz preview is included in the repository.
-
-## How it works
+## Architecture
 
 ```mermaid
 flowchart LR
     B[Read-only ROS bags] --> T[Receipt-time replay and static TF]
-    T --> C[Camera: YOLO11n]
-    T --> L[LiDAR: voxel, ground removal, DBSCAN]
-    T --> R[Radar: transform and DBSCAN]
-    C --> F[Projection and object association]
-    L --> F
-    R --> F
-    F --> K[Kalman filter and Hungarian tracking]
-    K --> V[RViz2 and ROS object topics]
-    K --> E[Offline exports and validation]
+    T --> Y[YOLO camera prompts]
+    T --> V[VoxelNeXt LiDAR boxes and features]
+    T --> R[Radar point tokens]
+    Y --> S[SAM 2.1 temporal mask memory]
+    S --> A[Learned query cross-attention]
+    V --> A
+    R --> A
+    A --> G[GRU relative motion]
+    A --> O[ROS objects and RViz]
+    G --> O
 ```
 
-The learned model is **YOLO11n**, pretrained on COCO. LiDAR and radar use geometric
-detectors. No PointNet++, PointPillars, radar neural network or learned fusion
-weights are claimed as implemented. The radar bag already contains detection
-points, so raw radar CFAR processing is not part of this pipeline. See the full
-[model inventory and literature review](docs/MODELS.md).
+The neural runtime does not execute DBSCAN, Kalman filtering or Hungarian
+assignment. It retains explicit non-learned geometry, ROI filtering, suppression
+and confidence/range checks. It requires visible camera instances with accepted
+LiDAR associations; it does not track every radar-only or off-camera object.
+SAM memory has finite slots and exposes capacity rejections.
 
-| Recorded topic | Role |
-| --- | --- |
-| `/blackfly_s/cam0/image_rectified` | 1920 x 1200 camera images, about 10 Hz |
-| `/velodyne/points_raw` | Organized XYZ/intensity/ring LiDAR cloud, about 10 Hz |
-| `/PointCloudDetection` | XYZ, radial velocity, range, RCS and angles, about 20 Hz |
-| `/velodyne/imu` | IMU, about 100 Hz; replayed and audited |
-| `/tf_static` | Recorded sensor extrinsics |
-
-The first bag contains 3,304 messages over 23.58 s; the second contains 2,294
-messages over 16.38 s. LiDAR headers use a device clock while the camera and radar
-use Unix-like time. The demo uses bag receipt time for alignment and `/clock`.
-This fallback is documented in [calibration and time](docs/CALIBRATION.md).
-
-| Output | Content |
-| --- | --- |
-| `/fusion/image` | Camera detections, projected points and track labels |
-| `/fusion/nonground` | Filtered LiDAR points in `velodyne` |
-| `/fusion/markers` | RViz boxes, IDs, source labels and relative-velocity arrows |
-| `/fusion/objects` | Standard `vision_msgs/Detection3DArray`, IDs and XY covariance |
-| `/fusion/tracks` | JSON states, relative velocities, covariance, source provenance and recorded radial velocity |
-| `/fusion/metrics` | Timing, association counts, synchronization deltas and frame losses |
-
-## Replace the camera calibration later
-
-Use the standard YAML exported by ROS `camera_calibration`. For this rectified
-image topic the importer reads the rectified projection matrix, validates it,
-and creates a new config without overwriting the approximate default.
+## Reproduce training and evaluate
 
 ```bash
-./scripts/run.sh calibrate /absolute/path/to/camera.yaml
-./scripts/run.sh demo config:=/results/fusion_calibrated.yaml weights:=/models/yolo11n.engine
-./scripts/run.sh evaluate /data/studentProject --config /results/fusion_calibrated.yaml --weights /models/yolo11n.engine --output /results/calibrated
+./scripts/run.sh ai-extract --output /results/ai_features_reproduced
+./scripts/run.sh ai-train \
+  --features /results/ai_features_reproduced \
+  --output /models/query_fusion_reproduced.pt \
+  --report /results/ai_training_reproduced.json
+./scripts/run.sh ai-evaluate /data/studentProject1 \
+  --weights /models/yolo11n.engine \
+  --output /results/my_ai_run --video
 ```
 
-Check extrinsics and reprojection independently before interpreting accuracy.
-See [the calibration guide](docs/CALIBRATION.md) for image size, rectification,
-clock offsets and radar velocity conventions.
+The first 70% of bag 1 trains the fusion/GRU head, a 10% gap separates training
+and validation, and the final 20% selects a checkpoint. Bag 2 is held out from
+training and selection. Published perception encoders stay frozen. The recordings
+are short and related; this is a limited sequence diagnostic. Full configuration,
+loss history, model hashes and weak-target agreement are exported. Model
+limitations and feature-ablation regressions are reported without hiding them.
 
-## Evidence and course handover
+## ROS outputs
 
-* [Project report and measured results](docs/PROJECT_REPORT.md)
-* [Dataset audit extracted from both bags](docs/dataset_audit.json)
-* [Validation protocol and ablations](docs/VALIDATION_PLAN.md)
-* [Environment versions and Jetson differences](docs/ENVIRONMENT.md)
-* [Two-week progress report template](docs/PROGRESS_REPORT.md)
+| Topic | Contents |
+| --- | --- |
+| `/fusion/image` | Camera overlay with SAM masks/IDs and matched 3D information |
+| `/fusion/nonground` | Neural profile: sampled LiDAR model input, including ground; baseline: ground-filtered points |
+| `/fusion/markers` | Oriented boxes, IDs and relative-velocity arrows |
+| `/fusion/objects` | `vision_msgs/Detection3DArray` |
+| `/fusion/tracks` | IDs, source provenance, positions, relative velocity and heuristic covariance |
+| `/fusion/metrics` | Pipeline name, counts, attention summaries, timing and drop counters |
 
-There is no ground truth, camera intrinsic calibration or ego pose in the supplied
-data. Execution and association counts cannot establish detection accuracy.
-Track velocities are relative to the moving sensor, and geometric boxes may
-include structures. The report separates measured behavior from these limits.
+All object positions use the moving `velodyne` sensor frame. No global
+localization or validated ego-motion compensation is implemented. In neural
+metrics, radar counts mean filtered points, not baseline clusters.
 
-## Repository layout
+## Classical comparison
 
-```text
-src/group8_fusion/    ROS package, shared numerical pipeline, launch and RViz config
-scripts/             Container commands, calibration import, evaluation and audit
-tests/               Geometry, decoding, association, tracking and calibration tests
-docs/                Design decisions, evidence and course handover
-models/              Local model cache, ignored by Git
-results/             Local runs and videos, ignored by Git
+The original implementation is preserved for regression tests and comparison:
+
+```bash
+./scripts/run.sh demo weights:=/models/yolo11n.engine
+./scripts/run.sh evaluate /data/studentProject --modality lidar --output /results/baseline_lidar
 ```
 
-License: [AGPL-3.0](LICENSE). See [third-party notices](THIRD_PARTY_NOTICES.md)
-for Ultralytics models, NVIDIA container terms and the supplied recordings.
+It uses YOLO11n, LiDAR/radar clustering, geometric association and Kalman tracking.
+Its four offline modes are `lidar`, `camera_lidar`, `lidar_radar` and `all`.
+These switches are not mislabeled as neural ablations.
+
+[Original baseline report](docs/PROJECT_REPORT.md),
+[baseline model inventory](docs/MODELS.md),
+[baseline animated recording](docs/assets/rviz-demo.gif).
+
+## Calibration and scientific limits
+
+Recorded extrinsics are available; real rectified camera intrinsics, ground-truth
+3D boxes/IDs and validated ego pose are missing. Import real calibration using
+the [calibration guide](docs/CALIBRATION.md). For the neural profile, changed
+intrinsics also require feature re-extraction and retraining the fusion head;
+the checkpoint refuses an incompatible intrinsic matrix.
+
+No mAP, HOTA, AMOTA, absolute road speed or state-of-the-art performance is claimed
+on these bags. See the [validation plan](docs/VALIDATION_PLAN.md) for the independent
+labels and measurements needed to establish accuracy.
+
+## License
+
+Project source and the custom trained head: AGPL-3.0. Upstream models, NVIDIA
+software and datasets retain their own terms. See [LICENSE](LICENSE) and
+[third-party notices](THIRD_PARTY_NOTICES.md).

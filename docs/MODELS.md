@@ -1,5 +1,9 @@
 # Models and algorithms actually used
 
+> Historical classical baseline, validated 17 October 2026. The neural extension
+> added 22 October 2026 is documented in [AI pipeline](AI_PIPELINE.md),
+> [results](AI_RESULTS.md) and [literature review](LITERATURE_REVIEW.md).
+
 | Input or stage | Implementation | Learned weights | Output |
 | --- | --- | --- | --- |
 | Camera | Ultralytics YOLO11n Detect, 640 input, confidence 0.30 | COCO pretrained `yolo11n.pt` | 2D boxes, class labels, confidence |

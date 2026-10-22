@@ -11,3 +11,13 @@ jobs:
       - run: pip install numpy==1.26.4 scipy==1.11.4 opencv-python-headless==4.8.1.78 PyYAML==6.0.2 pytest==8.3.5
       - run: python -m pytest -q
       - run: python -m compileall -q src scripts
+  neural-heads:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - run: pip install torch==2.4.0 --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install numpy==1.26.4 scipy==1.11.4 opencv-python-headless==4.8.1.78 PyYAML==6.0.2 pytest==8.3.5
+      - run: python -m pytest -q tests/test_neural.py
