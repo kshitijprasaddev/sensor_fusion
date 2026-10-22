@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "counts": {
+    "tf_static": 25,
+    "image": 25,
+    "cloud": 25,
+    "objects": 25,
+    "markers": 25,
+    "tracks": 25,
+    "metrics": 25
+  },
+  "static_children": [
+    "cam0",
+    "os_lidar",
+    "ouster/imu_link",
+    "radar"
+  ],
+  "unique_track_ids": 1,
+  "errors": [],
+  "rviz_subscriptions": {
+    "/fusion/markers": true,
+    "/fusion/image": true,
+    "/fusion/nonground": true,
+    "/velodyne/points_raw": true,
+    "/PointCloudDetection": true
+  },
+  "last_metrics": {
+    "time": 1775649768.1407564,
+    "latency_ms": 272.960135998801,
+    "camera_detections": 1,
+    "lidar_objects": 7,
+    "radar_objects": 54,
+    "camera_matches": 1,
+    "radar_matches": 1,
+    "tracks": 1,
+    "measured_tracks": 1,
+    "three_sensor_objects": 1,
+    "pipeline": "neural",
+    "fusion_schema": "group8-query-fusion-v2",
+    "radar_count_unit": "filtered_points_not_clusters",
+    "neural_null_tracks": 0,
+    "mean_lidar_attention": 0.9999914169311523,
+    "mean_radar_attention": 0.37599262595176697,
+    "visual_tracks": 1,
+    "sam_capacity_rejections": 0,
+    "processed": 51,
+    "dropped_no_lidar": 0,
+    "dropped_images": 0,
+    "lidar_delta_ms": -47.20236,
+    "radar_delta_ms": -4.351883,
+    "node_latency_ms": 290.6350350003777
+  }
+}

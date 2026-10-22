@@ -111,6 +111,7 @@ def main():
                    'radar_objects', 'camera_matches', 'radar_matches', 'three_sensor_objects']},
                'unique_confirmed_tracks': len({r['id'] for r in track_rows}),
                'pipeline': cfg.get('pipeline', 'classical'),
+               'fusion_schema': getattr(processor, 'fusion_schema', None),
                'fusion_weights_sha256': getattr(processor, 'checkpoint_sha256', None),
                'radar_count_unit': 'filtered_points' if cfg.get('pipeline') == 'neural' else 'clusters',
                'accuracy_metrics': 'Unavailable: no labeled ground truth, true camera intrinsics or ego pose supplied.'}

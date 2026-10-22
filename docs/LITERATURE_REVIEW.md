@@ -70,11 +70,15 @@ reasonable input channel to examine. Our point-token MLP is much smaller and is
 not RadarBEVNet or an implementation of RCBEVDet. [RCBEVDet](https://arxiv.org/abs/2403.16440),
 [RCBEVDet++](https://arxiv.org/abs/2409.04979).
 
-**RaCFormer, 2024 preprint.** Chu et al. study radar-camera query fusion and the
+**RaCFormer, CVPR 2025.** Chu et al. study radar-camera query fusion and the
 problem of inaccurate image-to-BEV alignment. This directly reinforces the
 importance of our missing calibration and timing limitations. We review the
 method without claiming its benchmark results or weights were evaluated here.
-[Paper](https://arxiv.org/abs/2412.12725).
+[Paper](https://arxiv.org/abs/2412.12725),
+[official implementation](https://github.com/cxmomo/RaCFormer).
+The released setup uses the MMDetection3D ecosystem, calibrated nuScenes inputs
+and a multi-GPU training recipe. Our one-camera bags are not a drop-in equivalent
+to that training setup. We have not installed or executed RaCFormer.
 
 **CenterFusion, WACV 2021.** Nabati and Qi combine camera predictions and radar
 feature maps to refine object properties. Although older, it illustrates that
@@ -87,6 +91,37 @@ tokens. Two learned cross-attention blocks include explicit null-observation
 tokens. It is hybrid feature-and-object fusion with frozen pretrained encoders,
 not an end-to-end trained BEV detector and not a reproduction of the above papers.
 No pretrained tri-modal checkpoint is claimed for this custom module.
+
+## Recent reliability research and the second implementation
+
+**MoME, CVPR 2025.** Park et al. route object queries among camera, LiDAR and
+joint expert decoders according to sensor feature quality. This targets the
+failure of fused detectors when a modality becomes unreliable.
+[Paper](https://arxiv.org/abs/2503.19776). Our v2 uses descriptor dropout and a
+camera descriptor gate, but does not reproduce MoME's three expert decoders.
+This is a conceptual comparison, not an evaluated MoME implementation.
+
+**RAF, ECCV 2026 according to the authors' arXiv record.** Park, Jeong and Yoon
+supervise pixel reliability while integrating camera evidence with frozen
+LiDAR/radar backbones for adverse weather. This supports examining reliability
+and selective fusion rather than just increasing model size.
+[Primary paper record](https://arxiv.org/abs/2607.04587). We do not have the
+reliability labels or weather evaluation used there, and do not claim to
+implement RAF. Its published results are not our measurements.
+
+**Confidence calibration.** Guo et al. study temperature scaling for neural
+probabilities. [Paper](https://arxiv.org/abs/1706.04599). V2 searches a fixed small
+temperature grid on a separate segment of bag 1 after checkpoint selection.
+These temperatures fit noisy pseudo-labels, not physical correctness. A tiny
+calibration segment cannot guarantee trustworthy confidence on other scenes.
+
+The implemented v2 adds radar return self-attention before cross-modal attention,
+separate descriptor/geometry encoders, a learned camera descriptor gate and
+descriptor/missing-radar augmentation. Its weak radar loss distributes target
+mass over nearby plausible returns rather than forcing a single nearest return.
+The geometric radius remains a disclosed hand-set assumption. This is an
+original compact engineering experiment, not a new state-of-the-art paper.
+See [paired measurements and limitations](FUSION_V2.md).
 
 ## Temporal identity and neural motion
 
@@ -136,10 +171,13 @@ targets are clipped finite differences of weak 3D observations with the same SAM
 identity. These are explicitly fallible pseudo-labels. There is no supervision
 from manually annotated accuracy labels.
 
-The first 70% of the first recording is training; the next 10% is a purge gap;
-the final 20% selects a checkpoint. The second bag is reserved for evaluation.
-Both recordings are short and visually related, so the second bag is a held-out
-sequence diagnostic, not proof of new-scene generalization.
+Both versions use the first 70% of bag 1 for training and the next 10% as a purge
+gap. V1 used the final 20% for checkpoint selection. V2 divides that final
+segment into 10% selection and 10% temperature fitting. Bag 2 receives no
+gradient updates or checkpoint selection, but its v1 results informed the v2
+design. Therefore v2 reports it as a **development diagnostic**, not an untouched
+test. Both recordings are short and visually related. A fresh independently
+annotated recording is required for a new-scene generalization test.
 
 Report association agreement with weak labels, null selections, feature
 ablations, processing latency, memory use and ROS delivery. Do not call these
@@ -155,10 +193,11 @@ and moving-frame relative velocities remain unchanged limitations.
 | YOLO11n | Executed camera proposals | Published COCO pretrained weights |
 | VoxelNeXt | Executed LiDAR detector/features | Authors' nuScenes checkpoint |
 | SAM 2.1 tiny | Executed temporal mask identities | Published checkpoint via Ultralytics |
-| QueryFusion attention | Implemented and locally trained | Weak associations from first bag only |
+| QueryFusion v1/v2 attention | Implemented and locally trained | Weak associations from first bag only |
 | GRU relative velocity | Implemented and locally trained | Weak position differences; no ego compensation |
 | BEVFusion, TransFusion, LiRaFusion, RCBEVDet, RaCFormer | Literature comparisons | Not installed or claimed evaluated |
 | PTv3, CoTracker3, TrackFormer, MOTIP, FutrTrack | Literature alternatives | Not installed or claimed evaluated |
+| MoME and RAF | Reliability research comparisons | Not installed or claimed evaluated |
 
 See [AI implementation and commands](AI_PIPELINE.md) and the machine-readable
 validation evidence for measured execution results and checkpoint provenance.

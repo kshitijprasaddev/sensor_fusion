@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "frames": 5,
+  "forbidden_classical_calls": 0,
+  "torch_peak_allocated_mb": 932.970703125,
+  "checkpoint_sha256": "45af5f681d1259ba12909ea2e6fe5c35713833b7dfcaa7d165c51c6dd8ffb687",
+  "observations": [
+    {
+      "frame": 0,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.1445737,
+        "latency_ms": 1379.8992929987435,
+        "camera_detections": 1,
+        "lidar_objects": 8,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999755620956421,
+        "mean_radar_attention": 0.37696579098701477,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 1,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.2436028,
+        "latency_ms": 230.09019500022987,
+        "camera_detections": 1,
+        "lidar_objects": 4,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999977350234985,
+        "mean_radar_attention": 0.37222379446029663,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 2,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.3433843,
+        "latency_ms": 255.57860099979735,
+        "camera_detections": 1,
+        "lidar_objects": 7,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999943971633911,
+        "mean_radar_attention": 0.3718400001525879,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 3,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.4422045,
+        "latency_ms": 252.81554399953166,
+        "camera_detections": 1,
+        "lidar_objects": 5,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.999997615814209,
+        "mean_radar_attention": 0.3746316730976105,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    },
+    {
+      "frame": 4,
+      "ids": [
+        1
+      ],
+      "metrics": {
+        "time": 1775649763.5433679,
+        "latency_ms": 255.28504199974122,
+        "camera_detections": 1,
+        "lidar_objects": 8,
+        "radar_objects": 57,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "neural",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999911785125732,
+        "mean_radar_attention": 0.374386727809906,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0
+      }
+    }
+  ]
+}

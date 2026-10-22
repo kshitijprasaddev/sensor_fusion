@@ -57,5 +57,6 @@ neural:
     max_objects: 8
     memory_frames: 3
   fusion:
-    weights: /models/query_fusion.pt
-    min_confidence: 0.35
+    weights: /models/query_fusion_v2.pt
+    min_confidence: 0.65
+    min_radar_confidence: 0.35

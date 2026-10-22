@@ -1,5 +1,9 @@
 # Neural implementation: measured results
 
+**This page preserves the v1 measurements.** The default neural configuration
+now uses v2. Read [v2 comparisons and current runtime evidence](FUSION_V2.md).
+For a human-readable introduction, start with [Understand the project](START_HERE.md).
+
 Execution date: 22 October 2026. Hardware: RTX 4060 Laptop GPU, 8 GB.
 Environment: requested NVIDIA TensorRT 23.08 base, ROS Humble, PyTorch 2.4,
 VoxelNeXt sparse convolutions, SAM 2.1 tiny FP16, YOLO11n TensorRT FP16.

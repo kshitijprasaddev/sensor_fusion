@@ -1,5 +1,12 @@
 # Neural pipeline: architecture, training and operation
 
+**Version note:** the detailed architecture and training measurements below
+describe v1 unless stated otherwise. The default now loads v2. Its changed
+encoders, losses, split rules and measurements are documented in
+[QueryFusion v2](FUSION_V2.md). Both checkpoints and a v1 configuration are kept.
+For a simple explanation and current commands, use [Start here](START_HERE.md)
+and the [run guide](RUN_GUIDE.md).
+
 This profile adds learned LiDAR detection, pretrained temporal segmentation,
 trained cross-modal association and a trained relative-motion head. It is a
 working research prototype with weak supervision. It is not an accuracy-validated
@@ -143,13 +150,13 @@ upstream checkpoint binaries and the hardware-specific TensorRT engine are not.
 privileged mode. `ai-build` preserves the installed base and compiles neural
 extensions; it does not silently upgrade the complete CUDA/ROS stack.
 
-## Reproduce feature extraction and training
+## Reproduce v1 feature extraction and training
 
 Use a fresh feature directory to avoid accidentally mixing runs:
 
 ```bash
 ./scripts/run.sh ai-extract --output /results/ai_features_reproduced
-./scripts/run.sh ai-train \
+./scripts/run.sh ai-train-v1 \
   --features /results/ai_features_reproduced \
   --output /models/query_fusion_reproduced.pt \
   --report /results/ai_training_reproduced.json \

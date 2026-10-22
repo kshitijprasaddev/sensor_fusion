@@ -6,7 +6,8 @@ import time
 from types import SimpleNamespace
 import numpy as np
 import torch
-from .attention_fusion import QueryFusion, pack_features, CAMERA_CLASSES
+from .attention_fusion import pack_features, CAMERA_CLASSES
+from .robust_fusion import load_fusion_model
 from .neural_models import VoxelNeXtDetector, SAMMemoryTracker
 from .perception import Object3D
 from .processor import Processor
@@ -50,19 +51,14 @@ class NeuralProcessor:
                     "Train the learned fusion head first: ./scripts/run.sh ai-train"
                 )
             data = torch.load(checkpoint, map_location="cpu", weights_only=True)
-            if (
-                data.get("schema") != "group8-query-fusion-v1"
-                or data.get("supervision") != "weak_geometry"
-            ):
-                raise ValueError("Unsupported fusion checkpoint or missing provenance")
             if len(data.get("camera_intrinsics", [])) != 9 or not np.allclose(
                 data["camera_intrinsics"], cfg["camera"]["K"]
             ):
                 raise ValueError(
                     "Camera intrinsics changed: re-extract features and retrain the fusion head"
                 )
-            self.network = QueryFusion()
-            self.network.load_state_dict(data["state_dict"], strict=True)
+            self.network = load_fusion_model(data)
+            self.fusion_schema = data["schema"]
             self.network.cuda().eval()
             self.checkpoint_sha256 = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
 
@@ -183,7 +179,9 @@ class NeuralProcessor:
             obj.radial_velocity = None
             if (
                 rindex < len(record["radar_xyz"])
-                and rp[j, rindex] >= self.cfg["neural"]["fusion"]["min_confidence"]
+                and rp[j, rindex] >= self.cfg["neural"]["fusion"].get(
+                    "min_radar_confidence", self.cfg["neural"]["fusion"]["min_confidence"]
+                )
             ):
                 # Conservative range sanity gate; geometric safety is not itself
                 # a neural algorithm and is disclosed separately from attention.
@@ -240,6 +238,7 @@ class NeuralProcessor:
             "measured_tracks": len(tracks),
             "three_sensor_objects": radar_matches,
             "pipeline": "neural",
+            "fusion_schema": self.fusion_schema,
             "radar_count_unit": "filtered_points_not_clusters",
             "neural_null_tracks": len(visual) - len(tracks),
             "mean_lidar_attention": 0.0,

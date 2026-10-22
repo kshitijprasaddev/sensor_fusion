@@ -20,14 +20,25 @@ not annotated ground truth. Execution and teacher agreement do not establish
 real detection/tracking accuracy. This is hybrid object-query feature fusion,
 not a reproduced end-to-end BEVFusion or a road-ready perception system.
 
+**Start here:** [plain-language explanation](docs/START_HERE.md),
+[step-by-step terminal commands](docs/RUN_GUIDE.md), and
+[v2 improvements and tradeoffs](docs/FUSION_V2.md).
+
 Read the [literature review](docs/LITERATURE_REVIEW.md),
 [architecture and commands](docs/AI_PIPELINE.md), and
 [measured neural results](docs/AI_RESULTS.md).
 
-![Neural RViz preview](docs/assets/neural-demo.gif)
+The current default is **QueryFusion v2**: gated camera descriptors, contextual
+radar self-attention, descriptor dropout and distributed weak radar supervision.
+On the same bag 2 development features, exact LiDAR teacher agreement improved
+from 79.9% to 91.0% and exact radar-point agreement from 37.5% to 62.2%.
+Motion weak-target error increased from 0.53 to 0.62 m/s. These are disclosed
+development diagnostics, not ground-truth accuracy or a state-of-the-art result.
 
-Accelerated excerpt from the actual neural RViz session.
-[Full-resolution screenshot](docs/assets/neural-rviz.png).
+![Neural v2 RViz preview](docs/assets/neural-v2-demo.gif)
+
+Accelerated excerpt from the actual neural v2 RViz session.
+[Full-resolution screenshot](docs/assets/neural-v2-rviz.png).
 
 ## Run the neural demo on this workstation
 
@@ -76,7 +87,8 @@ need a suitable rebuild. This is not a tested Jetson image.
 ./scripts/run.sh ai-demo
 ```
 
-The small trained `models/query_fusion.pt` is included in Git. The published
+The small trained `models/query_fusion_v2.pt` and preserved v1 head are included
+in Git. The published
 VoxelNeXt and SAM checkpoints are downloaded with verified hashes. Upstream
 model binaries, TensorRT engines, raw bags, feature caches and full videos are
 excluded from Git. See [environment details](docs/ENVIRONMENT.md) and
@@ -118,10 +130,11 @@ SAM memory has finite slots and exposes capacity rejections.
   --output /results/my_ai_run --video
 ```
 
-The first 70% of bag 1 trains the fusion/GRU head, a 10% gap separates training
-and validation, and the final 20% selects a checkpoint. Bag 2 is held out from
-training and selection. Published perception encoders stay frozen. The recordings
-are short and related; this is a limited sequence diagnostic. Full configuration,
+The first 70% of bag 1 trains the fusion/GRU head, followed by a 10% purge gap,
+10% checkpoint selection and 10% temperature fitting. Bag 2 is excluded from
+training and selection but informed the v2 design through prior v1 inspection;
+it is now development data, not an untouched test. Published perception encoders
+stay frozen. The recordings are short and related. Full configuration,
 loss history, model hashes and weak-target agreement are exported. Model
 limitations and feature-ablation regressions are reported without hiding them.
 

@@ -21,3 +21,4 @@ docs/videos/
 
 # Small locally trained head is delivered; upstream model binaries stay ignored.
 !models/query_fusion.pt
+!models/query_fusion_v2.pt

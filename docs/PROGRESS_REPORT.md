@@ -1,5 +1,9 @@
 # Group 8 progress report
 
+For the current implemented system, use [the project explanation](START_HERE.md),
+[v2 measurements](FUSION_V2.md) and [the literature review](LITERATURE_REVIEW.md).
+The template below is optional reporting structure, not a completed experiment.
+
 Use this short structure for the course's two-week reports. It is a reporting
 template, not a claim that historical meetings or experiments occurred.
 
@@ -12,7 +16,8 @@ template, not a claim that historical meetings or experiments occurred.
 * Failure case or unresolved assumption:
 * Next experiment and person responsible:
 
-For the implementation handover, the completed baseline covers data audit,
-receipt-time replay, camera inference, geometric detections, object association,
-Kalman tracking, RViz visualization and reproducible offline exports. The next
-validation dependency is real camera intrinsics and independently labeled data.
+The implementation includes both the original geometric baseline and a neural
+profile with VoxelNeXt, SAM memory, locally trained attention and GRU motion.
+V2 adds contextual radar attention and regularization, with improvements and
+regressions reported together. The next validation dependencies are real camera
+intrinsics, verified timing, independent labels and a fresh unseen recording.

@@ -1,0 +1,7 @@
+22 October 2026, RTX 4060 Laptop GPU, requested TensorRT 23.08 / ROS Humble image.
+31 tests passed inside the AI container.
+python3 -m pip check: No broken requirements found.
+Five-frame GPU guard passed, zero forbidden classical calls.
+235 + 162 frames processed with v2, zero missing-LiDAR skips.
+Live ROS/RViz observer: see ros_live.json.
+Raw logs remain in results/research; full videos remain local.

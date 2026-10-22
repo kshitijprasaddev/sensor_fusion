@@ -95,3 +95,66 @@ def test_missing_learned_weights_fail_before_loading_pretrained_models(tmp_path)
     cfg["neural"]["fusion"]["weights"] = str(tmp_path / "missing.pt")
     with pytest.raises(FileNotFoundError, match="Train"):
         NeuralProcessor(cfg, np.eye(4), np.eye(4))
+
+
+def test_v2_radar_supervision_keeps_multiple_plausible_returns_and_null():
+    from group8_fusion.robust_fusion import radar_distribution
+
+    boxes = torch.tensor([[10., 0, 0, 4, 2, 2, 0, 0, 0]])
+    radar = torch.tensor([[9., 0, 0], [11., 0, 0], [30., 0, 0]])
+    targets = radar_distribution(boxes, radar, torch.tensor([0, 1]))
+    assert torch.allclose(targets[0], torch.tensor([.5, .5, 0, 0]))
+    assert torch.equal(targets[1], torch.tensor([0., 0, 0, 1]))
+    empty = radar_distribution(boxes, radar[:0], torch.tensor([0]))
+    assert torch.equal(empty, torch.ones(1, 1))
+
+
+def test_v2_contextual_radar_is_permutation_equivariant_and_handles_empty_sets():
+    from group8_fusion.robust_fusion import RobustQueryFusion
+
+    model = RobustQueryFusion().eval()
+    q, l, r, g = tensors()
+    f, la, ra = model(q, l, r, g)
+    permutation = torch.tensor([3, 0, 4, 1, 2])
+    f2, la2, ra2 = model(q, l, r[permutation], g)
+    assert torch.allclose(f, f2, atol=1e-5)
+    assert torch.allclose(la, la2, atol=1e-5)
+    assert torch.allclose(ra[:, :-1][:, permutation], ra2[:, :-1], atol=1e-5)
+    f, la, ra = model(q, l[:0], r[:0], g[:, :0])
+    assert torch.isfinite(f).all()
+    assert torch.equal(la, torch.ones(2, 1))
+    assert torch.equal(ra, torch.ones(2, 1))
+
+
+def test_v2_gated_camera_and_contextual_radar_receive_training_gradients():
+    from group8_fusion.robust_fusion import RobustQueryFusion
+
+    model = RobustQueryFusion()
+    args = [v.requires_grad_() for v in tensors()]
+    f, la, ra = model(*args)
+    (f.square().mean() - la[:, 0].log().mean() - ra[:, 0].log().mean()).backward()
+    assert model.camera_gate.weight.grad.abs().sum() > 0
+    assert model.radar_context.self_attn.in_proj_weight.grad.abs().sum() > 0
+    assert args[0].grad[:, :256].abs().sum() > 0
+    assert args[1].grad[:, :128].abs().sum() > 0
+    assert args[2].grad.abs().sum() > 0
+
+
+def test_checkpoint_versioning_roundtrips_and_rejects_unknown_schema():
+    from group8_fusion.robust_fusion import RobustQueryFusion, load_fusion_model
+
+    for model, version in ((QueryFusion(), "v1"), (RobustQueryFusion(), "v2")):
+        checkpoint = dict(schema="group8-query-fusion-" + version,
+                          supervision="weak_geometry", state_dict=model.state_dict())
+        assert type(load_fusion_model(checkpoint)) is type(model)
+    with pytest.raises(ValueError, match="schema"):
+        load_fusion_model(dict(schema="unknown", supervision="weak_geometry"))
+
+
+def test_temperature_softens_confidence_without_changing_candidate_order():
+    from group8_fusion.robust_fusion import RobustQueryFusion
+
+    p = torch.tensor([[.9, .08, .02]])
+    softened = RobustQueryFusion.temper(p, 3.)
+    assert softened.argmax(1).item() == p.argmax(1).item()
+    assert softened.max() < p.max() and torch.allclose(softened.sum(1), torch.ones(1))

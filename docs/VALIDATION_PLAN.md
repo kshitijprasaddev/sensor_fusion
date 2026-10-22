@@ -1,5 +1,11 @@
 # Validation protocol
 
+Current neural v2 measurements are in [v2 experiments](FUSION_V2.md), with
+historical v1 evidence in [neural results](AI_RESULTS.md). Run
+`./scripts/run.sh ai-validate /results/my_v2_validation` for neural tests,
+dependency checks, the classical-call guard and both full GPU replay runs.
+The baseline reproduction commands below remain for the original comparison.
+
 ## Completed checks and evidence
 
 Actual measurements are stored in `docs/validation` and described in the project

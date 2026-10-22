@@ -44,7 +44,8 @@ case "$command" in
     fi
     exec docker run "${args[@]}" "$image" python3 scripts/prepare_model.py "$@" ;;
   extract) exec docker run "${args[@]}" "$image" python3 scripts/extract_ai.py "$@" ;;
-  train) exec docker run "${args[@]}" "$image" python3 scripts/train_ai.py "$@" ;;
+  train) exec docker run "${args[@]}" "$image" python3 scripts/train_ai_v2.py "$@" ;;
+  train-v1) exec docker run "${args[@]}" "$image" python3 scripts/train_ai.py "$@" ;;
   audit) exec docker run "${args[@]}" "$image" python3 scripts/audit_bags.py /data/studentProject /data/studentProject1 --output /results/dataset_audit.json "$@" ;;
   evaluate) exec docker run "${args[@]}" "$image" python3 scripts/evaluate.py "$@" ;;
   test) exec docker run "${args[@]}" "$image" python3 -m pytest -q tests "$@" ;;
@@ -67,5 +68,5 @@ case "$command" in
     if [[ ! -f "results/$rviz_preferences" ]]; then cp "src/group8_fusion/config/$rviz_preferences" "results/$rviz_preferences"; fi
     exec docker run "${args[@]}" "$image" ros2 launch group8_fusion demo.launch.py "rviz_config:=/results/$rviz_preferences" "$@" ;;
   shell) exec docker run -it "${args[@]}" "$image" bash ;;
-  *) echo "Usage: $0 {build|prepare|audit|evaluate|test|validate|calibrate|demo|shell|ai-build|ai-prepare|ai-extract|ai-train|ai-evaluate|ai-demo|ai-test|ai-validate|ai-shell} [arguments]" >&2; exit 1 ;;
+  *) echo "Usage: $0 {build|prepare|audit|evaluate|test|validate|calibrate|demo|shell|ai-build|ai-prepare|ai-extract|ai-train|ai-train-v1|ai-evaluate|ai-demo|ai-test|ai-validate|ai-shell} [arguments]" >&2; exit 1 ;;
 esac
