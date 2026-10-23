@@ -73,6 +73,7 @@ class FusionNode(Node):
         self.proposal_pub = self.create_publisher(MarkerArray, '/fusion/proposals', 2)
         self.scene = SceneRenderer(cfg.get('visualization', {}))
         self.detection_pub = self.create_publisher(Detection3DArray, '/fusion/objects', 2)
+        self.detector_pub = self.create_publisher(Detection3DArray, '/fusion/detector_objects', 2)
         self.track_pub = self.create_publisher(String, '/fusion/tracks', 2)
         self.metrics_pub = self.create_publisher(String, '/fusion/metrics', 10)
         self.create_subscription(Image, CAMERA, self.on_image, qos_profile_sensor_data)
@@ -142,6 +143,7 @@ class FusionNode(Node):
         points, identifiers = instance_points(result['nonground'], result['tracks'])
         self.instance_pub.publish(instance_cloud(header, points, identifiers))
         self.publish_objects(header, result['tracks'])
+        self.publish_detector_objects(header, result.get('detector_objects', []))
         self.proposal_pub.publish(self.scene.proposals(header, result.get('lidar_proposals', [])))
         metrics = dict(result['metrics'], **self.stats)
         metrics['lidar_delta_ms'] = (stamp_ns(lidar) - timestamp) / 1e6
@@ -151,6 +153,27 @@ class FusionNode(Node):
         if self.stats['processed'] % 25 == 0:
             self.get_logger().info(f"Processed {self.stats['processed']} frames; "
                 f"tracks={len(result['tracks'])}, latency={metrics['latency_ms']:.1f}ms")
+
+    def publish_detector_objects(self, header, objects):
+        """Independent per-frame detections have no persistent tracking ID."""
+        detections = Detection3DArray(header=header)
+        for obj in objects:
+            box = np.asarray(obj['box'])
+            if len(box) < 7 or not np.isfinite(box[:7]).all() or (box[3:6] <= 0).any():
+                continue
+            detection = Detection3D(header=header)
+            pose = detection.bbox.center
+            pose.position.x, pose.position.y, pose.position.z = map(float, box[:3])
+            pose.orientation.z = float(np.sin(box[6] / 2))
+            pose.orientation.w = float(np.cos(box[6] / 2))
+            detection.bbox.size.x, detection.bbox.size.y, detection.bbox.size.z = map(float, box[3:6])
+            hypothesis = ObjectHypothesisWithPose()
+            hypothesis.hypothesis.class_id = obj['label']
+            hypothesis.hypothesis.score = float(obj['confidence'])
+            hypothesis.pose.pose = pose
+            detection.results = [hypothesis]
+            detections.detections.append(detection)
+        self.detector_pub.publish(detections)
 
     def publish_objects(self, header, tracks):
         scene = getattr(self, 'scene', None)

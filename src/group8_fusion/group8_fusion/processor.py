@@ -12,7 +12,7 @@ from .tracking import Tracker
 def load_config(path):
     with open(path, encoding='utf-8') as stream:
         config = yaml.safe_load(stream)
-    if config.get('pipeline', 'classical') not in ('classical', 'neural'):
+    if config.get('pipeline', 'classical') not in ('classical', 'neural', 'middle'):
         raise ValueError('Unknown perception pipeline')
     camera = config['camera']
     K = np.array(camera['K'], dtype=float).reshape(3, 3)
@@ -94,6 +94,9 @@ class Processor:
 
 
 def make_processor(cfg, lidar_from_camera, lidar_from_radar, detector=None):
+    if cfg.get('pipeline') == 'middle':
+        from .middle import MiddleProcessor
+        return MiddleProcessor(cfg, lidar_from_camera, lidar_from_radar, detector)
     if cfg.get('pipeline', 'classical') == 'neural':
         from .neural import NeuralProcessor
         return NeuralProcessor(cfg, lidar_from_camera, lidar_from_radar, detector)

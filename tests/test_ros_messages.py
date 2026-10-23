@@ -105,3 +105,21 @@ def test_serialized_replay_restamps_without_changing_payload(message):
     assert restored.header.frame_id == message.header.frame_id
     assert original[12:] == restamped[12:]
     assert restored.data == message.data
+
+
+def test_middle_detections_have_geometry_and_no_invented_persistent_ids():
+    adapter = SimpleNamespace(detector_pub=Mock())
+    header = Header(frame_id='velodyne')
+    objects = [dict(box=np.array([10., 1., 0., 4., 2., 1.5, np.pi / 2]),
+                    label='car', confidence=.8, origin='BEV fusion')]
+    FusionNode.publish_detector_objects(adapter, header, objects)
+    message = adapter.detector_pub.publish.call_args.args[0]
+    assert serialize_message(message)
+    detection = message.detections[0]
+    assert detection.id == '' and detection.header.frame_id == 'velodyne'
+    assert np.isclose(detection.bbox.center.orientation.z, np.sin(np.pi / 4))
+    assert detection.results[0].hypothesis.class_id == 'car'
+    FusionNode.publish_detector_objects(adapter, header, [])
+    assert not adapter.detector_pub.publish.call_args.args[0].detections
+    markers = __import__('group8_fusion.scene', fromlist=['SceneRenderer']).SceneRenderer().proposals(header, objects)
+    assert 'BEV fusion' in markers.markers[-1].text

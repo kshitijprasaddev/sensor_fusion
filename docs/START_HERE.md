@@ -5,6 +5,9 @@ For exact measurements, read [results](AI_RESULTS.md) and [v2 experiments](FUSIO
 For terminal instructions, use the [run guide](RUN_GUIDE.md).
 For the current mask/point display and runtime safeguards, read
 [display and robustness](DISPLAY_AND_ROBUSTNESS.md).
+The separate [experimental middle-fusion guide](MIDDLE_FUSION.md) explains how
+we combine spatial sensor features before a new 3D detector. The `ai-*`
+commands keep the stable QueryFusion v2 profile; `mid-*` selects that experiment.
 
 ## Have we achieved a modern AI solution?
 
@@ -32,7 +35,7 @@ We want one object record with a consistent ID, a class, a 3D box, a relative
 motion estimate and the sensors that supported the observation. Three separate
 sensor detections do not automatically mean three different cars.
 
-## What happens to one frame?
+## What happens to one frame in the stable v2 profile?
 
 1. **Read the recording.** The replay node reads the supplied ROS bag without
    modifying it. It publishes simulated time using `/clock`.
@@ -79,6 +82,7 @@ sensor detections do not automatically mean three different cars.
 | VoxelNeXt | LiDAR 3D detection and sparse features | Authors' nuScenes checkpoint |
 | SAM 2.1 tiny | Masks and temporal visual memory | Published checkpoint through pinned Ultralytics |
 | QueryFusion v1 and v2 | Association of object queries and sensor evidence | Trained locally on frozen features from bag 1 |
+| Experimental middle-fusion head | Spatial fusion followed by new 3D detections | Trained locally on frozen spatial features and VoxelNeXt pseudo-labels |
 | GRU motion head | Relative XY motion | Trained locally on weak position differences |
 | Radar MLP and v2 contextual transformer | Radar features for fusion | Trained as part of QueryFusion, not a standalone radar detector |
 
@@ -88,14 +92,21 @@ review. Those names describe research comparisons where explicitly marked.
 
 ## Is this early, middle or late fusion?
 
-It is **hybrid object-query feature fusion**. We already have object proposals,
+The stable v2 profile is **hybrid object-query feature fusion**. We already have object proposals,
 but we combine learned internal features before final association and motion
 prediction. This goes beyond matching only finished object positions.
 
-It is reasonable to explain it as a form of middle-level feature fusion with
-object queries. It is not dense raw-sensor fusion or a single detector trained
-end to end from pixels and point clouds. Feature fusion and temporal tracking
-are related stages, not interchangeable terms.
+The experimental middle profile combines spatial camera, LiDAR and radar
+features before its own 3D detection head. It learns geometry instead of
+selecting a completed LiDAR box. Its runtime does not execute the teacher's
+original detection head. Visual tracking and IDs still follow detection.
+
+Both profiles keep the large published encoders frozen during their local
+multi-epoch training. Neither is a single model jointly trained from raw pixels
+and point clouds to persistent tracks. A one-frame gradient check can demonstrate
+that fine-tuning is technically possible; it is not evidence that fine-tuning
+was completed. Feature fusion and temporal tracking are related stages, not
+interchangeable terms. See [middle fusion](MIDDLE_FUSION.md) for a direct comparison.
 
 ## Are all objects in a global frame? Do we use tf2?
 
@@ -127,11 +138,17 @@ real camera intrinsics and independently labelled 3D boxes/identities. A matrix
 with assumed focal length is usable for a clearly labelled demo, but it is not
 calibration. Our weak training labels inherit errors from that assumption.
 
-The exported box center and dimensions come from the selected VoxelNeXt box.
+In the stable v2 profile, the exported box center and dimensions come from the
+selected VoxelNeXt box.
 Radar contributes association and motion features; it does not independently
 correct the 3D box. The neural system needs a visible camera instance and a
 LiDAR association, so radar-only and off-camera objects are outside its current
 tracking scope. SAM masks can drift, and eight lifetime slots limit births.
+
+The experimental middle detector predicts its own 3D geometry, but its weak
+targets still come from VoxelNeXt and its camera lifting still uses approximate
+calibration. It changes the architecture and training question; it does not
+remove the need for independent accuracy evidence.
 
 The first neural release took about 0.37 seconds per camera frame on the RTX
 4060, before video encoding and ROS transport. It cannot keep up with the

@@ -4,6 +4,11 @@ Current neural v2 measurements are in [v2 experiments](FUSION_V2.md), with
 historical v1 evidence in [neural results](AI_RESULTS.md). Run
 `./scripts/run.sh ai-validate /results/my_v2_validation` for neural tests,
 dependency checks, the classical-call guard and both full GPU replay runs.
+For the separate spatial detector, use `./scripts/run.sh mid-validate /results/my_middle_validation`.
+Its training diagnostics, independent-head GPU guard and ROS evidence are described
+in [middle fusion](MIDDLE_FUSION.md). `mid-check --backward` additionally verifies
+that gradients reach the sensor backbones and radar attributes; it needs local
+`middle_features` teacher targets and does not perform optimizer steps.
 The baseline reproduction commands below remain for the original comparison.
 
 ## Completed checks and evidence

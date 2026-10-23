@@ -17,8 +17,16 @@ The neural profile combines:
 **Research status:** camera intrinsics are approximate and sensor alignment uses
 bag receipt times. The custom head learns from explicitly disclosed weak labels,
 not annotated ground truth. Execution and teacher agreement do not establish
-real detection/tracking accuracy. This is hybrid object-query feature fusion,
-not a reproduced end-to-end BEVFusion or a road-ready perception system.
+real detection/tracking accuracy. The stable profile uses hybrid object-query
+feature fusion. It is not a reproduced end-to-end BEVFusion or a road-ready
+perception system.
+
+A separate **experimental spatial middle-fusion profile** combines dense camera
+features, the LiDAR backbone's spatial features and radar rasters before its own
+3D detection head. It is distinct from the stable QueryFusion v2 association
+profile. Its encoders stay frozen during multi-epoch head training, and its
+teacher boxes are pseudo-labels. Read [middle fusion explained](docs/MIDDLE_FUSION.md)
+for the architecture, commands, training boundaries and evaluation limits.
 
 **Start here:** [plain-language explanation](docs/START_HERE.md),
 [step-by-step terminal commands](docs/RUN_GUIDE.md), and
@@ -77,6 +85,20 @@ The launcher uses ROS domain 8 by default; container shells inherit it.
 ./scripts/run.sh ai-validate
 ```
 
+To try the experimental middle profile, stop the earlier demo first, then run:
+
+```bash
+./scripts/run.sh mid-build
+./scripts/run.sh mid-test
+./scripts/run.sh mid-demo
+```
+
+This uses the same AI image with `fusion_middle.yaml` and separate RViz
+preferences. `ai-demo` continues to select v2. See the
+[run guide](docs/RUN_GUIDE.md) for `mid-extract`, `mid-train`, evaluation and
+runtime checks. Published measurements must be read with their model version;
+v2's results below are not results for the new middle detector.
+
 The original data directory is `/home/kshitij0/Downloads/studentProject1`,
 containing `studentProject/` and `studentProject1/`. Set `DATA_DIR` if relocated.
 Bags are mounted read-only; models and results persist in local folders.
@@ -103,7 +125,7 @@ model binaries, TensorRT engines, raw bags, feature caches and full videos are
 excluded from Git. See [environment details](docs/ENVIRONMENT.md) and
 [third-party notices](THIRD_PARTY_NOTICES.md).
 
-## Architecture
+## Stable v2 architecture
 
 ```mermaid
 flowchart LR
@@ -126,7 +148,7 @@ and confidence/range checks. It requires visible camera instances with accepted
 LiDAR associations; it does not track every radar-only or off-camera object.
 SAM memory has finite slots and exposes capacity rejections.
 
-## Reproduce training and evaluate
+## Reproduce v2 training and evaluate
 
 ```bash
 ./scripts/run.sh ai-extract --output /results/ai_features_reproduced

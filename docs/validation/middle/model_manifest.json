@@ -1,0 +1,48 @@
+{
+  "schema": "group8-middle-delivery-v1",
+  "model_files": {
+    "models/middle_fusion.pt": {
+      "sha256": "d96122ee0536ad723fe901f8f0e97967d2df15b615356b579839dc5e9f448e5a",
+      "bytes": 248568
+    },
+    "models/middle_fusion_lidar_only.pt": {
+      "sha256": "d5c5884e4f73531d0e0814083aa02757dae255765d68a2784bc4aba980619c96",
+      "bytes": 249182
+    },
+    "models/query_fusion_v2.pt": {
+      "sha256": "45af5f681d1259ba12909ea2e6fe5c35713833b7dfcaa7d165c51c6dd8ffb687",
+      "bytes": 541794
+    },
+    "models/yolo11n.pt": {
+      "sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+      "bytes": 5613764
+    },
+    "models/yolo11n.engine": {
+      "sha256": "02190707c4789e15bbbdbadffa5c8609d10ebb3bf574e967215343e9ccfb7710",
+      "bytes": 8565966
+    },
+    "models/voxelnext_nuscenes.pth": {
+      "sha256": "9409dd8c13c8c8ca546c8c5af024856d03029e2def8d5fc0fa3bfe4477e7d88b",
+      "bytes": 32157961
+    },
+    "models/sam2.1_t.pt": {
+      "sha256": "3c1e81ca9b037dd39d70a014ddb9a813d6c4c4e12555420db7eaff31689bd4e3",
+      "bytes": 78105722
+    }
+  },
+  "feature_contract": {
+    "camera_width": 1920,
+    "camera_height": 1200,
+    "intensity_scale": 255.0,
+    "camera_lift_heights": [
+      -1.0,
+      0.0,
+      1.0
+    ],
+    "lidar_support_radius_cells": 2
+  },
+  "feature_manifest_sha256": "217c686b51f95a22b6bf7885555298e80aef7480e71e5b0e6ac59742a337c3f2",
+  "backbone_training": "Frozen in all 90-epoch training runs; separate one-frame backward proof takes no optimizer steps",
+  "association_adapter": "QueryFusion v2 transferred without retraining onto the new detector candidates",
+  "publication_scope": "Small project-trained heads committed; published backbones and GPU-specific engine downloaded/exported locally."
+}

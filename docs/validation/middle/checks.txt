@@ -1,0 +1,9 @@
+112 tests passed in ROS Humble GPU container
+No broken pip requirements
+397 raw camera frames processed across both complete recordings; no skipped synchronized LiDAR frames
+Independent detector teacher head disabled during GPU guard
+Cached/runtime feature parity checked on raw frame 0
+Missing radar and empty LiDAR guards passed
+One-frame backward integration reached camera backbone, first sparse LiDAR convolution, fusion head and radar attributes; optimizer_steps=0
+Live ROS/RViz observer: 62 synchronized output frames, 70 independent detections, static TF verified, no errors, required RViz subscriptions verified
+Stable QueryFusion v2 five-frame GPU regression guard also passed after integration

@@ -35,6 +35,10 @@ class VoxelNeXtDetector:
             yaml.safe_dump(raw, temp)
             temp.flush()
             cfg_from_yaml_file(temp.name, config)
+        if cfg.get("deterministic", False):
+            for processor in config.DATA_CONFIG.DATA_PROCESSOR:
+                if processor.NAME == "shuffle_points":
+                    processor.SHUFFLE_ENABLED.test = False
         self.names = config.CLASS_NAMES
         self.config = config
         self.dataset = DatasetTemplate(

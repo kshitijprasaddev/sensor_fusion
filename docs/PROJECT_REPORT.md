@@ -3,6 +3,8 @@
 > Historical classical baseline, validated 17 October 2026. The neural extension
 > added 22 October 2026 is documented in [AI pipeline](AI_PIPELINE.md),
 > [results](AI_RESULTS.md) and [literature review](LITERATURE_REVIEW.md).
+> For the current stable head see [v2 experiments](FUSION_V2.md); the separate
+> spatial detector is explained in [middle fusion](MIDDLE_FUSION.md).
 
 Team Project Group 8, THI. Implementation and local validation: 17 October 2026.
 

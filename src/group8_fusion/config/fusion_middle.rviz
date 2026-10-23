@@ -1,0 +1,182 @@
+Panels:
+- Class: rviz_common/Displays
+  Name: Displays
+- Class: rviz_common/Views
+  Name: Views
+Visualization Manager:
+  Class: ''
+  Global Options:
+    Fixed Frame: velodyne
+    Background Color: 13; 19; 28
+    Frame Rate: 30
+  Displays:
+  - Class: rviz_default_plugins/Grid
+    Name: Ground grid
+    Enabled: true
+    Cell Size: 2
+    Plane Cell Count: 40
+    Color: 50; 65; 85
+    Alpha: 0.18
+  - Class: rviz_default_plugins/PointCloud2
+    Name: LiDAR raw
+    Enabled: true
+    Topic:
+      Value: /velodyne/points_raw
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Style: Points
+    Size (Pixels): 1
+    Color Transformer: FlatColor
+    Color: 100; 135; 164
+    Position Transformer: XYZ
+    Decay Time: 0.0
+    Alpha: 0.22
+    Use Fixed Frame: true
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Colored object points
+    Enabled: true
+    Topic:
+      Value: /fusion/instance_points
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Style: Points
+    Size (Pixels): 5
+    Color Transformer: RGB8
+    Color: 100; 135; 164
+    Position Transformer: XYZ
+    Decay Time: 0.0
+    Alpha: 1.0
+    Use Fixed Frame: true
+  - Class: rviz_default_plugins/PointCloud2
+    Name: LiDAR model input
+    Enabled: false
+    Topic:
+      Value: /fusion/nonground
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Style: Points
+    Size (Pixels): 3
+    Color Transformer: FlatColor
+    Color: 105; 225; 205
+    Position Transformer: XYZ
+    Decay Time: 0.0
+    Alpha: 0.75
+    Use Fixed Frame: true
+  - Class: rviz_default_plugins/PointCloud2
+    Name: Radar returns
+    Enabled: true
+    Topic:
+      Value: /PointCloudDetection
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Style: Points
+    Size (Pixels): 5
+    Color Transformer: FlatColor
+    Color: 255; 110; 70
+    Position Transformer: XYZ
+    Decay Time: 0.0
+    Alpha: 0.7
+    Use Fixed Frame: true
+  - Class: rviz_default_plugins/TF
+    Name: Sensor frames
+    Enabled: false
+    Show Axes: true
+    Show Names: true
+    Marker Scale: 1.5
+    Frame Timeout: 15
+    Frames:
+      All Enabled: true
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Track labels and distance rings
+    Enabled: true
+    Topic:
+      Value: /fusion/markers
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Relative motion estimates (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/motion
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: 3D boxes (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/boxes
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/MarkerArray
+    Name: Independent middle fusion detections (optional)
+    Enabled: false
+    Topic:
+      Value: /fusion/proposals
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Reliable
+  - Class: rviz_default_plugins/Image
+    Name: Camera fusion
+    Enabled: true
+    Topic:
+      Value: /fusion/image
+      Depth: 5
+      Durability Policy: Volatile
+      History Policy: Keep Last
+      Reliability Policy: Best Effort
+    Normalize Range: true
+    Min Value: 0
+    Max Value: 1
+    Median window: 5
+  Enabled: true
+  Tools:
+  - Class: rviz_default_plugins/Interact
+  - Class: rviz_default_plugins/MoveCamera
+  - Class: rviz_default_plugins/Select
+  - Class: rviz_default_plugins/FocusCamera
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Name: Road view
+      Distance: 36
+      Yaw: 3.14
+      Pitch: 0.55
+      Focal Point:
+        X: 16
+        Y: 0
+        Z: -1
+      Target Frame: velodyne
+      Near Clip Distance: 0.01
+    Saved:
+    - Class: rviz_default_plugins/TopDownOrtho
+      Name: Bird's-eye view
+      Target Frame: velodyne
+      Scale: 22
+      Angle: -1.5707963267948966
+      X: 20
+      Y: 0
+      Near Clip Distance: 0.01
+Window Geometry:
+  Width: 1600
+  Height: 1000
+  X: 60
+  Y: 40
+  Hide Left Dock: false
+  Hide Right Dock: false
+  Camera fusion:
+    collapsed: false

@@ -1,0 +1,33 @@
+{
+  "python": "3.10.12",
+  "architecture": "x86_64",
+  "tensorrt": "8.6.1",
+  "torch_cuda_available": true,
+  "torch_cuda_version": "12.1",
+  "torch_cudnn_version": 90100,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "packages": {
+    "torch": "2.4.0+cu121",
+    "torchvision": "0.19.0+cu121",
+    "ultralytics": "8.4.95",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "opencv-python": "4.8.1.78",
+    "onnx": "1.22.0",
+    "onnxruntime-gpu": "1.23.0",
+    "spconv-cu120": "2.3.6",
+    "cumm-cu120": "0.4.11",
+    "pcdet": "0.6.0+b5b7d39",
+    "numba": "0.60.0",
+    "easydict": "1.13",
+    "kornia": "0.7.4",
+    "gdown": "5.2.0"
+  },
+  "ros_packages": [
+    "ros-humble-cv-bridge 3.2.1-1jammy.20260907.220118",
+    "ros-humble-rclpy 3.3.22-1jammy.20260907.213431",
+    "ros-humble-rviz2 11.2.29-1jammy.20260916.003100",
+    "ros-humble-sensor-msgs 4.9.2-1jammy.20260907.212033",
+    "ros-humble-tf2-ros 0.25.24-1jammy.20260915.204410"
+  ]
+}

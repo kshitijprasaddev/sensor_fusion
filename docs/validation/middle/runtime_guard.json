@@ -1,0 +1,214 @@
+{
+  "passed": true,
+  "checkpoint_sha256": "d96122ee0536ad723fe901f8f0e97967d2df15b615356b579839dc5e9f448e5a",
+  "forbidden_classical_calls": 0,
+  "teacher_detection_head_calls": 0,
+  "camera_detection_head_calls_in_spatial_encoder": 0,
+  "missing_radar_passed": true,
+  "empty_lidar_passed": true,
+  "cached_runtime_feature_parity": {
+    "camera": {
+      "max_absolute_difference": 0.0009739398956298828,
+      "passed": true
+    },
+    "lidar": {
+      "max_absolute_difference": 0.0019316673278808594,
+      "passed": true
+    },
+    "radar": {
+      "max_absolute_difference": 0.0002416372299194336,
+      "passed": true
+    },
+    "availability": {
+      "max_absolute_difference": 0.0001627802848815918,
+      "passed": true
+    }
+  },
+  "observations": [
+    {
+      "frame": 0,
+      "independent_detections": 1,
+      "tracks": 1,
+      "metrics": {
+        "time": 1775649763.1445737,
+        "latency_ms": 623.0467559998942,
+        "camera_detections": 1,
+        "lidar_objects": 1,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "middle",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999998807907104,
+        "mean_radar_attention": 0.3800305426120758,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0,
+        "rejected_3d_observations": 0,
+        "quality_rejections_total": 0,
+        "detector_schema": "group8-middle-fusion-v1",
+        "detector_objects": 1,
+        "middle_camera_gate": 0.3685305118560791,
+        "middle_lidar_gate": 0.5708827376365662,
+        "middle_radar_gate": 0.003457857295870781
+      }
+    },
+    {
+      "frame": 1,
+      "independent_detections": 1,
+      "tracks": 1,
+      "metrics": {
+        "time": 1775649763.2436028,
+        "latency_ms": 227.0807730001252,
+        "camera_detections": 1,
+        "lidar_objects": 1,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "middle",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999997615814209,
+        "mean_radar_attention": 0.37497401237487793,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0,
+        "rejected_3d_observations": 0,
+        "quality_rejections_total": 0,
+        "detector_schema": "group8-middle-fusion-v1",
+        "detector_objects": 1,
+        "middle_camera_gate": 0.36793214082717896,
+        "middle_lidar_gate": 0.5691184997558594,
+        "middle_radar_gate": 0.00337899848818779
+      }
+    },
+    {
+      "frame": 2,
+      "independent_detections": 1,
+      "tracks": 1,
+      "metrics": {
+        "time": 1775649763.3433843,
+        "latency_ms": 242.90295600076206,
+        "camera_detections": 1,
+        "lidar_objects": 1,
+        "radar_objects": 55,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "middle",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999997615814209,
+        "mean_radar_attention": 0.3735061287879944,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0,
+        "rejected_3d_observations": 0,
+        "quality_rejections_total": 0,
+        "detector_schema": "group8-middle-fusion-v1",
+        "detector_objects": 1,
+        "middle_camera_gate": 0.36744529008865356,
+        "middle_lidar_gate": 0.572192907333374,
+        "middle_radar_gate": 0.003232924034819007
+      }
+    },
+    {
+      "frame": 3,
+      "independent_detections": 1,
+      "tracks": 1,
+      "metrics": {
+        "time": 1775649763.4422045,
+        "latency_ms": 251.9333540003572,
+        "camera_detections": 1,
+        "lidar_objects": 1,
+        "radar_objects": 54,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "middle",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999997615814209,
+        "mean_radar_attention": 0.37601569294929504,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0,
+        "rejected_3d_observations": 0,
+        "quality_rejections_total": 0,
+        "detector_schema": "group8-middle-fusion-v1",
+        "detector_objects": 1,
+        "middle_camera_gate": 0.3610656261444092,
+        "middle_lidar_gate": 0.5784512758255005,
+        "middle_radar_gate": 0.003354215295985341
+      }
+    },
+    {
+      "frame": 4,
+      "independent_detections": 1,
+      "tracks": 1,
+      "metrics": {
+        "time": 1775649763.5433679,
+        "latency_ms": 244.43814500045846,
+        "camera_detections": 1,
+        "lidar_objects": 1,
+        "radar_objects": 57,
+        "camera_matches": 1,
+        "radar_matches": 1,
+        "tracks": 1,
+        "measured_tracks": 1,
+        "three_sensor_objects": 1,
+        "pipeline": "middle",
+        "fusion_schema": "group8-query-fusion-v2",
+        "radar_count_unit": "filtered_points_not_clusters",
+        "neural_null_tracks": 0,
+        "mean_lidar_attention": 0.9999998807907104,
+        "mean_radar_attention": 0.3759307861328125,
+        "visual_tracks": 1,
+        "sam_capacity_rejections": 0,
+        "rejected_3d_observations": 0,
+        "quality_rejections_total": 0,
+        "detector_schema": "group8-middle-fusion-v1",
+        "detector_objects": 1,
+        "middle_camera_gate": 0.3563798666000366,
+        "middle_lidar_gate": 0.5830517411231995,
+        "middle_radar_gate": 0.0034394804388284683
+      }
+    }
+  ],
+  "backward_integration": {
+    "loss": 0.28013885021209717,
+    "lidar_first_sparse_convolution_gradient_sum": 23.632354736328125,
+    "camera_encoder": {
+      "tensors_with_gradients": 159,
+      "all_finite": true,
+      "absolute_gradient_sum": 2432.2655293820426
+    },
+    "lidar_encoder": {
+      "tensors_with_gradients": 121,
+      "all_finite": true,
+      "absolute_gradient_sum": 3917.9942884147167
+    },
+    "middle_fusion_head": {
+      "tensors_with_gradients": 46,
+      "all_finite": true,
+      "absolute_gradient_sum": 941.6405704943463
+    },
+    "image_pixel_gradient_sum": 47.011295318603516,
+    "radar_attribute_gradient_sum": 0.0002074131599005824,
+    "radar_gradients_finite": true,
+    "peak_torch_allocated_mib": 681.9267578125,
+    "optimizer_steps": 0,
+    "meaning": "One-frame backward integration proof only. Published encoders remain frozen in the delivered 90-epoch training. LiDAR voxelization is discrete; raw point coordinate gradients are not claimed."
+  }
+}

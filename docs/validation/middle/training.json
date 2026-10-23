@@ -1,0 +1,5770 @@
+{
+  "schema": "group8-middle-training-report-v1",
+  "metric_warning": "All matching and error metrics compare against frozen VoxelNeXt teacher predictions. They are NOT ground-truth detection accuracy, mAP, HOTA or evidence of state-of-the-art performance.",
+  "evaluation_status": "Both available recordings have already informed project development. Bag 2 is a development diagnostic, not an untouched test set.",
+  "learning_scope": "Frozen camera/LiDAR encoders with a jointly trained feature fusion and box detection head; not raw-sensor end-to-end training.",
+  "split": {
+    "train_bag": "studentProject",
+    "train_frames": [
+      0,
+      163
+    ],
+    "purged_frames": [
+      164,
+      187
+    ],
+    "checkpoint_selection_frames": [
+      188,
+      210
+    ],
+    "threshold_calibration_frames": [
+      211,
+      234
+    ],
+    "development_bag": "studentProject1",
+    "development_frames": 162,
+    "independent_test_set_available": false
+  },
+  "grid": {
+    "x_min": 0.0,
+    "y_min": -24.0,
+    "cell_size": 0.75,
+    "width": 64,
+    "height": 64
+  },
+  "model_hashes": {
+    "yolo11n.pt": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "voxelnext_nuscenes.pth": "9409dd8c13c8c8ca546c8c5af024856d03029e2def8d5fc0fa3bfe4477e7d88b"
+  },
+  "feature_contract": {
+    "camera_width": 1920,
+    "camera_height": 1200,
+    "intensity_scale": 255.0,
+    "camera_lift_heights": [
+      -1.0,
+      0.0,
+      1.0
+    ],
+    "lidar_support_radius_cells": 2
+  },
+  "feature_manifest_sha256": "217c686b51f95a22b6bf7885555298e80aef7480e71e5b0e6ac59742a337c3f2",
+  "middle_fusion": {
+    "supervision": "teacher_distillation",
+    "seed": 8,
+    "epochs": 90,
+    "selected_epoch": 25,
+    "selected_score_threshold": 0.8,
+    "parameter_count": 58334,
+    "inputs": "camera_lidar_radar_bev_features",
+    "initial_selection": {
+      "frames": 23,
+      "predictions": 1472,
+      "teacher_objects": 59,
+      "matched_teacher_objects": 0,
+      "teacher_center_precision": 0.0,
+      "teacher_center_recall": 0.0,
+      "teacher_center_f1": 0.0,
+      "frames_with_predictions": 23,
+      "prediction_frame_coverage": 1.0,
+      "predictions_per_frame": 64.0,
+      "invalid_predictions": 0,
+      "matched_center_xy_mean_error_m": null,
+      "matched_center_3d_mean_error_m": null,
+      "matched_size_component_mae_m": null,
+      "matched_yaw_mean_error_rad": null,
+      "same_class_matching_distance_m": 2.0,
+      "per_class": {
+        "0": {
+          "predictions": 0,
+          "teachers": 23,
+          "matches": 0
+        },
+        "1": {
+          "predictions": 0,
+          "teachers": 0,
+          "matches": 0
+        },
+        "2": {
+          "predictions": 535,
+          "teachers": 0,
+          "matches": 0
+        },
+        "3": {
+          "predictions": 10,
+          "teachers": 1,
+          "matches": 0
+        },
+        "4": {
+          "predictions": 504,
+          "teachers": 0,
+          "matches": 0
+        },
+        "5": {
+          "predictions": 46,
+          "teachers": 0,
+          "matches": 0
+        },
+        "6": {
+          "predictions": 265,
+          "teachers": 0,
+          "matches": 0
+        },
+        "7": {
+          "predictions": 112,
+          "teachers": 0,
+          "matches": 0
+        },
+        "8": {
+          "predictions": 0,
+          "teachers": 35,
+          "matches": 0
+        },
+        "9": {
+          "predictions": 0,
+          "teachers": 0,
+          "matches": 0
+        }
+      },
+      "loss": 34.756965720135234,
+      "all_outputs_finite": true,
+      "mean_sensor_gates": {
+        "camera": 0.4161915157152259,
+        "lidar": 0.519596631112306,
+        "radar": 0.002688426230831639
+      },
+      "head_latency_p50_ms": 1.3102930006425595,
+      "head_latency_p95_ms": 2.186856200569309,
+      "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+    },
+    "metrics": {
+      "selection": {
+        "frames": 23,
+        "predictions": 28,
+        "teacher_objects": 59,
+        "matched_teacher_objects": 28,
+        "teacher_center_precision": 1.0,
+        "teacher_center_recall": 0.4745762711864407,
+        "teacher_center_f1": 0.6436781609195402,
+        "frames_with_predictions": 23,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.2173913043478262,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06058732753652813,
+        "matched_center_3d_mean_error_m": 0.10316267616248556,
+        "matched_size_component_mae_m": 0.09283272780123211,
+        "matched_yaw_mean_error_rad": 0.2833448440900871,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 23,
+            "teachers": 23,
+            "matches": 23
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 5,
+            "teachers": 35,
+            "matches": 5
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.6408749890068303,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.3650945450948632,
+          "lidar": 0.5699142995087997,
+          "radar": 0.0034677331720519323
+        },
+        "head_latency_p50_ms": 1.1060510005336255,
+        "head_latency_p95_ms": 1.4554155990481374,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "calibration": {
+        "frames": 24,
+        "predictions": 40,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 39,
+        "teacher_center_precision": 0.975,
+        "teacher_center_recall": 0.8863636363636364,
+        "teacher_center_f1": 0.9285714285714285,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.6666666666666667,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08183660298490371,
+        "matched_center_3d_mean_error_m": 0.1374059109351574,
+        "matched_size_component_mae_m": 0.07572853106718797,
+        "matched_yaw_mean_error_rad": 0.22116161185728672,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 16,
+            "teachers": 18,
+            "matches": 15
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.39707717516769964,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.36564821749925613,
+          "lidar": 0.5701584443449974,
+          "radar": 0.0033718038660784564
+        },
+        "head_latency_p50_ms": 1.0530244999245042,
+        "head_latency_p95_ms": 1.3212426501922891,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "development": {
+        "frames": 162,
+        "predictions": 161,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 160,
+        "teacher_center_precision": 0.9937888198757764,
+        "teacher_center_recall": 0.8040201005025126,
+        "teacher_center_f1": 0.8888888888888888,
+        "frames_with_predictions": 160,
+        "prediction_frame_coverage": 0.9876543209876543,
+        "predictions_per_frame": 0.9938271604938271,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.07324067885638215,
+        "matched_center_3d_mean_error_m": 0.1042360230581835,
+        "matched_size_component_mae_m": 0.10001254801948865,
+        "matched_yaw_mean_error_rad": 0.22183187344344332,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 160,
+            "teachers": 162,
+            "matches": 160
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3885468916484603,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.36408358849125144,
+          "lidar": 0.570607641596853,
+          "radar": 0.003987280384602922
+        },
+        "head_latency_p50_ms": 1.104403999306669,
+        "head_latency_p95_ms": 1.5091004999703728,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      }
+    },
+    "robustness": {
+      "camera_missing": {
+        "frames": 162,
+        "predictions": 163,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 161,
+        "teacher_center_precision": 0.9877300613496932,
+        "teacher_center_recall": 0.8090452261306532,
+        "teacher_center_f1": 0.8895027624309392,
+        "frames_with_predictions": 160,
+        "prediction_frame_coverage": 0.9876543209876543,
+        "predictions_per_frame": 1.0061728395061729,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06697996415093727,
+        "matched_center_3d_mean_error_m": 0.10593513309122612,
+        "matched_size_component_mae_m": 0.11862416839994505,
+        "matched_yaw_mean_error_rad": 0.22704655431812595,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 160,
+            "teachers": 162,
+            "matches": 160
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 10,
+            "matches": 1
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 2,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.41222806303635423,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7071534516634764,
+          "radar": 0.004884186611844249
+        },
+        "head_latency_p50_ms": 1.1909779996130965,
+        "head_latency_p95_ms": 1.5494190500248806,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "lidar_missing": {
+        "frames": 162,
+        "predictions": 146,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 146,
+        "teacher_center_precision": 1.0,
+        "teacher_center_recall": 0.7336683417085427,
+        "teacher_center_f1": 0.846376811594203,
+        "frames_with_predictions": 146,
+        "prediction_frame_coverage": 0.9012345679012346,
+        "predictions_per_frame": 0.9012345679012346,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.1526287606317703,
+        "matched_center_3d_mean_error_m": 0.1775261406620888,
+        "matched_size_component_mae_m": 0.14757032862536984,
+        "matched_yaw_mean_error_rad": 0.15524644844556126,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 146,
+            "teachers": 162,
+            "matches": 146
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 0,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 2.238542025241955,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.6869111833748994,
+          "lidar": 0.0,
+          "radar": 0.010467469853199558
+        },
+        "head_latency_p50_ms": 1.1159260002386873,
+        "head_latency_p95_ms": 1.439736451175122,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "radar_missing": {
+        "frames": 162,
+        "predictions": 153,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 153,
+        "teacher_center_precision": 1.0,
+        "teacher_center_recall": 0.7688442211055276,
+        "teacher_center_f1": 0.8693181818181818,
+        "frames_with_predictions": 153,
+        "prediction_frame_coverage": 0.9444444444444444,
+        "predictions_per_frame": 0.9444444444444444,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.07007854753569548,
+        "matched_center_3d_mean_error_m": 0.10357754294048338,
+        "matched_size_component_mae_m": 0.09128556661875939,
+        "matched_yaw_mean_error_rad": 0.14244568355235399,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 153,
+            "teachers": 162,
+            "matches": 153
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 0,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3802871796773908,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.36737694066983684,
+          "lidar": 0.5712970498903298,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1404319993744139,
+        "head_latency_p95_ms": 1.455599699420418,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "all_missing": {
+        "frames": 162,
+        "predictions": 0,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 0,
+        "teacher_center_precision": 0.0,
+        "teacher_center_recall": 0.0,
+        "teacher_center_f1": 0.0,
+        "frames_with_predictions": 0,
+        "prediction_frame_coverage": 0.0,
+        "predictions_per_frame": 0.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": null,
+        "matched_center_3d_mean_error_m": null,
+        "matched_size_component_mae_m": null,
+        "matched_yaw_mean_error_rad": null,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 0,
+            "teachers": 162,
+            "matches": 0
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 0,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 22.290328308388037,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.0,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1315960009596893,
+        "head_latency_p95_ms": 1.4971120502195843,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "camera_jitter_1cell": {
+        "frames": 162,
+        "predictions": 161,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 160,
+        "teacher_center_precision": 0.9937888198757764,
+        "teacher_center_recall": 0.8040201005025126,
+        "teacher_center_f1": 0.8888888888888888,
+        "frames_with_predictions": 160,
+        "prediction_frame_coverage": 0.9876543209876543,
+        "predictions_per_frame": 0.9938271604938271,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.07303717948670965,
+        "matched_center_3d_mean_error_m": 0.10356398629955947,
+        "matched_size_component_mae_m": 0.10044225230813027,
+        "matched_yaw_mean_error_rad": 0.2206243917957181,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 160,
+            "teachers": 162,
+            "matches": 160
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3866430828922693,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.34874646328849557,
+          "lidar": 0.5729702221758571,
+          "radar": 0.00402236775851544
+        },
+        "head_latency_p50_ms": 1.1679329991238774,
+        "head_latency_p95_ms": 1.5103957014616753,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "camera_jitter_2cell": {
+        "frames": 162,
+        "predictions": 159,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 158,
+        "teacher_center_precision": 0.9937106918238994,
+        "teacher_center_recall": 0.7939698492462312,
+        "teacher_center_f1": 0.8826815642458101,
+        "frames_with_predictions": 158,
+        "prediction_frame_coverage": 0.9753086419753086,
+        "predictions_per_frame": 0.9814814814814815,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.07092658732575659,
+        "matched_center_3d_mean_error_m": 0.09949556172271318,
+        "matched_size_component_mae_m": 0.09750313321246376,
+        "matched_yaw_mean_error_rad": 0.20800079321606627,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 158,
+            "teachers": 162,
+            "matches": 158
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.38691315586092295,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.33363458219869635,
+          "lidar": 0.5748873080736325,
+          "radar": 0.004042615018853986
+        },
+        "head_latency_p50_ms": 1.0816644989972701,
+        "head_latency_p95_ms": 1.4787557009185546,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      }
+    },
+    "threshold_calibration": [
+      {
+        "threshold": 0.1,
+        "frames": 24,
+        "predictions": 93,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 44,
+        "teacher_center_precision": 0.4731182795698925,
+        "teacher_center_recall": 1.0,
+        "teacher_center_f1": 0.6423357664233577,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 3.875,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08832059142349119,
+        "matched_center_3d_mean_error_m": 0.14375599405982278,
+        "matched_size_component_mae_m": 0.07642685283314098,
+        "matched_yaw_mean_error_rad": 0.27376203941821586,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 26,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 14,
+            "teachers": 1,
+            "matches": 1
+          },
+          "5": {
+            "predictions": 1,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 2,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 18,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 32,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.15,
+        "frames": 24,
+        "predictions": 72,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 44,
+        "teacher_center_precision": 0.6111111111111112,
+        "teacher_center_recall": 1.0,
+        "teacher_center_f1": 0.7586206896551725,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 3.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08832059142349119,
+        "matched_center_3d_mean_error_m": 0.14375599405982278,
+        "matched_size_component_mae_m": 0.07642685283314098,
+        "matched_yaw_mean_error_rad": 0.27376203941821586,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 11,
+            "teachers": 1,
+            "matches": 1
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 8,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 29,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.2,
+        "frames": 24,
+        "predictions": 67,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 44,
+        "teacher_center_precision": 0.6567164179104478,
+        "teacher_center_recall": 1.0,
+        "teacher_center_f1": 0.7927927927927928,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.7916666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08832059142349119,
+        "matched_center_3d_mean_error_m": 0.14375599405982278,
+        "matched_size_component_mae_m": 0.07642685283314098,
+        "matched_yaw_mean_error_rad": 0.27376203941821586,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 9,
+            "teachers": 1,
+            "matches": 1
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 5,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 29,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.25,
+        "frames": 24,
+        "predictions": 61,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 44,
+        "teacher_center_precision": 0.7213114754098361,
+        "teacher_center_recall": 1.0,
+        "teacher_center_f1": 0.8380952380952381,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.5416666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08832059142349119,
+        "matched_center_3d_mean_error_m": 0.14375599405982278,
+        "matched_size_component_mae_m": 0.07642685283314098,
+        "matched_yaw_mean_error_rad": 0.27376203941821586,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 7,
+            "teachers": 1,
+            "matches": 1
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 3,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.3,
+        "frames": 24,
+        "predictions": 58,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7413793103448276,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8431372549019609,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.4166666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08991627046448547,
+        "matched_center_3d_mean_error_m": 0.1426669996838237,
+        "matched_size_component_mae_m": 0.07556877579799919,
+        "matched_yaw_mean_error_rad": 0.26816403614709067,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 4,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 3,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.35,
+        "frames": 24,
+        "predictions": 55,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7818181818181819,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8686868686868686,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.2916666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08991627046448547,
+        "matched_center_3d_mean_error_m": 0.1426669996838237,
+        "matched_size_component_mae_m": 0.07556877579799919,
+        "matched_yaw_mean_error_rad": 0.26816403614709067,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.4,
+        "frames": 24,
+        "predictions": 54,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7962962962962963,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8775510204081632,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.25,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08991627046448547,
+        "matched_center_3d_mean_error_m": 0.1426669996838237,
+        "matched_size_component_mae_m": 0.07556877579799919,
+        "matched_yaw_mean_error_rad": 0.26816403614709067,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.45,
+        "frames": 24,
+        "predictions": 51,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 42,
+        "teacher_center_precision": 0.8235294117647058,
+        "teacher_center_recall": 0.9545454545454546,
+        "teacher_center_f1": 0.8842105263157896,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.125,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.0876739933155477,
+        "matched_center_3d_mean_error_m": 0.14129021905717395,
+        "matched_size_component_mae_m": 0.07526139323673552,
+        "matched_yaw_mean_error_rad": 0.22899915517579453,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 24,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.5,
+        "frames": 24,
+        "predictions": 51,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 42,
+        "teacher_center_precision": 0.8235294117647058,
+        "teacher_center_recall": 0.9545454545454546,
+        "teacher_center_f1": 0.8842105263157896,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.125,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.0876739933155477,
+        "matched_center_3d_mean_error_m": 0.14129021905717395,
+        "matched_size_component_mae_m": 0.07526139323673552,
+        "matched_yaw_mean_error_rad": 0.22899915517579453,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 24,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.6,
+        "frames": 24,
+        "predictions": 47,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 40,
+        "teacher_center_precision": 0.851063829787234,
+        "teacher_center_recall": 0.9090909090909091,
+        "teacher_center_f1": 0.8791208791208791,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.9583333333333333,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08234457110520452,
+        "matched_center_3d_mean_error_m": 0.13835995607078075,
+        "matched_size_component_mae_m": 0.07539915591478348,
+        "matched_yaw_mean_error_rad": 0.22415828881930794,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 23,
+            "teachers": 18,
+            "matches": 16
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.7,
+        "frames": 24,
+        "predictions": 44,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 39,
+        "teacher_center_precision": 0.8863636363636364,
+        "teacher_center_recall": 0.8863636363636364,
+        "teacher_center_f1": 0.8863636363636365,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.8333333333333333,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08183660298490371,
+        "matched_center_3d_mean_error_m": 0.1374059109351574,
+        "matched_size_component_mae_m": 0.07572853106718797,
+        "matched_yaw_mean_error_rad": 0.22116161185728672,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 20,
+            "teachers": 18,
+            "matches": 15
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.8,
+        "frames": 24,
+        "predictions": 40,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 39,
+        "teacher_center_precision": 0.975,
+        "teacher_center_recall": 0.8863636363636364,
+        "teacher_center_f1": 0.9285714285714285,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.6666666666666667,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08183660298490371,
+        "matched_center_3d_mean_error_m": 0.1374059109351574,
+        "matched_size_component_mae_m": 0.07572853106718797,
+        "matched_yaw_mean_error_rad": 0.22116161185728672,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 16,
+            "teachers": 18,
+            "matches": 15
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.9,
+        "frames": 24,
+        "predictions": 25,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 25,
+        "teacher_center_precision": 1.0,
+        "teacher_center_recall": 0.5681818181818182,
+        "teacher_center_f1": 0.7246376811594203,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.0416666666666667,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.07384695198386908,
+        "matched_center_3d_mean_error_m": 0.11852352678775788,
+        "matched_size_component_mae_m": 0.09061249574025472,
+        "matched_yaw_mean_error_rad": 0.0961632351600565,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 18,
+            "matches": 1
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      }
+    ],
+    "history": [
+      {
+        "epoch": 1,
+        "learning_rate": 0.001,
+        "train": {
+          "total": 12.525336021330299,
+          "heatmap": 10.083904871126501,
+          "box": 1.2191487398089431,
+          "yaw_norm": 0.1566777516024403
+        },
+        "selection_loss": 5.407249098238737,
+        "selection_teacher_f1_at_020": 0.5609756097560975
+      },
+      {
+        "epoch": 2,
+        "learning_rate": 0.0009996984593744526,
+        "train": {
+          "total": 4.788175199089981,
+          "heatmap": 3.959442295679232,
+          "box": 0.4118549274962123,
+          "yaw_norm": 0.2511550289828603
+        },
+        "selection_loss": 2.308831090512483,
+        "selection_teacher_f1_at_020": 0.746031746031746
+      },
+      {
+        "epoch": 3,
+        "learning_rate": 0.000998794204878613,
+        "train": {
+          "total": 2.2994935105486616,
+          "heatmap": 1.866274109700831,
+          "box": 0.2150494925132612,
+          "yaw_norm": 0.15602118794511005
+        },
+        "selection_loss": 1.488564802252728,
+        "selection_teacher_f1_at_020": 0.5302325581395348
+      },
+      {
+        "epoch": 4,
+        "learning_rate": 0.0009972883382072955,
+        "train": {
+          "total": 3.659334592702912,
+          "heatmap": 3.122229683689955,
+          "box": 0.2665088572880117,
+          "yaw_norm": 0.20435961490360702
+        },
+        "selection_loss": 1.2416266669397769,
+        "selection_teacher_f1_at_020": 0.5829145728643216
+      },
+      {
+        "epoch": 5,
+        "learning_rate": 0.0009951826940270776,
+        "train": {
+          "total": 2.355329898799338,
+          "heatmap": 1.9676960982927463,
+          "box": 0.19242349212489476,
+          "yaw_norm": 0.13933913527828892
+        },
+        "selection_loss": 0.970755626326022,
+        "selection_teacher_f1_at_020": 0.9133858267716536
+      },
+      {
+        "epoch": 6,
+        "learning_rate": 0.0009924798377410433,
+        "train": {
+          "total": 2.123996337739433,
+          "heatmap": 1.7474559218418309,
+          "box": 0.1870405888412057,
+          "yaw_norm": 0.12296129985735184
+        },
+        "selection_loss": 1.0128311203873677,
+        "selection_teacher_f1_at_020": 0.9256198347107438
+      },
+      {
+        "epoch": 7,
+        "learning_rate": 0.0009891830623632342,
+        "train": {
+          "total": 1.8271528039036729,
+          "heatmap": 1.4929673351892612,
+          "box": 0.16600245037456837,
+          "yaw_norm": 0.10902693349777198
+        },
+        "selection_loss": 0.8939732144708219,
+        "selection_teacher_f1_at_020": 0.8055555555555557
+      },
+      {
+        "epoch": 8,
+        "learning_rate": 0.0009852963845066185,
+        "train": {
+          "total": 1.700459368345214,
+          "heatmap": 1.377465761289364,
+          "box": 0.16058010753335022,
+          "yaw_norm": 0.091668532479827
+        },
+        "selection_loss": 0.8919829829879429,
+        "selection_teacher_f1_at_020": 0.9279999999999999
+      },
+      {
+        "epoch": 9,
+        "learning_rate": 0.0009808245394894682,
+        "train": {
+          "total": 1.771007017391484,
+          "heatmap": 1.4804053073976098,
+          "box": 0.1443298777065626,
+          "yaw_norm": 0.09709658137545353
+        },
+        "selection_loss": 0.961649064136588,
+        "selection_teacher_f1_at_020": 0.7857142857142857
+      },
+      {
+        "epoch": 10,
+        "learning_rate": 0.0009757729755661015,
+        "train": {
+          "total": 1.8590000678853291,
+          "heatmap": 1.578313261997409,
+          "box": 0.13936325907707214,
+          "yaw_norm": 0.098013820898969
+        },
+        "selection_loss": 0.8415786416634269,
+        "selection_teacher_f1_at_020": 0.8358208955223881
+      },
+      {
+        "epoch": 11,
+        "learning_rate": 0.000970147847289025,
+        "train": {
+          "total": 1.374680831664946,
+          "heatmap": 1.1174519621744388,
+          "box": 0.12767577552940787,
+          "yaw_norm": 0.0938662344408108
+        },
+        "selection_loss": 0.7406961334788281,
+        "selection_teacher_f1_at_020": 0.9206349206349207
+      },
+      {
+        "epoch": 12,
+        "learning_rate": 0.0009639560080105602,
+        "train": {
+          "total": 1.7729352785319816,
+          "heatmap": 1.4813674786468831,
+          "box": 0.1448665788260902,
+          "yaw_norm": 0.09173223367188035
+        },
+        "selection_loss": 0.685864604037741,
+        "selection_teacher_f1_at_020": 0.8529411764705883
+      },
+      {
+        "epoch": 13,
+        "learning_rate": 0.0009572050015330878,
+        "train": {
+          "total": 2.176582113998692,
+          "heatmap": 1.9078146073876359,
+          "box": 0.13327421038979437,
+          "yaw_norm": 0.11095631617780138
+        },
+        "selection_loss": 0.8313507657984028,
+        "selection_teacher_f1_at_020": 0.8503937007874015
+      },
+      {
+        "epoch": 14,
+        "learning_rate": 0.0009499030529180881,
+        "train": {
+          "total": 1.3272166826376102,
+          "heatmap": 1.1092735652516528,
+          "box": 0.10822953410991808,
+          "yaw_norm": 0.07420346127232401
+        },
+        "selection_loss": 0.8923658009456552,
+        "selection_teacher_f1_at_020": 0.873015873015873
+      },
+      {
+        "epoch": 15,
+        "learning_rate": 0.0009420590584651693,
+        "train": {
+          "total": 0.9374729947346013,
+          "heatmap": 0.7493940989782171,
+          "box": 0.09338987582340473,
+          "yaw_norm": 0.06495752894296879
+        },
+        "selection_loss": 0.8155290685270143,
+        "selection_teacher_f1_at_020": 0.9354838709677421
+      },
+      {
+        "epoch": 16,
+        "learning_rate": 0.0009336825748732976,
+        "train": {
+          "total": 1.5795866934264577,
+          "heatmap": 1.3140953165001985,
+          "box": 0.13179632158177654,
+          "yaw_norm": 0.09493556191645018
+        },
+        "selection_loss": 0.9495564316925795,
+        "selection_teacher_f1_at_020": 0.8571428571428572
+      },
+      {
+        "epoch": 17,
+        "learning_rate": 0.0009247838075974312,
+        "train": {
+          "total": 1.4818230180478678,
+          "heatmap": 1.2629923885915337,
+          "box": 0.10859910771250725,
+          "yaw_norm": 0.08162147579033201
+        },
+        "selection_loss": 0.8712449533783871,
+        "selection_teacher_f1_at_020": 0.9344262295081968
+      },
+      {
+        "epoch": 18,
+        "learning_rate": 0.000915373598414746,
+        "train": {
+          "total": 2.4728842639341586,
+          "heatmap": 2.147295519346144,
+          "box": 0.16164255305761244,
+          "yaw_norm": 0.11518263707800609
+        },
+        "selection_loss": 0.9244311276985251,
+        "selection_teacher_f1_at_020": 0.8849557522123893
+      },
+      {
+        "epoch": 19,
+        "learning_rate": 0.0009054634122155993,
+        "train": {
+          "total": 1.2568767608665838,
+          "heatmap": 1.0671489246007873,
+          "box": 0.09409315547928578,
+          "yaw_norm": 0.07707720143129913
+        },
+        "selection_loss": 0.732875374024329,
+        "selection_teacher_f1_at_020": 0.6973684210526316
+      },
+      {
+        "epoch": 20,
+        "learning_rate": 0.0008950653230353278,
+        "train": {
+          "total": 1.598058556638113,
+          "heatmap": 1.394916346887263,
+          "box": 0.10077132202866601,
+          "yaw_norm": 0.07997692321858756
+        },
+        "selection_loss": 0.7095453933529232,
+        "selection_teacher_f1_at_020": 0.7891156462585034
+      },
+      {
+        "epoch": 21,
+        "learning_rate": 0.0008841919993438944,
+        "train": {
+          "total": 1.8014292527989644,
+          "heatmap": 1.5697430317721717,
+          "box": 0.11493378650487923,
+          "yaw_norm": 0.0909318821731864
+        },
+        "selection_loss": 0.8219410699346791,
+        "selection_teacher_f1_at_020": 0.876923076923077
+      },
+      {
+        "epoch": 22,
+        "learning_rate": 0.0008728566886113104,
+        "train": {
+          "total": 1.892520300498823,
+          "heatmap": 1.6255551602055387,
+          "box": 0.13243172717530552,
+          "yaw_norm": 0.10508571051788039
+        },
+        "selection_loss": 0.7094843581966732,
+        "selection_teacher_f1_at_020": 0.8721804511278195
+      },
+      {
+        "epoch": 23,
+        "learning_rate": 0.0008610732011676325,
+        "train": {
+          "total": 1.7807073542257634,
+          "heatmap": 1.531654103500087,
+          "box": 0.12358946862017237,
+          "yaw_norm": 0.09371461292229048
+        },
+        "selection_loss": 0.9035001721071161,
+        "selection_teacher_f1_at_020": 0.8620689655172413
+      },
+      {
+        "epoch": 24,
+        "learning_rate": 0.0008488558933772038,
+        "train": {
+          "total": 1.6115739112947045,
+          "heatmap": 1.3864804877013694,
+          "box": 0.11158861401604443,
+          "yaw_norm": 0.09581080260800152
+        },
+        "selection_loss": 0.7713906330906827,
+        "selection_teacher_f1_at_020": 0.8976377952755905
+      },
+      {
+        "epoch": 25,
+        "learning_rate": 0.0008362196501476351,
+        "train": {
+          "total": 1.6325716310884895,
+          "heatmap": 1.4114146755962838,
+          "box": 0.10964610918266017,
+          "yaw_norm": 0.09323750936040064
+        },
+        "selection_loss": 0.6408749890068303,
+        "selection_teacher_f1_at_020": 0.8
+      },
+      {
+        "epoch": 26,
+        "learning_rate": 0.0008231798667948372,
+        "train": {
+          "total": 1.950625923712079,
+          "heatmap": 1.7312487293852539,
+          "box": 0.10871444569855201,
+          "yaw_norm": 0.09741471521556377
+        },
+        "selection_loss": 0.828291601460913,
+        "selection_teacher_f1_at_020": 0.9105691056910569
+      },
+      {
+        "epoch": 27,
+        "learning_rate": 0.0008097524302862012,
+        "train": {
+          "total": 1.8030810857691415,
+          "heatmap": 1.5713999774761316,
+          "box": 0.1148872849327035,
+          "yaw_norm": 0.09532785328195953
+        },
+        "selection_loss": 0.894652308329292,
+        "selection_teacher_f1_at_020": 0.7786259541984732
+      },
+      {
+        "epoch": 28,
+        "learning_rate": 0.0007959536998847746,
+        "train": {
+          "total": 1.2743839592468449,
+          "heatmap": 1.0962378519428213,
+          "box": 0.0883398814717444,
+          "yaw_norm": 0.07331810528185309
+        },
+        "selection_loss": 0.7404357240251873,
+        "selection_teacher_f1_at_020": 0.8739495798319329
+      },
+      {
+        "epoch": 29,
+        "learning_rate": 0.00078180048721802,
+        "train": {
+          "total": 1.286304854038285,
+          "heatmap": 1.107697977888875,
+          "box": 0.08854020005319177,
+          "yaw_norm": 0.07632404418162457
+        },
+        "selection_loss": 0.7125420823045399,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 30,
+        "learning_rate": 0.0007673100357954367,
+        "train": {
+          "total": 1.8088754978848667,
+          "heatmap": 1.5709005866835757,
+          "box": 0.11807845492006802,
+          "yaw_norm": 0.09089853832634484
+        },
+        "selection_loss": 0.9461485451978185,
+        "selection_teacher_f1_at_020": 0.8813559322033898
+      },
+      {
+        "epoch": 31,
+        "learning_rate": 0.0007525000000000002,
+        "train": {
+          "total": 1.0451648882249507,
+          "heatmap": 0.8904735269706424,
+          "box": 0.07673395361478735,
+          "yaw_norm": 0.06117229422599804
+        },
+        "selection_loss": 0.6732374436181524,
+        "selection_teacher_f1_at_020": 0.8636363636363635
+      },
+      {
+        "epoch": 32,
+        "learning_rate": 0.0007373884235790161,
+        "train": {
+          "total": 1.5030467459341375,
+          "heatmap": 1.292997354914139,
+          "box": 0.10421429274649155,
+          "yaw_norm": 0.08104088684407676
+        },
+        "selection_loss": 0.8735523554294006,
+        "selection_teacher_f1_at_020": 0.864406779661017
+      },
+      {
+        "epoch": 33,
+        "learning_rate": 0.0007219937176605935,
+        "train": {
+          "total": 1.2681400830425866,
+          "heatmap": 1.0826088751598102,
+          "box": 0.09195978975877529,
+          "yaw_norm": 0.08058134845753269
+        },
+        "selection_loss": 0.986691903160966,
+        "selection_teacher_f1_at_020": 0.859504132231405
+      },
+      {
+        "epoch": 34,
+        "learning_rate": 0.0007063346383225212,
+        "train": {
+          "total": 1.6855809023467505,
+          "heatmap": 1.4825217758373517,
+          "box": 0.10066715064572125,
+          "yaw_norm": 0.08624086974234116
+        },
+        "selection_loss": 0.7395703993413759,
+        "selection_teacher_f1_at_020": 0.890625
+      },
+      {
+        "epoch": 35,
+        "learning_rate": 0.0006904302637408766,
+        "train": {
+          "total": 1.4962882185127677,
+          "heatmap": 1.3285299762174851,
+          "box": 0.08310328969141333,
+          "yaw_norm": 0.0775827826114326
+        },
+        "selection_loss": 0.7591964148956797,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 36,
+        "learning_rate": 0.0006742999709462062,
+        "train": {
+          "total": 1.288776160013385,
+          "heatmap": 1.1093201743575132,
+          "box": 0.08894494375804575,
+          "yaw_norm": 0.07830583994708411
+        },
+        "selection_loss": 0.753705033465572,
+        "selection_teacher_f1_at_020": 0.8412698412698412
+      },
+      {
+        "epoch": 37,
+        "learning_rate": 0.0006579634122155991,
+        "train": {
+          "total": 1.167168602347374,
+          "heatmap": 1.008333200043658,
+          "box": 0.07875599489524597,
+          "yaw_norm": 0.06617064658188965
+        },
+        "selection_loss": 0.7676790904091753,
+        "selection_teacher_f1_at_020": 0.876923076923077
+      },
+      {
+        "epoch": 38,
+        "learning_rate": 0.0006414404911294147,
+        "train": {
+          "total": 1.7756780676725434,
+          "heatmap": 1.5613494094733784,
+          "box": 0.10622780488395109,
+          "yaw_norm": 0.09365153003756593
+        },
+        "selection_loss": 0.7576959729194641,
+        "selection_teacher_f1_at_020": 0.8702290076335878
+      },
+      {
+        "epoch": 39,
+        "learning_rate": 0.0006247513383218356,
+        "train": {
+          "total": 0.9289967101521608,
+          "heatmap": 0.7995776669463006,
+          "box": 0.06417974239078963,
+          "yaw_norm": 0.05297711195151617
+        },
+        "selection_loss": 0.7966290492078533,
+        "selection_teacher_f1_at_020": 0.9059829059829059
+      },
+      {
+        "epoch": 40,
+        "learning_rate": 0.000607916286954791,
+        "train": {
+          "total": 0.7408947991888698,
+          "heatmap": 0.6183016766317007,
+          "box": 0.06075103608209912,
+          "yaw_norm": 0.05455228534140965
+        },
+        "selection_loss": 0.7246190558957017,
+        "selection_teacher_f1_at_020": 0.8992248062015504
+      },
+      {
+        "epoch": 41,
+        "learning_rate": 0.0005909558479451307,
+        "train": {
+          "total": 1.396909227821885,
+          "heatmap": 1.2322282358186274,
+          "box": 0.08161266311639692,
+          "yaw_norm": 0.07278352937229522
+        },
+        "selection_loss": 0.7462700754404068,
+        "selection_teacher_f1_at_020": 0.903225806451613
+      },
+      {
+        "epoch": 42,
+        "learning_rate": 0.0005738906849752325,
+        "train": {
+          "total": 2.2092354048679517,
+          "heatmap": 1.9622742899398251,
+          "box": 0.12240549903817294,
+          "yaw_norm": 0.10750542363015617
+        },
+        "selection_loss": 0.728385364231856,
+        "selection_teacher_f1_at_020": 0.9105691056910569
+      },
+      {
+        "epoch": 43,
+        "learning_rate": 0.0005567415893174886,
+        "train": {
+          "total": 1.2871910695259163,
+          "heatmap": 1.1260986505757744,
+          "box": 0.07982450819051848,
+          "yaw_norm": 0.07217054827729376
+        },
+        "selection_loss": 0.7856407781010089,
+        "selection_teacher_f1_at_020": 0.912
+      },
+      {
+        "epoch": 44,
+        "learning_rate": 0.0005395294545033422,
+        "train": {
+          "total": 1.487244068667656,
+          "heatmap": 1.3348181767888911,
+          "box": 0.07549263496042752,
+          "yaw_norm": 0.0720324705059572
+        },
+        "selection_loss": 0.6988557604667933,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 45,
+        "learning_rate": 0.0005222752508677381,
+        "train": {
+          "total": 0.9834237765611672,
+          "heatmap": 0.8643140111845441,
+          "box": 0.05898435904485423,
+          "yaw_norm": 0.0570528809571775
+        },
+        "selection_loss": 0.7109898403286934,
+        "selection_teacher_f1_at_020": 0.9047619047619047
+      },
+      {
+        "epoch": 46,
+        "learning_rate": 0.000505,
+        "train": {
+          "total": 1.0963578586716478,
+          "heatmap": 0.9763046877413262,
+          "box": 0.05945850845153739,
+          "yaw_norm": 0.05680732153605942
+        },
+        "selection_loss": 0.7810245376566182,
+        "selection_teacher_f1_at_020": 0.903225806451613
+      },
+      {
+        "epoch": 47,
+        "learning_rate": 0.00048772474913226217,
+        "train": {
+          "total": 1.1528503313297178,
+          "heatmap": 1.0130025505020124,
+          "box": 0.06925897822692627,
+          "yaw_norm": 0.06649165081496282
+        },
+        "selection_loss": 0.8416348928990571,
+        "selection_teacher_f1_at_020": 0.888888888888889
+      },
+      {
+        "epoch": 48,
+        "learning_rate": 0.000470470545496658,
+        "train": {
+          "total": 1.1586584712310535,
+          "heatmap": 1.0172016678332556,
+          "box": 0.07012397264380281,
+          "yaw_norm": 0.060442799725001904
+        },
+        "selection_loss": 0.7302388961872329,
+        "selection_teacher_f1_at_020": 0.890625
+      },
+      {
+        "epoch": 49,
+        "learning_rate": 0.0004532584106825116,
+        "train": {
+          "total": 1.4868333319701799,
+          "heatmap": 1.3116557061240621,
+          "box": 0.08681241575083355,
+          "yaw_norm": 0.07764070642339747
+        },
+        "selection_loss": 0.8046887623875038,
+        "selection_teacher_f1_at_020": 0.9133858267716536
+      },
+      {
+        "epoch": 50,
+        "learning_rate": 0.0004361093150247676,
+        "train": {
+          "total": 1.2447146453508517,
+          "heatmap": 1.1073766369145455,
+          "box": 0.06805125751146456,
+          "yaw_norm": 0.06177479701071251
+        },
+        "selection_loss": 0.7746819782516231,
+        "selection_teacher_f1_at_020": 0.8992248062015504
+      },
+      {
+        "epoch": 51,
+        "learning_rate": 0.0004190441520548695,
+        "train": {
+          "total": 1.2970742328864773,
+          "heatmap": 1.144344618362261,
+          "box": 0.07574976399177458,
+          "yaw_norm": 0.061504291688523643
+        },
+        "selection_loss": 0.793162239148565,
+        "selection_teacher_f1_at_020": 0.9166666666666666
+      },
+      {
+        "epoch": 52,
+        "learning_rate": 0.0004020837130452092,
+        "train": {
+          "total": 1.8398293685622331,
+          "heatmap": 1.6741126118364131,
+          "box": 0.08210268521272554,
+          "yaw_norm": 0.07556872324245732
+        },
+        "selection_loss": 0.8036899232993955,
+        "selection_teacher_f1_at_020": 0.8800000000000001
+      },
+      {
+        "epoch": 53,
+        "learning_rate": 0.00038524866167816444,
+        "train": {
+          "total": 1.3288588401202748,
+          "heatmap": 1.1931479665870983,
+          "box": 0.06712305743428992,
+          "yaw_norm": 0.07323816633306263
+        },
+        "selection_loss": 0.7920197679296784,
+        "selection_teacher_f1_at_020": 0.9354838709677421
+      },
+      {
+        "epoch": 54,
+        "learning_rate": 0.00036855950887058545,
+        "train": {
+          "total": 1.5781445256093654,
+          "heatmap": 1.419924773253137,
+          "box": 0.07841366050174324,
+          "yaw_norm": 0.06962194197197877
+        },
+        "selection_loss": 0.8755703735286775,
+        "selection_teacher_f1_at_020": 0.9166666666666666
+      },
+      {
+        "epoch": 55,
+        "learning_rate": 0.0003520365877844011,
+        "train": {
+          "total": 0.8880503870001654,
+          "heatmap": 0.8023469416288341,
+          "box": 0.04242175407480539,
+          "yaw_norm": 0.042996919025360354
+        },
+        "selection_loss": 0.9241908463123052,
+        "selection_teacher_f1_at_020": 0.8813559322033898
+      },
+      {
+        "epoch": 56,
+        "learning_rate": 0.000335700029053794,
+        "train": {
+          "total": 1.844411744486268,
+          "heatmap": 1.6358314065671549,
+          "box": 0.1033810976801849,
+          "yaw_norm": 0.09090685996613125
+        },
+        "selection_loss": 0.7357652380090692,
+        "selection_teacher_f1_at_020": 0.8923076923076924
+      },
+      {
+        "epoch": 57,
+        "learning_rate": 0.0003195697362591235,
+        "train": {
+          "total": 0.9143727710697709,
+          "heatmap": 0.821316473299592,
+          "box": 0.04610564182626038,
+          "yaw_norm": 0.042250576247347564
+        },
+        "selection_loss": 0.7875968431649001,
+        "selection_teacher_f1_at_020": 0.9062499999999999
+      },
+      {
+        "epoch": 58,
+        "learning_rate": 0.000303665361677479,
+        "train": {
+          "total": 1.5172294291054331,
+          "heatmap": 1.3668172061897632,
+          "box": 0.07451494892195958,
+          "yaw_norm": 0.06911563908499552
+        },
+        "selection_loss": 0.8598652119221895,
+        "selection_teacher_f1_at_020": 0.9279999999999999
+      },
+      {
+        "epoch": 59,
+        "learning_rate": 0.0002880062823394066,
+        "train": {
+          "total": 0.8961372947910937,
+          "heatmap": 0.8173458163694638,
+          "box": 0.03899593680824449,
+          "yaw_norm": 0.03998062206807024
+        },
+        "selection_loss": 0.9020127190843873,
+        "selection_teacher_f1_at_020": 0.8869565217391304
+      },
+      {
+        "epoch": 60,
+        "learning_rate": 0.0002726115764209842,
+        "train": {
+          "total": 1.9318177855414589,
+          "heatmap": 1.7361259917024432,
+          "box": 0.09703226889506346,
+          "yaw_norm": 0.08136071399615215
+        },
+        "selection_loss": 0.8242513381916544,
+        "selection_teacher_f1_at_020": 0.9062499999999999
+      },
+      {
+        "epoch": 61,
+        "learning_rate": 0.00025750000000000013,
+        "train": {
+          "total": 1.6140878523995237,
+          "heatmap": 1.439748487639718,
+          "box": 0.0864263388169248,
+          "yaw_norm": 0.07433450389255929
+        },
+        "selection_loss": 0.8979866070591885,
+        "selection_teacher_f1_at_020": 0.8983050847457628
+      },
+      {
+        "epoch": 62,
+        "learning_rate": 0.0002426899642045636,
+        "train": {
+          "total": 2.1749997034487203,
+          "heatmap": 1.9508906481787562,
+          "box": 0.11114020716035511,
+          "yaw_norm": 0.09143374394625425
+        },
+        "selection_loss": 0.8539474016946295,
+        "selection_teacher_f1_at_020": 0.9075630252100839
+      },
+      {
+        "epoch": 63,
+        "learning_rate": 0.00022819951278198037,
+        "train": {
+          "total": 1.3144157407123869,
+          "heatmap": 1.153746215751531,
+          "box": 0.07971794567093617,
+          "yaw_norm": 0.06168097636957721
+        },
+        "selection_loss": 0.8471853026877278,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 64,
+        "learning_rate": 0.00021404630011522585,
+        "train": {
+          "total": 1.819161682321531,
+          "heatmap": 1.6406893798763431,
+          "box": 0.08845215689436328,
+          "yaw_norm": 0.07840055094963712
+        },
+        "selection_loss": 0.9079176636169786,
+        "selection_teacher_f1_at_020": 0.8849557522123893
+      },
+      {
+        "epoch": 65,
+        "learning_rate": 0.00020024756971379914,
+        "train": {
+          "total": 1.4003674670508721,
+          "heatmap": 1.2616515914886826,
+          "box": 0.06868235821404108,
+          "yaw_norm": 0.06755900892951502
+        },
+        "selection_loss": 0.9013060375076273,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 66,
+        "learning_rate": 0.000186820133205163,
+        "train": {
+          "total": 1.12353283612103,
+          "heatmap": 1.0234792815839373,
+          "box": 0.04953774291931129,
+          "yaw_norm": 0.04890279939807043
+        },
+        "selection_loss": 0.8117743364494779,
+        "selection_teacher_f1_at_020": 0.903225806451613
+      },
+      {
+        "epoch": 67,
+        "learning_rate": 0.00017378034985236516,
+        "train": {
+          "total": 1.446993770123255,
+          "heatmap": 1.2848835737648896,
+          "box": 0.08032426019994224,
+          "yaw_norm": 0.07308460344708093
+        },
+        "selection_loss": 0.8686730936169624,
+        "selection_teacher_f1_at_020": 0.8907563025210085
+      },
+      {
+        "epoch": 68,
+        "learning_rate": 0.00016114410662279645,
+        "train": {
+          "total": 1.9493881556001016,
+          "heatmap": 1.783938896223312,
+          "box": 0.0819600537396604,
+          "yaw_norm": 0.07645865471284019
+        },
+        "selection_loss": 0.825005112134892,
+        "selection_teacher_f1_at_020": 0.9016393442622951
+      },
+      {
+        "epoch": 69,
+        "learning_rate": 0.00014892679883236765,
+        "train": {
+          "total": 0.9967105785702787,
+          "heatmap": 0.8894264590131437,
+          "box": 0.053158869330839416,
+          "yaw_norm": 0.048319177384056694
+        },
+        "selection_loss": 0.8599490435065135,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 70,
+        "learning_rate": 0.00013714331138868995,
+        "train": {
+          "total": 1.5166412587391167,
+          "heatmap": 1.3783431321314377,
+          "box": 0.0684569606262191,
+          "yaw_norm": 0.06920991753932179
+        },
+        "selection_loss": 0.8385340048243171,
+        "selection_teacher_f1_at_020": 0.9016393442622951
+      },
+      {
+        "epoch": 71,
+        "learning_rate": 0.00012580800065610593,
+        "train": {
+          "total": 1.709702277601492,
+          "heatmap": 1.5467681933716848,
+          "box": 0.0807478509661628,
+          "yaw_norm": 0.07192004006356001
+        },
+        "selection_loss": 0.8569191320920768,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 72,
+        "learning_rate": 0.00011493467696467265,
+        "train": {
+          "total": 1.6665682733604095,
+          "heatmap": 1.5064790916015827,
+          "box": 0.07931478245456408,
+          "yaw_norm": 0.07298070884014411
+        },
+        "selection_loss": 0.8582837801912556,
+        "selection_teacher_f1_at_020": 0.9075630252100839
+      },
+      {
+        "epoch": 73,
+        "learning_rate": 0.00010453658778440107,
+        "train": {
+          "total": 0.9227706428344656,
+          "heatmap": 0.834733840259837,
+          "box": 0.043597281501605745,
+          "yaw_norm": 0.04211167427824765
+        },
+        "selection_loss": 0.8296787102261315,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 74,
+        "learning_rate": 9.46264015852544e-05,
+        "train": {
+          "total": 1.6624186230232803,
+          "heatmap": 1.4976472065829467,
+          "box": 0.0816568547132902,
+          "yaw_norm": 0.0728868611338662
+        },
+        "selection_loss": 0.8324981707593669,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 75,
+        "learning_rate": 8.521619240256916e-05,
+        "train": {
+          "total": 1.3675236275601315,
+          "heatmap": 1.2491551653890893,
+          "box": 0.05862008399761668,
+          "yaw_norm": 0.05641405738708449
+        },
+        "selection_loss": 0.8397443278328233,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 76,
+        "learning_rate": 7.631742512670284e-05,
+        "train": {
+          "total": 1.2407002524904363,
+          "heatmap": 1.1347802305173855,
+          "box": 0.05243845508865467,
+          "yaw_norm": 0.052156160795697716
+        },
+        "selection_loss": 0.8514060970071865,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 77,
+        "learning_rate": 6.794094153483125e-05,
+        "train": {
+          "total": 1.058702062588276,
+          "heatmap": 0.9366255747722234,
+          "box": 0.06053894526529603,
+          "yaw_norm": 0.04993079330136136
+        },
+        "selection_loss": 0.8381191864609718,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 78,
+        "learning_rate": 6.009694708191232e-05,
+        "train": {
+          "total": 1.2535928483461825,
+          "heatmap": 1.1466643421388254,
+          "box": 0.05292030896355466,
+          "yaw_norm": 0.054394195753535844
+        },
+        "selection_loss": 0.8434882866947547,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 79,
+        "learning_rate": 5.279499846691263e-05,
+        "train": {
+          "total": 0.9907389541679039,
+          "heatmap": 0.8881049404352358,
+          "box": 0.05084337423578268,
+          "yaw_norm": 0.04736229671142632
+        },
+        "selection_loss": 0.8491156317455613,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 80,
+        "learning_rate": 4.6043991989440284e-05,
+        "train": {
+          "total": 1.1919213743289796,
+          "heatmap": 1.067707661403025,
+          "box": 0.06160690308344073,
+          "yaw_norm": 0.04999518865242419
+        },
+        "selection_loss": 0.8531253597010737,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 81,
+        "learning_rate": 3.9852152710975386e-05,
+        "train": {
+          "total": 1.52580674383335,
+          "heatmap": 1.3910763943113569,
+          "box": 0.06671250745563245,
+          "yaw_norm": 0.06526598125332739
+        },
+        "selection_loss": 0.855135509663302,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 82,
+        "learning_rate": 3.4227024433899005e-05,
+        "train": {
+          "total": 0.9991604507696338,
+          "heatmap": 0.8886538931600204,
+          "box": 0.054795791008850424,
+          "yaw_norm": 0.04574844033298332
+        },
+        "selection_loss": 0.8554731898981592,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 83,
+        "learning_rate": 2.917546051053226e-05,
+        "train": {
+          "total": 1.905755709538736,
+          "heatmap": 1.7307571068110807,
+          "box": 0.08673392683721898,
+          "yaw_norm": 0.07653955731927077
+        },
+        "selection_loss": 0.8554958254908738,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 84,
+        "learning_rate": 2.470361549338175e-05,
+        "train": {
+          "total": 0.9311415858385039,
+          "heatmap": 0.8490519190388846,
+          "box": 0.04063415045781833,
+          "yaw_norm": 0.04106872086413205
+        },
+        "selection_loss": 0.8581420982499486,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 85,
+        "learning_rate": 2.0816937636766188e-05,
+        "train": {
+          "total": 1.3078671368974737,
+          "heatmap": 1.1886920489189101,
+          "box": 0.05901014954760307,
+          "yaw_norm": 0.05773832001609773
+        },
+        "selection_loss": 0.8565265409972357,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 86,
+        "learning_rate": 1.752016225895703e-05,
+        "train": {
+          "total": 1.2292967726726358,
+          "heatmap": 1.1023289516182027,
+          "box": 0.06292139111859042,
+          "yaw_norm": 0.05625205613082138
+        },
+        "selection_loss": 0.8628600442215152,
+        "selection_teacher_f1_at_020": 0.9
+      },
+      {
+        "epoch": 87,
+        "learning_rate": 1.4817305972922728e-05,
+        "train": {
+          "total": 1.2820153572573894,
+          "heatmap": 1.1681132515801527,
+          "box": 0.05639462954387432,
+          "yaw_norm": 0.05564232936935363
+        },
+        "selection_loss": 0.8689042045532361,
+        "selection_teacher_f1_at_020": 0.8907563025210085
+      },
+      {
+        "epoch": 88,
+        "learning_rate": 1.2711661792704722e-05,
+        "train": {
+          "total": 1.2562492680395159,
+          "heatmap": 1.1456020581365631,
+          "box": 0.054779397403230755,
+          "yaw_norm": 0.05442089321398426
+        },
+        "selection_loss": 0.8657918525454791,
+        "selection_teacher_f1_at_020": 0.8907563025210085
+      },
+      {
+        "epoch": 89,
+        "learning_rate": 1.1205795121387023e-05,
+        "train": {
+          "total": 1.9176298288128726,
+          "heatmap": 1.7404330928083054,
+          "box": 0.08778362268604702,
+          "yaw_norm": 0.08147390272820414
+        },
+        "selection_loss": 0.8615173879686905,
+        "selection_teacher_f1_at_020": 0.8907563025210085
+      },
+      {
+        "epoch": 90,
+        "learning_rate": 1.0301540625547598e-05,
+        "train": {
+          "total": 1.1950787377611893,
+          "heatmap": 1.0765097874398457,
+          "box": 0.058754887272853676,
+          "yaw_norm": 0.052958477404899895
+        },
+        "selection_loss": 0.8609569344831549,
+        "selection_teacher_f1_at_020": 0.9
+      }
+    ],
+    "feature_manifest_sha256": "217c686b51f95a22b6bf7885555298e80aef7480e71e5b0e6ac59742a337c3f2",
+    "target_center_cell_collisions": {
+      "train": 2,
+      "selection": 0,
+      "calibration": 0,
+      "development": 0
+    },
+    "target_center_sensor_support": {
+      "train": {
+        "supervised_centers": 336,
+        "centers_without_sensor_support": 0
+      },
+      "selection": {
+        "supervised_centers": 59,
+        "centers_without_sensor_support": 0
+      },
+      "calibration": {
+        "supervised_centers": 44,
+        "centers_without_sensor_support": 0
+      },
+      "development": {
+        "supervised_centers": 199,
+        "centers_without_sensor_support": 0
+      }
+    },
+    "training": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "batch_size": 8,
+      "modality_dropout_probability": 0.15,
+      "all_missing_probability": 0.03,
+      "camera_jitter": "35% probability, integer shift +/- 1 BEV cell",
+      "teacher_score_minimum": 0.35,
+      "losses": "Gaussian center focal + 2 * weighted smooth-L1 box + 0.02 * yaw norm",
+      "encoders": "All frozen; only middle fusion and detection layers trained"
+    }
+  },
+  "checkpoint_sha256": "d96122ee0536ad723fe901f8f0e97967d2df15b615356b579839dc5e9f448e5a",
+  "lidar_only_control": {
+    "supervision": "teacher_distillation",
+    "seed": 8,
+    "epochs": 90,
+    "selected_epoch": 32,
+    "selected_score_threshold": 0.9,
+    "parameter_count": 58334,
+    "inputs": "lidar_only",
+    "initial_selection": {
+      "frames": 23,
+      "predictions": 1472,
+      "teacher_objects": 59,
+      "matched_teacher_objects": 0,
+      "teacher_center_precision": 0.0,
+      "teacher_center_recall": 0.0,
+      "teacher_center_f1": 0.0,
+      "frames_with_predictions": 23,
+      "prediction_frame_coverage": 1.0,
+      "predictions_per_frame": 64.0,
+      "invalid_predictions": 0,
+      "matched_center_xy_mean_error_m": null,
+      "matched_center_3d_mean_error_m": null,
+      "matched_size_component_mae_m": null,
+      "matched_yaw_mean_error_rad": null,
+      "same_class_matching_distance_m": 2.0,
+      "per_class": {
+        "0": {
+          "predictions": 0,
+          "teachers": 23,
+          "matches": 0
+        },
+        "1": {
+          "predictions": 0,
+          "teachers": 0,
+          "matches": 0
+        },
+        "2": {
+          "predictions": 167,
+          "teachers": 0,
+          "matches": 0
+        },
+        "3": {
+          "predictions": 36,
+          "teachers": 1,
+          "matches": 0
+        },
+        "4": {
+          "predictions": 755,
+          "teachers": 0,
+          "matches": 0
+        },
+        "5": {
+          "predictions": 1,
+          "teachers": 0,
+          "matches": 0
+        },
+        "6": {
+          "predictions": 401,
+          "teachers": 0,
+          "matches": 0
+        },
+        "7": {
+          "predictions": 112,
+          "teachers": 0,
+          "matches": 0
+        },
+        "8": {
+          "predictions": 0,
+          "teachers": 35,
+          "matches": 0
+        },
+        "9": {
+          "predictions": 0,
+          "teachers": 0,
+          "matches": 0
+        }
+      },
+      "loss": 28.34319255663001,
+      "all_outputs_finite": true,
+      "mean_sensor_gates": {
+        "camera": 0.0,
+        "lidar": 0.7103324558423914,
+        "radar": 0.0
+      },
+      "head_latency_p50_ms": 1.1536659985722508,
+      "head_latency_p95_ms": 1.4711038993482362,
+      "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+    },
+    "metrics": {
+      "selection": {
+        "frames": 23,
+        "predictions": 28,
+        "teacher_objects": 59,
+        "matched_teacher_objects": 28,
+        "teacher_center_precision": 1.0,
+        "teacher_center_recall": 0.4745762711864407,
+        "teacher_center_f1": 0.6436781609195402,
+        "frames_with_predictions": 23,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.2173913043478262,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08059725458068508,
+        "matched_center_3d_mean_error_m": 0.09546070479388748,
+        "matched_size_component_mae_m": 0.11625661026863825,
+        "matched_yaw_mean_error_rad": 0.2182845742707806,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 23,
+            "teachers": 23,
+            "matches": 23
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 5,
+            "teachers": 35,
+            "matches": 5
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.8200075843411944,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7103324558423914,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.0970570001518354,
+        "head_latency_p95_ms": 1.6328162990248527,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "calibration": {
+        "frames": 24,
+        "predictions": 41,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 38,
+        "teacher_center_precision": 0.926829268292683,
+        "teacher_center_recall": 0.8636363636363636,
+        "teacher_center_f1": 0.8941176470588236,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.7083333333333333,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08835618874352229,
+        "matched_center_3d_mean_error_m": 0.11384991713260349,
+        "matched_size_component_mae_m": 0.08583466055100425,
+        "matched_yaw_mean_error_rad": 0.165737895147973,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 17,
+            "teachers": 18,
+            "matches": 14
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.5882925745099783,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.71026611328125,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.16558450008597,
+        "head_latency_p95_ms": 1.4886974493492744,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "development": {
+        "frames": 162,
+        "predictions": 148,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 147,
+        "teacher_center_precision": 0.9932432432432432,
+        "teacher_center_recall": 0.7386934673366834,
+        "teacher_center_f1": 0.8472622478386167,
+        "frames_with_predictions": 147,
+        "prediction_frame_coverage": 0.9074074074074074,
+        "predictions_per_frame": 0.9135802469135802,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06497878726844226,
+        "matched_center_3d_mean_error_m": 0.09695478101723454,
+        "matched_size_component_mae_m": 0.20080207940402214,
+        "matched_yaw_mean_error_rad": 0.10018741007463462,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 147,
+            "teachers": 162,
+            "matches": 147
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3682208959657101,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7120150342399691,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1072805009462172,
+        "head_latency_p95_ms": 1.4923720497790782,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      }
+    },
+    "robustness": {
+      "camera_missing": {
+        "frames": 162,
+        "predictions": 148,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 147,
+        "teacher_center_precision": 0.9932432432432432,
+        "teacher_center_recall": 0.7386934673366834,
+        "teacher_center_f1": 0.8472622478386167,
+        "frames_with_predictions": 147,
+        "prediction_frame_coverage": 0.9074074074074074,
+        "predictions_per_frame": 0.9135802469135802,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06497878726844226,
+        "matched_center_3d_mean_error_m": 0.09695478101723454,
+        "matched_size_component_mae_m": 0.20080207940402214,
+        "matched_yaw_mean_error_rad": 0.10018741007463462,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 147,
+            "teachers": 162,
+            "matches": 147
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3682208959657101,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7120150342399691,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1193964992344263,
+        "head_latency_p95_ms": 1.491818000067724,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "lidar_missing": {
+        "frames": 162,
+        "predictions": 0,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 0,
+        "teacher_center_precision": 0.0,
+        "teacher_center_recall": 0.0,
+        "teacher_center_f1": 0.0,
+        "frames_with_predictions": 0,
+        "prediction_frame_coverage": 0.0,
+        "predictions_per_frame": 0.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": null,
+        "matched_center_3d_mean_error_m": null,
+        "matched_size_component_mae_m": null,
+        "matched_yaw_mean_error_rad": null,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 0,
+            "teachers": 162,
+            "matches": 0
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 0,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 22.290328308388037,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.0,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.0801544995047152,
+        "head_latency_p95_ms": 1.4692190996356658,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "radar_missing": {
+        "frames": 162,
+        "predictions": 148,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 147,
+        "teacher_center_precision": 0.9932432432432432,
+        "teacher_center_recall": 0.7386934673366834,
+        "teacher_center_f1": 0.8472622478386167,
+        "frames_with_predictions": 147,
+        "prediction_frame_coverage": 0.9074074074074074,
+        "predictions_per_frame": 0.9135802469135802,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06497878726844226,
+        "matched_center_3d_mean_error_m": 0.09695478101723454,
+        "matched_size_component_mae_m": 0.20080207940402214,
+        "matched_yaw_mean_error_rad": 0.10018741007463462,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 147,
+            "teachers": 162,
+            "matches": 147
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3682208959657101,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7120150342399691,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1710095004673349,
+        "head_latency_p95_ms": 1.5599109990034776,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "all_missing": {
+        "frames": 162,
+        "predictions": 0,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 0,
+        "teacher_center_precision": 0.0,
+        "teacher_center_recall": 0.0,
+        "teacher_center_f1": 0.0,
+        "frames_with_predictions": 0,
+        "prediction_frame_coverage": 0.0,
+        "predictions_per_frame": 0.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": null,
+        "matched_center_3d_mean_error_m": null,
+        "matched_size_component_mae_m": null,
+        "matched_yaw_mean_error_rad": null,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 0,
+            "teachers": 162,
+            "matches": 0
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 0,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 22.290328308388037,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.0,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.0857279994525015,
+        "head_latency_p95_ms": 1.4784349486944846,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "camera_jitter_1cell": {
+        "frames": 162,
+        "predictions": 148,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 147,
+        "teacher_center_precision": 0.9932432432432432,
+        "teacher_center_recall": 0.7386934673366834,
+        "teacher_center_f1": 0.8472622478386167,
+        "frames_with_predictions": 147,
+        "prediction_frame_coverage": 0.9074074074074074,
+        "predictions_per_frame": 0.9135802469135802,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06497878726844226,
+        "matched_center_3d_mean_error_m": 0.09695478101723454,
+        "matched_size_component_mae_m": 0.20080207940402214,
+        "matched_yaw_mean_error_rad": 0.10018741007463462,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 147,
+            "teachers": 162,
+            "matches": 147
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3682208959657101,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7120150342399691,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.1403140006223111,
+        "head_latency_p95_ms": 1.5181290991677088,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      },
+      "camera_jitter_2cell": {
+        "frames": 162,
+        "predictions": 148,
+        "teacher_objects": 199,
+        "matched_teacher_objects": 147,
+        "teacher_center_precision": 0.9932432432432432,
+        "teacher_center_recall": 0.7386934673366834,
+        "teacher_center_f1": 0.8472622478386167,
+        "frames_with_predictions": 147,
+        "prediction_frame_coverage": 0.9074074074074074,
+        "predictions_per_frame": 0.9135802469135802,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.06497878726844226,
+        "matched_center_3d_mean_error_m": 0.09695478101723454,
+        "matched_size_component_mae_m": 0.20080207940402214,
+        "matched_yaw_mean_error_rad": 0.10018741007463462,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 147,
+            "teachers": 162,
+            "matches": 147
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 2,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 10,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 21,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 1,
+            "teachers": 3,
+            "matches": 0
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        },
+        "loss": 0.3682208959657101,
+        "all_outputs_finite": true,
+        "mean_sensor_gates": {
+          "camera": 0.0,
+          "lidar": 0.7120150342399691,
+          "radar": 0.0
+        },
+        "head_latency_p50_ms": 1.100613500966574,
+        "head_latency_p95_ms": 1.458818149876606,
+        "latency_warning": "Cached-feature head only, excludes all frozen encoders"
+      }
+    },
+    "threshold_calibration": [
+      {
+        "threshold": 0.1,
+        "frames": 24,
+        "predictions": 70,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.6142857142857143,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.7543859649122807,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.9166666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 9,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 1,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 7,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 29,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.15,
+        "frames": 24,
+        "predictions": 57,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7543859649122807,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8514851485148516,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.375,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 3,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 28,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.2,
+        "frames": 24,
+        "predictions": 56,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7678571428571429,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.86,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.3333333333333335,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 3,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 28,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.25,
+        "frames": 24,
+        "predictions": 55,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7818181818181819,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8686868686868686,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.2916666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 28,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.3,
+        "frames": 24,
+        "predictions": 54,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.7962962962962963,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.8775510204081632,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.25,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 1,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.35,
+        "frames": 24,
+        "predictions": 53,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 43,
+        "teacher_center_precision": 0.8113207547169812,
+        "teacher_center_recall": 0.9772727272727273,
+        "teacher_center_f1": 0.88659793814433,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.2083333333333335,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09084988974554595,
+        "matched_center_3d_mean_error_m": 0.11978613325329714,
+        "matched_size_component_mae_m": 0.08416765235191168,
+        "matched_yaw_mean_error_rad": 0.21823339679733264,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 27,
+            "teachers": 18,
+            "matches": 18
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.4,
+        "frames": 24,
+        "predictions": 52,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 42,
+        "teacher_center_precision": 0.8076923076923077,
+        "teacher_center_recall": 0.9545454545454546,
+        "teacher_center_f1": 0.875,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.1666666666666665,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09214171288268906,
+        "matched_center_3d_mean_error_m": 0.11930893503484272,
+        "matched_size_component_mae_m": 0.08452639693305605,
+        "matched_yaw_mean_error_rad": 0.18146052242567143,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 26,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.45,
+        "frames": 24,
+        "predictions": 51,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 42,
+        "teacher_center_precision": 0.8235294117647058,
+        "teacher_center_recall": 0.9545454545454546,
+        "teacher_center_f1": 0.8842105263157896,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.125,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09214171288268906,
+        "matched_center_3d_mean_error_m": 0.11930893503484272,
+        "matched_size_component_mae_m": 0.08452639693305605,
+        "matched_yaw_mean_error_rad": 0.18146052242567143,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 25,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.5,
+        "frames": 24,
+        "predictions": 51,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 42,
+        "teacher_center_precision": 0.8235294117647058,
+        "teacher_center_recall": 0.9545454545454546,
+        "teacher_center_f1": 0.8842105263157896,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.125,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09214171288268906,
+        "matched_center_3d_mean_error_m": 0.11930893503484272,
+        "matched_size_component_mae_m": 0.08452639693305605,
+        "matched_yaw_mean_error_rad": 0.18146052242567143,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 2,
+            "teachers": 1,
+            "matches": 1
+          },
+          "8": {
+            "predictions": 25,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.6,
+        "frames": 24,
+        "predictions": 48,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 41,
+        "teacher_center_precision": 0.8541666666666666,
+        "teacher_center_recall": 0.9318181818181818,
+        "teacher_center_f1": 0.8913043478260869,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09046855441680769,
+        "matched_center_3d_mean_error_m": 0.11829300006715263,
+        "matched_size_component_mae_m": 0.08626720769618584,
+        "matched_yaw_mean_error_rad": 0.18478039411328187,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 24,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.7,
+        "frames": 24,
+        "predictions": 48,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 41,
+        "teacher_center_precision": 0.8541666666666666,
+        "teacher_center_recall": 0.9318181818181818,
+        "teacher_center_f1": 0.8913043478260869,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 2.0,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09046855441680769,
+        "matched_center_3d_mean_error_m": 0.11829300006715263,
+        "matched_size_component_mae_m": 0.08626720769618584,
+        "matched_yaw_mean_error_rad": 0.18478039411328187,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 24,
+            "teachers": 18,
+            "matches": 17
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.8,
+        "frames": 24,
+        "predictions": 46,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 40,
+        "teacher_center_precision": 0.8695652173913043,
+        "teacher_center_recall": 0.9090909090909091,
+        "teacher_center_f1": 0.888888888888889,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.9166666666666667,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.09147813962772489,
+        "matched_center_3d_mean_error_m": 0.11803302317857742,
+        "matched_size_component_mae_m": 0.08608658760786056,
+        "matched_yaw_mean_error_rad": 0.17572692926041783,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 22,
+            "teachers": 18,
+            "matches": 16
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      },
+      {
+        "threshold": 0.9,
+        "frames": 24,
+        "predictions": 41,
+        "teacher_objects": 44,
+        "matched_teacher_objects": 38,
+        "teacher_center_precision": 0.926829268292683,
+        "teacher_center_recall": 0.8636363636363636,
+        "teacher_center_f1": 0.8941176470588236,
+        "frames_with_predictions": 24,
+        "prediction_frame_coverage": 1.0,
+        "predictions_per_frame": 1.7083333333333333,
+        "invalid_predictions": 0,
+        "matched_center_xy_mean_error_m": 0.08835618874352229,
+        "matched_center_3d_mean_error_m": 0.11384991713260349,
+        "matched_size_component_mae_m": 0.08583466055100425,
+        "matched_yaw_mean_error_rad": 0.165737895147973,
+        "same_class_matching_distance_m": 2.0,
+        "per_class": {
+          "0": {
+            "predictions": 24,
+            "teachers": 24,
+            "matches": 24
+          },
+          "1": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "2": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "3": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "4": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "5": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "6": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          },
+          "7": {
+            "predictions": 0,
+            "teachers": 1,
+            "matches": 0
+          },
+          "8": {
+            "predictions": 17,
+            "teachers": 18,
+            "matches": 14
+          },
+          "9": {
+            "predictions": 0,
+            "teachers": 0,
+            "matches": 0
+          }
+        }
+      }
+    ],
+    "history": [
+      {
+        "epoch": 1,
+        "learning_rate": 0.001,
+        "train": {
+          "total": 8.52549532564675,
+          "heatmap": 6.7265155955058775,
+          "box": 0.8976476199743224,
+          "yaw_norm": 0.18421488869424182
+        },
+        "selection_loss": 3.213213858397111,
+        "selection_teacher_f1_at_020": 0.8301886792452831
+      },
+      {
+        "epoch": 2,
+        "learning_rate": 0.0009996984593744526,
+        "train": {
+          "total": 2.1254859871980623,
+          "heatmap": 1.6626323214391383,
+          "box": 0.22967552993355728,
+          "yaw_norm": 0.1751304566860199
+        },
+        "selection_loss": 1.7755917103394219,
+        "selection_teacher_f1_at_020": 0.6918238993710691
+      },
+      {
+        "epoch": 3,
+        "learning_rate": 0.000998794204878613,
+        "train": {
+          "total": 1.1344605131847103,
+          "heatmap": 0.7909183371357802,
+          "box": 0.17067286190463277,
+          "yaw_norm": 0.10982278961597419
+        },
+        "selection_loss": 1.3054518336835115,
+        "selection_teacher_f1_at_020": 0.7651006711409396
+      },
+      {
+        "epoch": 4,
+        "learning_rate": 0.0009972883382072955,
+        "train": {
+          "total": 0.7656319432142304,
+          "heatmap": 0.4921387463081174,
+          "box": 0.13591517435341346,
+          "yaw_norm": 0.08314227739848741
+        },
+        "selection_loss": 1.083823060211928,
+        "selection_teacher_f1_at_020": 0.6823529411764706
+      },
+      {
+        "epoch": 5,
+        "learning_rate": 0.0009951826940270776,
+        "train": {
+          "total": 0.6589935073038427,
+          "heatmap": 0.3728281786529029,
+          "box": 0.14234226233348612,
+          "yaw_norm": 0.07404041594666678
+        },
+        "selection_loss": 1.0864940803983938,
+        "selection_teacher_f1_at_020": 0.7483870967741936
+      },
+      {
+        "epoch": 6,
+        "learning_rate": 0.0009924798377410433,
+        "train": {
+          "total": 0.6075600349321598,
+          "heatmap": 0.3466155310956443,
+          "box": 0.12989849906142165,
+          "yaw_norm": 0.057375860922947164
+        },
+        "selection_loss": 0.9967630738797395,
+        "selection_teacher_f1_at_020": 0.7581699346405228
+      },
+      {
+        "epoch": 7,
+        "learning_rate": 0.0009891830623632342,
+        "train": {
+          "total": 0.51111956994708,
+          "heatmap": 0.2914259470090633,
+          "box": 0.10928991182548244,
+          "yaw_norm": 0.05568978342613796
+        },
+        "selection_loss": 0.9470219715781834,
+        "selection_teacher_f1_at_020": 0.6783625730994153
+      },
+      {
+        "epoch": 8,
+        "learning_rate": 0.0009852963845066185,
+        "train": {
+          "total": 0.42403942782704424,
+          "heatmap": 0.22696609122724068,
+          "box": 0.09817646071314812,
+          "yaw_norm": 0.036020682079762945
+        },
+        "selection_loss": 0.956038069465886,
+        "selection_teacher_f1_at_020": 0.8721804511278195
+      },
+      {
+        "epoch": 9,
+        "learning_rate": 0.0009808245394894682,
+        "train": {
+          "total": 0.4315924913418002,
+          "heatmap": 0.2487707883119583,
+          "box": 0.09092599798629923,
+          "yaw_norm": 0.0484854067880206
+        },
+        "selection_loss": 0.9052599150201549,
+        "selection_teacher_f1_at_020": 0.8
+      },
+      {
+        "epoch": 10,
+        "learning_rate": 0.0009757729755661015,
+        "train": {
+          "total": 0.399854154121585,
+          "heatmap": 0.20788023166540193,
+          "box": 0.09555191964637942,
+          "yaw_norm": 0.0435042439437494
+        },
+        "selection_loss": 0.8609571741974872,
+        "selection_teacher_f1_at_020": 0.7945205479452054
+      },
+      {
+        "epoch": 11,
+        "learning_rate": 0.000970147847289025,
+        "train": {
+          "total": 0.40100523393328596,
+          "heatmap": 0.21638014331096556,
+          "box": 0.09170133257057608,
+          "yaw_norm": 0.0611213089943659
+        },
+        "selection_loss": 1.004126180773196,
+        "selection_teacher_f1_at_020": 0.9310344827586206
+      },
+      {
+        "epoch": 12,
+        "learning_rate": 0.0009639560080105602,
+        "train": {
+          "total": 0.33392242033307146,
+          "heatmap": 0.17349649347910068,
+          "box": 0.07983586809984068,
+          "yaw_norm": 0.037709330640188075
+        },
+        "selection_loss": 0.9416037979333297,
+        "selection_teacher_f1_at_020": 0.8682170542635659
+      },
+      {
+        "epoch": 13,
+        "learning_rate": 0.0009572050015330878,
+        "train": {
+          "total": 0.35964146692578386,
+          "heatmap": 0.20640542739775122,
+          "box": 0.07612222378573767,
+          "yaw_norm": 0.04957950578593626
+        },
+        "selection_loss": 0.867676885879558,
+        "selection_teacher_f1_at_020": 0.8592592592592594
+      },
+      {
+        "epoch": 14,
+        "learning_rate": 0.0009499030529180881,
+        "train": {
+          "total": 0.3326454082640206,
+          "heatmap": 0.18153422380365977,
+          "box": 0.07513800663192098,
+          "yaw_norm": 0.04175843125799807
+        },
+        "selection_loss": 1.0029974534459736,
+        "selection_teacher_f1_at_020": 0.9016393442622951
+      },
+      {
+        "epoch": 15,
+        "learning_rate": 0.0009420590584651693,
+        "train": {
+          "total": 0.2988025277126126,
+          "heatmap": 0.1611102405117779,
+          "box": 0.06846425273432964,
+          "yaw_norm": 0.038189112458650656
+        },
+        "selection_loss": 0.9261731945950052,
+        "selection_teacher_f1_at_020": 0.8592592592592594
+      },
+      {
+        "epoch": 16,
+        "learning_rate": 0.0009336825748732976,
+        "train": {
+          "total": 0.2832168377027279,
+          "heatmap": 0.14943465681337728,
+          "box": 0.0665025829178531,
+          "yaw_norm": 0.038850840408264135
+        },
+        "selection_loss": 0.8426118369983591,
+        "selection_teacher_f1_at_020": 0.8055555555555557
+      },
+      {
+        "epoch": 17,
+        "learning_rate": 0.0009247838075974312,
+        "train": {
+          "total": 0.2629729847355587,
+          "heatmap": 0.13837755089852868,
+          "box": 0.061992404846156514,
+          "yaw_norm": 0.03053111280882504
+        },
+        "selection_loss": 0.8762044129164323,
+        "selection_teacher_f1_at_020": 0.912
+      },
+      {
+        "epoch": 18,
+        "learning_rate": 0.000915373598414746,
+        "train": {
+          "total": 0.24056537776458553,
+          "heatmap": 0.12328344801577126,
+          "box": 0.058346642044986165,
+          "yaw_norm": 0.02943226772292358
+        },
+        "selection_loss": 0.9724668607763622,
+        "selection_teacher_f1_at_020": 0.9344262295081968
+      },
+      {
+        "epoch": 19,
+        "learning_rate": 0.0009054634122155993,
+        "train": {
+          "total": 0.22277647511261264,
+          "heatmap": 0.10117409687216689,
+          "box": 0.060376886278390884,
+          "yaw_norm": 0.04243026278549578
+        },
+        "selection_loss": 0.8449278506247894,
+        "selection_teacher_f1_at_020": 0.8260869565217391
+      },
+      {
+        "epoch": 20,
+        "learning_rate": 0.0008950653230353278,
+        "train": {
+          "total": 0.2731897374842225,
+          "heatmap": 0.14689472712939833,
+          "box": 0.06275803763873694,
+          "yaw_norm": 0.038946659474565486
+        },
+        "selection_loss": 1.0206545461779055,
+        "selection_teacher_f1_at_020": 0.7916666666666666
+      },
+      {
+        "epoch": 21,
+        "learning_rate": 0.0008841919993438944,
+        "train": {
+          "total": 0.2410464577558564,
+          "heatmap": 0.122817564119653,
+          "box": 0.05870112740411991,
+          "yaw_norm": 0.04133184331401092
+        },
+        "selection_loss": 0.9941366029822308,
+        "selection_teacher_f1_at_020": 0.8188976377952756
+      },
+      {
+        "epoch": 22,
+        "learning_rate": 0.0008728566886113104,
+        "train": {
+          "total": 0.21534508830163537,
+          "heatmap": 0.10216603918773372,
+          "box": 0.05624997820250872,
+          "yaw_norm": 0.03395461304703864
+        },
+        "selection_loss": 0.8973350168570228,
+        "selection_teacher_f1_at_020": 0.8484848484848484
+      },
+      {
+        "epoch": 23,
+        "learning_rate": 0.0008610732011676325,
+        "train": {
+          "total": 0.2705281442258416,
+          "heatmap": 0.14583702567147044,
+          "box": 0.06195418645695942,
+          "yaw_norm": 0.03913718071289179
+        },
+        "selection_loss": 0.8659316554017689,
+        "selection_teacher_f1_at_020": 0.912
+      },
+      {
+        "epoch": 24,
+        "learning_rate": 0.0008488558933772038,
+        "train": {
+          "total": 0.2155043322865556,
+          "heatmap": 0.10668413886209814,
+          "box": 0.054011809934930106,
+          "yaw_norm": 0.039828602088297284
+        },
+        "selection_loss": 0.9376311366972716,
+        "selection_teacher_f1_at_020": 0.912
+      },
+      {
+        "epoch": 25,
+        "learning_rate": 0.0008362196501476351,
+        "train": {
+          "total": 0.21860211506122496,
+          "heatmap": 0.10432960147537836,
+          "box": 0.056754533564899026,
+          "yaw_norm": 0.03817234717582057
+        },
+        "selection_loss": 0.8557507045890974,
+        "selection_teacher_f1_at_020": 0.8571428571428571
+      },
+      {
+        "epoch": 26,
+        "learning_rate": 0.0008231798667948372,
+        "train": {
+          "total": 0.17552072500310292,
+          "heatmap": 0.07396568076276197,
+          "box": 0.05044754131174669,
+          "yaw_norm": 0.03299799070852559
+        },
+        "selection_loss": 1.0170367972358414,
+        "selection_teacher_f1_at_020": 0.9047619047619047
+      },
+      {
+        "epoch": 27,
+        "learning_rate": 0.0008097524302862012,
+        "train": {
+          "total": 0.1627735873547996,
+          "heatmap": 0.0764016799810456,
+          "box": 0.04285822490729937,
+          "yaw_norm": 0.03277276563117417
+        },
+        "selection_loss": 1.0047134951404904,
+        "selection_teacher_f1_at_020": 0.8437499999999999
+      },
+      {
+        "epoch": 28,
+        "learning_rate": 0.0007959536998847746,
+        "train": {
+          "total": 0.15301290372522866,
+          "heatmap": 0.07414543574176184,
+          "box": 0.03918612543947813,
+          "yaw_norm": 0.02476088352864835
+        },
+        "selection_loss": 0.9269440005654874,
+        "selection_teacher_f1_at_020": 0.8760330578512397
+      },
+      {
+        "epoch": 29,
+        "learning_rate": 0.00078180048721802,
+        "train": {
+          "total": 0.13073443058060435,
+          "heatmap": 0.05474514541466061,
+          "box": 0.03772418632558206,
+          "yaw_norm": 0.027045589431597874
+        },
+        "selection_loss": 0.924363583650278,
+        "selection_teacher_f1_at_020": 0.8813559322033898
+      },
+      {
+        "epoch": 30,
+        "learning_rate": 0.0007673100357954367,
+        "train": {
+          "total": 0.13536693446519898,
+          "heatmap": 0.053206597977295156,
+          "box": 0.04079606815627435,
+          "yaw_norm": 0.02840990218810919
+        },
+        "selection_loss": 1.0632925454689108,
+        "selection_teacher_f1_at_020": 0.9333333333333333
+      },
+      {
+        "epoch": 31,
+        "learning_rate": 0.0007525000000000002,
+        "train": {
+          "total": 0.14764516219133283,
+          "heatmap": 0.07424820396231442,
+          "box": 0.03642387342889134,
+          "yaw_norm": 0.02746040808468512
+        },
+        "selection_loss": 0.8291775189016176,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 32,
+        "learning_rate": 0.0007373884235790161,
+        "train": {
+          "total": 0.13495990343210174,
+          "heatmap": 0.05832910342369138,
+          "box": 0.0380232753913577,
+          "yaw_norm": 0.029212391128899846
+        },
+        "selection_loss": 0.8200075843411944,
+        "selection_teacher_f1_at_020": 0.8507462686567164
+      },
+      {
+        "epoch": 33,
+        "learning_rate": 0.0007219937176605935,
+        "train": {
+          "total": 0.1671468840866554,
+          "heatmap": 0.07334373864095385,
+          "box": 0.04653554028127252,
+          "yaw_norm": 0.03660333747180497
+        },
+        "selection_loss": 1.0512846112251282,
+        "selection_teacher_f1_at_020": 0.8925619834710744
+      },
+      {
+        "epoch": 34,
+        "learning_rate": 0.0007063346383225212,
+        "train": {
+          "total": 0.150177938363901,
+          "heatmap": 0.06744751888440877,
+          "box": 0.04105596857645163,
+          "yaw_norm": 0.03092410833370395
+        },
+        "selection_loss": 0.8962221071124077,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 35,
+        "learning_rate": 0.0006904302637408766,
+        "train": {
+          "total": 0.12209992074384922,
+          "heatmap": 0.05013579807085235,
+          "box": 0.035702757173922,
+          "yaw_norm": 0.027930436599091057
+        },
+        "selection_loss": 0.9923042528655218,
+        "selection_teacher_f1_at_020": 0.8721804511278195
+      },
+      {
+        "epoch": 36,
+        "learning_rate": 0.0006742999709462062,
+        "train": {
+          "total": 0.11313685765717088,
+          "heatmap": 0.04473069044420632,
+          "box": 0.03386284102027009,
+          "yaw_norm": 0.03402425030746111
+        },
+        "selection_loss": 0.9251448709679686,
+        "selection_teacher_f1_at_020": 0.8615384615384616
+      },
+      {
+        "epoch": 37,
+        "learning_rate": 0.0006579634122155991,
+        "train": {
+          "total": 0.1260116812659473,
+          "heatmap": 0.058920282507088126,
+          "box": 0.03329035012823779,
+          "yaw_norm": 0.02553494004305543
+        },
+        "selection_loss": 0.9278193261960278,
+        "selection_teacher_f1_at_020": 0.890625
+      },
+      {
+        "epoch": 38,
+        "learning_rate": 0.0006414404911294147,
+        "train": {
+          "total": 0.10562792683883411,
+          "heatmap": 0.04102342842691919,
+          "box": 0.031968270473909086,
+          "yaw_norm": 0.03339781611022062
+        },
+        "selection_loss": 1.0351235153882399,
+        "selection_teacher_f1_at_020": 0.8656716417910447
+      },
+      {
+        "epoch": 39,
+        "learning_rate": 0.0006247513383218356,
+        "train": {
+          "total": 0.09542181161118717,
+          "heatmap": 0.042582284999875035,
+          "box": 0.026239905915245776,
+          "yaw_norm": 0.017985750398621325
+        },
+        "selection_loss": 1.1099026591881462,
+        "selection_teacher_f1_at_020": 0.9256198347107438
+      },
+      {
+        "epoch": 40,
+        "learning_rate": 0.000607916286954791,
+        "train": {
+          "total": 0.08671773915610663,
+          "heatmap": 0.030081170088634257,
+          "box": 0.028062150972645458,
+          "yaw_norm": 0.02561334159406947
+        },
+        "selection_loss": 1.0832289693796116,
+        "selection_teacher_f1_at_020": 0.8992248062015504
+      },
+      {
+        "epoch": 41,
+        "learning_rate": 0.0005909558479451307,
+        "train": {
+          "total": 0.07726278683034385,
+          "heatmap": 0.027640527193775265,
+          "box": 0.02461041432873505,
+          "yaw_norm": 0.020071556155637996
+        },
+        "selection_loss": 1.0066922527292501,
+        "selection_teacher_f1_at_020": 0.888888888888889
+      },
+      {
+        "epoch": 42,
+        "learning_rate": 0.0005738906849752325,
+        "train": {
+          "total": 0.06452322787627941,
+          "heatmap": 0.01894723253733501,
+          "box": 0.022570130574267086,
+          "yaw_norm": 0.021786670632115226
+        },
+        "selection_loss": 1.0099820277613143,
+        "selection_teacher_f1_at_020": 0.9105691056910569
+      },
+      {
+        "epoch": 43,
+        "learning_rate": 0.0005567415893174886,
+        "train": {
+          "total": 0.07649182346535892,
+          "heatmap": 0.02796103526474681,
+          "box": 0.024057607734348715,
+          "yaw_norm": 0.02077863315438352
+        },
+        "selection_loss": 0.9638526948249858,
+        "selection_teacher_f1_at_020": 0.888888888888889
+      },
+      {
+        "epoch": 44,
+        "learning_rate": 0.0005395294545033422,
+        "train": {
+          "total": 0.06462926803747328,
+          "heatmap": 0.018534717206820484,
+          "box": 0.02286397806573205,
+          "yaw_norm": 0.018329688154797002
+        },
+        "selection_loss": 1.0419599520771399,
+        "selection_teacher_f1_at_020": 0.8965517241379309
+      },
+      {
+        "epoch": 45,
+        "learning_rate": 0.0005222752508677381,
+        "train": {
+          "total": 0.06410338865911089,
+          "heatmap": 0.018021564408228163,
+          "box": 0.02286589082057883,
+          "yaw_norm": 0.01750212396699481
+        },
+        "selection_loss": 0.9622340856686883,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 46,
+        "learning_rate": 0.000505,
+        "train": {
+          "total": 0.05589529794708985,
+          "heatmap": 0.013591871267502628,
+          "box": 0.020990026876239513,
+          "yaw_norm": 0.016168684471489454
+        },
+        "selection_loss": 0.9563593600431214,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 47,
+        "learning_rate": 0.00048772474913226217,
+        "train": {
+          "total": 0.05418421782371474,
+          "heatmap": 0.013038234955563052,
+          "box": 0.02040905875676289,
+          "yaw_norm": 0.01639324772489689
+        },
+        "selection_loss": 1.0567884147167206,
+        "selection_teacher_f1_at_020": 0.888888888888889
+      },
+      {
+        "epoch": 48,
+        "learning_rate": 0.000470470545496658,
+        "train": {
+          "total": 0.05593317992440084,
+          "heatmap": 0.015830199097896496,
+          "box": 0.01990795853297885,
+          "yaw_norm": 0.014353140257298946
+        },
+        "selection_loss": 0.9499119008364885,
+        "selection_teacher_f1_at_020": 0.9062499999999999
+      },
+      {
+        "epoch": 49,
+        "learning_rate": 0.0004532584106825116,
+        "train": {
+          "total": 0.05326367692067856,
+          "heatmap": 0.012066059899175675,
+          "box": 0.0203853138926916,
+          "yaw_norm": 0.021349484487095984
+        },
+        "selection_loss": 1.0182038882504338,
+        "selection_teacher_f1_at_020": 0.8976377952755905
+      },
+      {
+        "epoch": 50,
+        "learning_rate": 0.0004361093150247676,
+        "train": {
+          "total": 0.051154500918417445,
+          "heatmap": 0.017746265250735166,
+          "box": 0.016588444901039688,
+          "yaw_norm": 0.01156724697524091
+        },
+        "selection_loss": 0.93870300086944,
+        "selection_teacher_f1_at_020": 0.888888888888889
+      },
+      {
+        "epoch": 51,
+        "learning_rate": 0.0004190441520548695,
+        "train": {
+          "total": 0.05149998824770858,
+          "heatmap": 0.016802534864215953,
+          "box": 0.017238218076072814,
+          "yaw_norm": 0.011050837415429513
+        },
+        "selection_loss": 1.0190038204840992,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 52,
+        "learning_rate": 0.0004020837130452092,
+        "train": {
+          "total": 0.04555067978799343,
+          "heatmap": 0.010500688287543088,
+          "box": 0.01741664895288101,
+          "yaw_norm": 0.010834699818898537
+        },
+        "selection_loss": 0.9836992728321449,
+        "selection_teacher_f1_at_020": 0.9047619047619047
+      },
+      {
+        "epoch": 53,
+        "learning_rate": 0.00038524866167816444,
+        "train": {
+          "total": 0.047700151937400424,
+          "heatmap": 0.012922666240029218,
+          "box": 0.017224508155955047,
+          "yaw_norm": 0.01642345840383957
+        },
+        "selection_loss": 1.0233901518842448,
+        "selection_teacher_f1_at_020": 0.9105691056910569
+      },
+      {
+        "epoch": 54,
+        "learning_rate": 0.00036855950887058545,
+        "train": {
+          "total": 0.04500864770990319,
+          "heatmap": 0.010187639826454403,
+          "box": 0.017300878946737545,
+          "yaw_norm": 0.010962483776937716
+        },
+        "selection_loss": 1.0506903603672981,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 55,
+        "learning_rate": 0.0003520365877844011,
+        "train": {
+          "total": 0.035446945623290246,
+          "heatmap": 0.009479355067014694,
+          "box": 0.012904653427895249,
+          "yaw_norm": 0.007914196580602991
+        },
+        "selection_loss": 0.974560919015304,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 56,
+        "learning_rate": 0.000335700029053794,
+        "train": {
+          "total": 0.049314653455484206,
+          "heatmap": 0.014901469887529568,
+          "box": 0.017065786165980305,
+          "yaw_norm": 0.014080580203260137
+        },
+        "selection_loss": 1.037113473467205,
+        "selection_teacher_f1_at_020": 0.8837209302325583
+      },
+      {
+        "epoch": 57,
+        "learning_rate": 0.0003195697362591235,
+        "train": {
+          "total": 0.049472445304073936,
+          "heatmap": 0.017023489963853868,
+          "box": 0.01609154402210218,
+          "yaw_norm": 0.013293351728196552
+        },
+        "selection_loss": 1.0115730325165002,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 58,
+        "learning_rate": 0.000303665361677479,
+        "train": {
+          "total": 0.037609092164330366,
+          "heatmap": 0.007962148381033686,
+          "box": 0.014711323784800565,
+          "yaw_norm": 0.011214781524159195
+        },
+        "selection_loss": 1.0477312748198924,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 59,
+        "learning_rate": 0.0002880062823394066,
+        "train": {
+          "total": 0.031528446868788904,
+          "heatmap": 0.008884931516992609,
+          "box": 0.011248960920677679,
+          "yaw_norm": 0.007279674658869825
+        },
+        "selection_loss": 1.0199038425217504,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 60,
+        "learning_rate": 0.0002726115764209842,
+        "train": {
+          "total": 0.03436993807554245,
+          "heatmap": 0.009898410439945576,
+          "box": 0.012173288876599655,
+          "yaw_norm": 0.0062474773134809074
+        },
+        "selection_loss": 1.0125991187017898,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 61,
+        "learning_rate": 0.00025750000000000013,
+        "train": {
+          "total": 0.02702708864902578,
+          "heatmap": 0.006344930212036139,
+          "box": 0.01026581249358814,
+          "yaw_norm": 0.007526664047717776
+        },
+        "selection_loss": 1.042872892125793,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 62,
+        "learning_rate": 0.0002426899642045636,
+        "train": {
+          "total": 0.03165666709040723,
+          "heatmap": 0.007270793759877362,
+          "box": 0.012127618589324922,
+          "yaw_norm": 0.006531819215657689
+        },
+        "selection_loss": 0.9981563719718353,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 63,
+        "learning_rate": 0.00022819951278198037,
+        "train": {
+          "total": 0.0300185335345748,
+          "heatmap": 0.006567374422646514,
+          "box": 0.011636410396909568,
+          "yaw_norm": 0.008916895444754784
+        },
+        "selection_loss": 1.030988156147625,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 64,
+        "learning_rate": 0.00021404630011522585,
+        "train": {
+          "total": 0.028958028000665874,
+          "heatmap": 0.00527205666890595,
+          "box": 0.011778923830517181,
+          "yaw_norm": 0.00640615888746319
+        },
+        "selection_loss": 1.0384124031533366,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 65,
+        "learning_rate": 0.00020024756971379914,
+        "train": {
+          "total": 0.025276561154098046,
+          "heatmap": 0.005748673296737962,
+          "box": 0.009699918761304238,
+          "yaw_norm": 0.006402536937058336
+        },
+        "selection_loss": 1.046577919760476,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 66,
+        "learning_rate": 0.000186820133205163,
+        "train": {
+          "total": 0.03166967335088951,
+          "heatmap": 0.009699490560195976,
+          "box": 0.010929352115476278,
+          "yaw_norm": 0.0055739051185366584
+        },
+        "selection_loss": 1.0311259251573812,
+        "selection_teacher_f1_at_020": 0.9193548387096773
+      },
+      {
+        "epoch": 67,
+        "learning_rate": 0.00017378034985236516,
+        "train": {
+          "total": 0.02866202538333288,
+          "heatmap": 0.005436392677039272,
+          "box": 0.011486578039915823,
+          "yaw_norm": 0.01262381371882994
+        },
+        "selection_loss": 1.0258451833025268,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 68,
+        "learning_rate": 0.00016114410662279645,
+        "train": {
+          "total": 0.023424592618716926,
+          "heatmap": 0.005745856315692569,
+          "box": 0.008796726495436415,
+          "yaw_norm": 0.004264166022128448
+        },
+        "selection_loss": 1.020842934432237,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 69,
+        "learning_rate": 0.00014892679883236765,
+        "train": {
+          "total": 0.0217035214939132,
+          "heatmap": 0.004178866511210799,
+          "box": 0.008712657568294828,
+          "yaw_norm": 0.0049669959443257895
+        },
+        "selection_loss": 1.0304812303055888,
+        "selection_teacher_f1_at_020": 0.9180327868852458
+      },
+      {
+        "epoch": 70,
+        "learning_rate": 0.00013714331138868995,
+        "train": {
+          "total": 0.023265060514393376,
+          "heatmap": 0.004645321109309429,
+          "box": 0.009252214491957934,
+          "yaw_norm": 0.005765508753872227
+        },
+        "selection_loss": 1.0334942049306373,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 71,
+        "learning_rate": 0.00012580800065610593,
+        "train": {
+          "total": 0.027131208763798563,
+          "heatmap": 0.004858010408763842,
+          "box": 0.01107077968374985,
+          "yaw_norm": 0.0065819416649457885
+        },
+        "selection_loss": 1.0300893488785494,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 72,
+        "learning_rate": 0.00011493467696467265,
+        "train": {
+          "total": 0.02576320709251776,
+          "heatmap": 0.004095013100063292,
+          "box": 0.010751938947090289,
+          "yaw_norm": 0.008215810206332585
+        },
+        "selection_loss": 1.0425857091727464,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 73,
+        "learning_rate": 0.00010453658778440107,
+        "train": {
+          "total": 0.025419970838035027,
+          "heatmap": 0.004443934823318225,
+          "box": 0.010407451176788748,
+          "yaw_norm": 0.008056683076840893
+        },
+        "selection_loss": 1.0404362795145616,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 74,
+        "learning_rate": 9.46264015852544e-05,
+        "train": {
+          "total": 0.018371269742890103,
+          "heatmap": 0.004098724676068963,
+          "box": 0.0070908886107911425,
+          "yaw_norm": 0.004538397617047516
+        },
+        "selection_loss": 1.0399995070436727,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 75,
+        "learning_rate": 8.521619240256916e-05,
+        "train": {
+          "total": 0.021374529909069944,
+          "heatmap": 0.00499824610277556,
+          "box": 0.008153792856851728,
+          "yaw_norm": 0.0034349047289252647
+        },
+        "selection_loss": 1.0500448851481727,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 76,
+        "learning_rate": 7.631742512670284e-05,
+        "train": {
+          "total": 0.020112170451661436,
+          "heatmap": 0.0043167352545779285,
+          "box": 0.007850975718167497,
+          "yaw_norm": 0.0046741957804642435
+        },
+        "selection_loss": 1.0442897787560588,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 77,
+        "learning_rate": 6.794094153483125e-05,
+        "train": {
+          "total": 0.022115714280161916,
+          "heatmap": 0.0038813200733828837,
+          "box": 0.009059845140521846,
+          "yaw_norm": 0.005735188029797339
+        },
+        "selection_loss": 1.0397345258489898,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 78,
+        "learning_rate": 6.009694708191232e-05,
+        "train": {
+          "total": 0.02038392138372107,
+          "heatmap": 0.0038865829800914338,
+          "box": 0.008202233340409471,
+          "yaw_norm": 0.004643583675937318
+        },
+        "selection_loss": 1.0441792335199274,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 79,
+        "learning_rate": 5.279499846691263e-05,
+        "train": {
+          "total": 0.021941884102799545,
+          "heatmap": 0.004089462457270157,
+          "box": 0.008866030683104948,
+          "yaw_norm": 0.006017992687525182
+        },
+        "selection_loss": 1.051791157087554,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 80,
+        "learning_rate": 4.6043991989440284e-05,
+        "train": {
+          "total": 0.020482587741642463,
+          "heatmap": 0.004261968072458375,
+          "box": 0.008066067347166741,
+          "yaw_norm": 0.004424242971453634
+        },
+        "selection_loss": 1.0436862946852394,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 81,
+        "learning_rate": 3.9852152710975386e-05,
+        "train": {
+          "total": 0.020850707356613582,
+          "heatmap": 0.004262982157808615,
+          "box": 0.00824128178504818,
+          "yaw_norm": 0.0052580843727876685
+        },
+        "selection_loss": 1.0479574608414068,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 82,
+        "learning_rate": 3.4227024433899005e-05,
+        "train": {
+          "total": 0.020958442422674924,
+          "heatmap": 0.0037345349413865224,
+          "box": 0.008560988677256718,
+          "yaw_norm": 0.0050965195476281935
+        },
+        "selection_loss": 1.0456484186908472,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 83,
+        "learning_rate": 2.917546051053226e-05,
+        "train": {
+          "total": 0.019449422908265415,
+          "heatmap": 0.004349230572853874,
+          "box": 0.007507366855151769,
+          "yaw_norm": 0.0042729299010072904
+        },
+        "selection_loss": 1.05027075111866,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 84,
+        "learning_rate": 2.470361549338175e-05,
+        "train": {
+          "total": 0.017213406427422674,
+          "heatmap": 0.0035522948984601874,
+          "box": 0.0067878629807837125,
+          "yaw_norm": 0.004269272324674558
+        },
+        "selection_loss": 1.0452764921862145,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 85,
+        "learning_rate": 2.0816937636766188e-05,
+        "train": {
+          "total": 0.019727841508006903,
+          "heatmap": 0.003508957386834592,
+          "box": 0.008059992014839337,
+          "yaw_norm": 0.0049450176692760845
+        },
+        "selection_loss": 1.0464531568729358,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 86,
+        "learning_rate": 1.752016225895703e-05,
+        "train": {
+          "total": 0.021396068787974554,
+          "heatmap": 0.0039685055522657026,
+          "box": 0.008655398970515264,
+          "yaw_norm": 0.005838282996924912
+        },
+        "selection_loss": 1.0476941019296646,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 87,
+        "learning_rate": 1.4817305972922728e-05,
+        "train": {
+          "total": 0.017467456392762138,
+          "heatmap": 0.0037889846418870657,
+          "box": 0.006802773165584701,
+          "yaw_norm": 0.003646286131342782
+        },
+        "selection_loss": 1.0470628718967023,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 88,
+        "learning_rate": 1.2711661792704722e-05,
+        "train": {
+          "total": 0.01971708251753958,
+          "heatmap": 0.0036170750277162325,
+          "box": 0.008000660273132891,
+          "yaw_norm": 0.004934327417087355
+        },
+        "selection_loss": 1.0451742766991905,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 89,
+        "learning_rate": 1.1205795121387023e-05,
+        "train": {
+          "total": 0.023141438414047404,
+          "heatmap": 0.003395534796276834,
+          "box": 0.009803800196273298,
+          "yaw_norm": 0.00691516738861981
+        },
+        "selection_loss": 1.0447980178439098,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      },
+      {
+        "epoch": 90,
+        "learning_rate": 1.0301540625547598e-05,
+        "train": {
+          "total": 0.019602453699562608,
+          "heatmap": 0.00351466397504981,
+          "box": 0.007985107157742831,
+          "yaw_norm": 0.005878771386938397
+        },
+        "selection_loss": 1.0450842720658884,
+        "selection_teacher_f1_at_020": 0.9268292682926829
+      }
+    ],
+    "feature_manifest_sha256": "217c686b51f95a22b6bf7885555298e80aef7480e71e5b0e6ac59742a337c3f2",
+    "target_center_cell_collisions": {
+      "train": 2,
+      "selection": 0,
+      "calibration": 0,
+      "development": 0
+    },
+    "target_center_sensor_support": {
+      "train": {
+        "supervised_centers": 336,
+        "centers_without_sensor_support": 0
+      },
+      "selection": {
+        "supervised_centers": 59,
+        "centers_without_sensor_support": 0
+      },
+      "calibration": {
+        "supervised_centers": 44,
+        "centers_without_sensor_support": 0
+      },
+      "development": {
+        "supervised_centers": 199,
+        "centers_without_sensor_support": 0
+      }
+    },
+    "training": {
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.01,
+      "batch_size": 8,
+      "modality_dropout_probability": 0.15,
+      "all_missing_probability": 0.03,
+      "camera_jitter": "35% probability, integer shift +/- 1 BEV cell",
+      "teacher_score_minimum": 0.35,
+      "losses": "Gaussian center focal + 2 * weighted smooth-L1 box + 0.02 * yaw norm",
+      "encoders": "All frozen; only middle fusion and detection layers trained"
+    },
+    "checkpoint_sha256": "d5c5884e4f73531d0e0814083aa02757dae255765d68a2784bc4aba980619c96"
+  },
+  "controlled_comparison_warning": "Identical head and split, with independently calibrated thresholds; teacher is LiDAR-only, which favors the LiDAR control. Cross-sensor superiority cannot be inferred from this teacher diagnostic.",
+  "elapsed_seconds": 83.73065676199985,
+  "peak_torch_allocated_mib": 279.84033203125
+}

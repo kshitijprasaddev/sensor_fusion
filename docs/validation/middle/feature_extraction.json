@@ -1,0 +1,2107 @@
+{
+  "schema": "group8-middle-features-v1",
+  "supervision": "teacher_distillation",
+  "configuration": {
+    "camera": {
+      "width": 1920,
+      "height": 1200,
+      "status": "approximate",
+      "allow_approximate": true,
+      "K": [
+        1100.0,
+        0.0,
+        960.0,
+        0.0,
+        1100.0,
+        600.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    },
+    "model": {
+      "weights": "/models/yolo11n.pt",
+      "device": "0",
+      "imgsz": 640,
+      "confidence": 0.3
+    },
+    "synchronization": {
+      "tolerance_ms": 100
+    },
+    "lidar": {
+      "roi_min": [
+        -15.0,
+        -20.0,
+        -2.8
+      ],
+      "roi_max": [
+        65.0,
+        20.0,
+        4.0
+      ],
+      "voxel": 0.25,
+      "ground_threshold": 0.22,
+      "cluster_eps": 0.65,
+      "min_points": 5
+    },
+    "radar": {
+      "max_range": 65.0,
+      "max_lateral": 20.0,
+      "cluster_eps": 1.5,
+      "min_points": 2,
+      "association_gate": 2.5
+    },
+    "tracking": {
+      "gate": 3.0,
+      "max_age": 0.7,
+      "min_hits": 2
+    },
+    "visualization": {
+      "show_unclassified": false,
+      "preview_width": 960,
+      "range_rings": true,
+      "reference_z": -1.7,
+      "projected_boxes": false,
+      "camera_points": false,
+      "camera_proposals": false,
+      "label_size": 0.32,
+      "detailed_labels": false,
+      "velocity_min_speed": 1.0,
+      "velocity_horizon_s": 0.75,
+      "velocity_max_length": 4.0
+    },
+    "pipeline": "neural",
+    "neural": {
+      "quality": {
+        "continuity_window_s": 0.5,
+        "max_relative_speed_mps": 30.0,
+        "position_slack_m": 1.0
+      },
+      "lidar": {
+        "weights": "/models/voxelnext_nuscenes.pth",
+        "confidence": 0.25,
+        "intensity_scale": 255.0
+      },
+      "tracking": {
+        "weights": "/models/sam2.1_t.pt",
+        "max_objects": 8,
+        "memory_frames": 3
+      },
+      "fusion": {
+        "weights": "/models/query_fusion_v2.pt",
+        "min_confidence": 0.65,
+        "min_radar_confidence": 0.35
+      }
+    }
+  },
+  "grid": {
+    "x_min": 0.0,
+    "y_min": -24.0,
+    "cell_size": 0.75,
+    "width": 64,
+    "height": 64
+  },
+  "bags": {
+    "studentProject": {
+      "frames": 235,
+      "wall_time_s": 31.78030374700029,
+      "per_frame": [
+        {
+          "frame": 0,
+          "teacher_objects": 4,
+          "latency_ms": 793.9056750001328
+        },
+        {
+          "frame": 1,
+          "teacher_objects": 2,
+          "latency_ms": 101.94437600148376
+        },
+        {
+          "frame": 2,
+          "teacher_objects": 3,
+          "latency_ms": 108.99742400033574
+        },
+        {
+          "frame": 3,
+          "teacher_objects": 1,
+          "latency_ms": 109.9441440001101
+        },
+        {
+          "frame": 4,
+          "teacher_objects": 3,
+          "latency_ms": 113.00813300113077
+        },
+        {
+          "frame": 5,
+          "teacher_objects": 3,
+          "latency_ms": 111.10271200050192
+        },
+        {
+          "frame": 6,
+          "teacher_objects": 2,
+          "latency_ms": 102.88802700051747
+        },
+        {
+          "frame": 7,
+          "teacher_objects": 4,
+          "latency_ms": 101.01911099991412
+        },
+        {
+          "frame": 8,
+          "teacher_objects": 4,
+          "latency_ms": 100.2463290005835
+        },
+        {
+          "frame": 9,
+          "teacher_objects": 5,
+          "latency_ms": 108.86078200019256
+        },
+        {
+          "frame": 10,
+          "teacher_objects": 3,
+          "latency_ms": 106.21824200097763
+        },
+        {
+          "frame": 11,
+          "teacher_objects": 5,
+          "latency_ms": 106.40130599858821
+        },
+        {
+          "frame": 12,
+          "teacher_objects": 3,
+          "latency_ms": 114.55264600044757
+        },
+        {
+          "frame": 13,
+          "teacher_objects": 4,
+          "latency_ms": 123.87244199999259
+        },
+        {
+          "frame": 14,
+          "teacher_objects": 5,
+          "latency_ms": 124.31498000114516
+        },
+        {
+          "frame": 15,
+          "teacher_objects": 3,
+          "latency_ms": 108.33938599898829
+        },
+        {
+          "frame": 16,
+          "teacher_objects": 3,
+          "latency_ms": 105.58055199908267
+        },
+        {
+          "frame": 17,
+          "teacher_objects": 3,
+          "latency_ms": 106.11704599978111
+        },
+        {
+          "frame": 18,
+          "teacher_objects": 2,
+          "latency_ms": 108.2308170007309
+        },
+        {
+          "frame": 19,
+          "teacher_objects": 3,
+          "latency_ms": 110.21972900016408
+        },
+        {
+          "frame": 20,
+          "teacher_objects": 4,
+          "latency_ms": 107.73012899880996
+        },
+        {
+          "frame": 21,
+          "teacher_objects": 2,
+          "latency_ms": 108.05460899973696
+        },
+        {
+          "frame": 22,
+          "teacher_objects": 3,
+          "latency_ms": 102.8903940004966
+        },
+        {
+          "frame": 23,
+          "teacher_objects": 5,
+          "latency_ms": 104.1847600008623
+        },
+        {
+          "frame": 24,
+          "teacher_objects": 5,
+          "latency_ms": 107.65768300007039
+        },
+        {
+          "frame": 25,
+          "teacher_objects": 2,
+          "latency_ms": 109.11359999954584
+        },
+        {
+          "frame": 26,
+          "teacher_objects": 2,
+          "latency_ms": 106.58889099977387
+        },
+        {
+          "frame": 27,
+          "teacher_objects": 4,
+          "latency_ms": 104.84620500028541
+        },
+        {
+          "frame": 28,
+          "teacher_objects": 4,
+          "latency_ms": 103.31660799965903
+        },
+        {
+          "frame": 29,
+          "teacher_objects": 3,
+          "latency_ms": 110.02270000062708
+        },
+        {
+          "frame": 30,
+          "teacher_objects": 3,
+          "latency_ms": 108.40768200068851
+        },
+        {
+          "frame": 31,
+          "teacher_objects": 2,
+          "latency_ms": 133.66801499978465
+        },
+        {
+          "frame": 32,
+          "teacher_objects": 2,
+          "latency_ms": 131.8760559988732
+        },
+        {
+          "frame": 33,
+          "teacher_objects": 4,
+          "latency_ms": 130.1303709988133
+        },
+        {
+          "frame": 34,
+          "teacher_objects": 2,
+          "latency_ms": 158.40204000051017
+        },
+        {
+          "frame": 35,
+          "teacher_objects": 5,
+          "latency_ms": 130.97026900140918
+        },
+        {
+          "frame": 36,
+          "teacher_objects": 3,
+          "latency_ms": 147.32588399965607
+        },
+        {
+          "frame": 37,
+          "teacher_objects": 2,
+          "latency_ms": 149.0148679986305
+        },
+        {
+          "frame": 38,
+          "teacher_objects": 2,
+          "latency_ms": 144.2954419999296
+        },
+        {
+          "frame": 39,
+          "teacher_objects": 3,
+          "latency_ms": 129.27768900044612
+        },
+        {
+          "frame": 40,
+          "teacher_objects": 4,
+          "latency_ms": 167.55839600045874
+        },
+        {
+          "frame": 41,
+          "teacher_objects": 4,
+          "latency_ms": 129.13188899983652
+        },
+        {
+          "frame": 42,
+          "teacher_objects": 4,
+          "latency_ms": 129.75909300075728
+        },
+        {
+          "frame": 43,
+          "teacher_objects": 3,
+          "latency_ms": 118.17378500018094
+        },
+        {
+          "frame": 44,
+          "teacher_objects": 4,
+          "latency_ms": 118.11190899970825
+        },
+        {
+          "frame": 45,
+          "teacher_objects": 3,
+          "latency_ms": 110.32204100047238
+        },
+        {
+          "frame": 46,
+          "teacher_objects": 2,
+          "latency_ms": 112.32187600035104
+        },
+        {
+          "frame": 47,
+          "teacher_objects": 3,
+          "latency_ms": 114.06802000055905
+        },
+        {
+          "frame": 48,
+          "teacher_objects": 5,
+          "latency_ms": 108.74108300049556
+        },
+        {
+          "frame": 49,
+          "teacher_objects": 3,
+          "latency_ms": 112.81062499983818
+        },
+        {
+          "frame": 50,
+          "teacher_objects": 3,
+          "latency_ms": 119.08043199946405
+        },
+        {
+          "frame": 51,
+          "teacher_objects": 3,
+          "latency_ms": 111.75106300106563
+        },
+        {
+          "frame": 52,
+          "teacher_objects": 3,
+          "latency_ms": 134.02261099872703
+        },
+        {
+          "frame": 53,
+          "teacher_objects": 4,
+          "latency_ms": 105.54495300129929
+        },
+        {
+          "frame": 54,
+          "teacher_objects": 4,
+          "latency_ms": 104.05207099938707
+        },
+        {
+          "frame": 55,
+          "teacher_objects": 3,
+          "latency_ms": 107.26166600034048
+        },
+        {
+          "frame": 56,
+          "teacher_objects": 4,
+          "latency_ms": 110.75522999999521
+        },
+        {
+          "frame": 57,
+          "teacher_objects": 4,
+          "latency_ms": 111.9549619997997
+        },
+        {
+          "frame": 58,
+          "teacher_objects": 2,
+          "latency_ms": 110.96225199980836
+        },
+        {
+          "frame": 59,
+          "teacher_objects": 3,
+          "latency_ms": 109.12851200009754
+        },
+        {
+          "frame": 60,
+          "teacher_objects": 3,
+          "latency_ms": 107.20309299904329
+        },
+        {
+          "frame": 61,
+          "teacher_objects": 2,
+          "latency_ms": 110.57566599993152
+        },
+        {
+          "frame": 62,
+          "teacher_objects": 5,
+          "latency_ms": 106.93613799958257
+        },
+        {
+          "frame": 63,
+          "teacher_objects": 4,
+          "latency_ms": 103.91644999981509
+        },
+        {
+          "frame": 64,
+          "teacher_objects": 3,
+          "latency_ms": 105.74738899958902
+        },
+        {
+          "frame": 65,
+          "teacher_objects": 3,
+          "latency_ms": 106.7088750005496
+        },
+        {
+          "frame": 66,
+          "teacher_objects": 4,
+          "latency_ms": 106.99612399912439
+        },
+        {
+          "frame": 67,
+          "teacher_objects": 5,
+          "latency_ms": 106.02866299996094
+        },
+        {
+          "frame": 68,
+          "teacher_objects": 5,
+          "latency_ms": 112.93701200156647
+        },
+        {
+          "frame": 69,
+          "teacher_objects": 5,
+          "latency_ms": 111.40569700000924
+        },
+        {
+          "frame": 70,
+          "teacher_objects": 2,
+          "latency_ms": 111.1484550001478
+        },
+        {
+          "frame": 71,
+          "teacher_objects": 4,
+          "latency_ms": 112.36209900016547
+        },
+        {
+          "frame": 72,
+          "teacher_objects": 5,
+          "latency_ms": 124.08337799934088
+        },
+        {
+          "frame": 73,
+          "teacher_objects": 4,
+          "latency_ms": 120.36843600071734
+        },
+        {
+          "frame": 74,
+          "teacher_objects": 3,
+          "latency_ms": 106.44135599977744
+        },
+        {
+          "frame": 75,
+          "teacher_objects": 2,
+          "latency_ms": 105.85861999970803
+        },
+        {
+          "frame": 76,
+          "teacher_objects": 1,
+          "latency_ms": 109.37284800093039
+        },
+        {
+          "frame": 77,
+          "teacher_objects": 1,
+          "latency_ms": 110.85216799983755
+        },
+        {
+          "frame": 78,
+          "teacher_objects": 2,
+          "latency_ms": 110.429030000887
+        },
+        {
+          "frame": 79,
+          "teacher_objects": 3,
+          "latency_ms": 109.57911800142028
+        },
+        {
+          "frame": 80,
+          "teacher_objects": 3,
+          "latency_ms": 111.37597000015376
+        },
+        {
+          "frame": 81,
+          "teacher_objects": 4,
+          "latency_ms": 106.61617100049625
+        },
+        {
+          "frame": 82,
+          "teacher_objects": 5,
+          "latency_ms": 108.03406500053825
+        },
+        {
+          "frame": 83,
+          "teacher_objects": 4,
+          "latency_ms": 111.54587500095658
+        },
+        {
+          "frame": 84,
+          "teacher_objects": 4,
+          "latency_ms": 108.29986899989308
+        },
+        {
+          "frame": 85,
+          "teacher_objects": 4,
+          "latency_ms": 108.89379999935045
+        },
+        {
+          "frame": 86,
+          "teacher_objects": 4,
+          "latency_ms": 110.80645799847844
+        },
+        {
+          "frame": 87,
+          "teacher_objects": 3,
+          "latency_ms": 113.09966199951305
+        },
+        {
+          "frame": 88,
+          "teacher_objects": 2,
+          "latency_ms": 109.30760700102837
+        },
+        {
+          "frame": 89,
+          "teacher_objects": 6,
+          "latency_ms": 110.74477200054389
+        },
+        {
+          "frame": 90,
+          "teacher_objects": 3,
+          "latency_ms": 103.83232999993197
+        },
+        {
+          "frame": 91,
+          "teacher_objects": 3,
+          "latency_ms": 105.82973300006415
+        },
+        {
+          "frame": 92,
+          "teacher_objects": 2,
+          "latency_ms": 118.41314000048442
+        },
+        {
+          "frame": 93,
+          "teacher_objects": 2,
+          "latency_ms": 104.83112899964908
+        },
+        {
+          "frame": 94,
+          "teacher_objects": 2,
+          "latency_ms": 105.48308000034012
+        },
+        {
+          "frame": 95,
+          "teacher_objects": 2,
+          "latency_ms": 109.6326089991635
+        },
+        {
+          "frame": 96,
+          "teacher_objects": 5,
+          "latency_ms": 109.55766099868924
+        },
+        {
+          "frame": 97,
+          "teacher_objects": 5,
+          "latency_ms": 117.26746499880392
+        },
+        {
+          "frame": 98,
+          "teacher_objects": 5,
+          "latency_ms": 109.20844700012822
+        },
+        {
+          "frame": 99,
+          "teacher_objects": 4,
+          "latency_ms": 111.11975699895993
+        },
+        {
+          "frame": 100,
+          "teacher_objects": 3,
+          "latency_ms": 110.31960999935109
+        },
+        {
+          "frame": 101,
+          "teacher_objects": 3,
+          "latency_ms": 122.40244799977518
+        },
+        {
+          "frame": 102,
+          "teacher_objects": 3,
+          "latency_ms": 123.31616499977827
+        },
+        {
+          "frame": 103,
+          "teacher_objects": 5,
+          "latency_ms": 119.41533199933474
+        },
+        {
+          "frame": 104,
+          "teacher_objects": 3,
+          "latency_ms": 105.31216299932566
+        },
+        {
+          "frame": 105,
+          "teacher_objects": 3,
+          "latency_ms": 109.72593599944958
+        },
+        {
+          "frame": 106,
+          "teacher_objects": 2,
+          "latency_ms": 108.82955499982927
+        },
+        {
+          "frame": 107,
+          "teacher_objects": 4,
+          "latency_ms": 110.85403499964741
+        },
+        {
+          "frame": 108,
+          "teacher_objects": 5,
+          "latency_ms": 111.45760999897902
+        },
+        {
+          "frame": 109,
+          "teacher_objects": 4,
+          "latency_ms": 108.88406300000497
+        },
+        {
+          "frame": 110,
+          "teacher_objects": 4,
+          "latency_ms": 111.52425799991761
+        },
+        {
+          "frame": 111,
+          "teacher_objects": 4,
+          "latency_ms": 107.47839999930875
+        },
+        {
+          "frame": 112,
+          "teacher_objects": 3,
+          "latency_ms": 109.69073700107401
+        },
+        {
+          "frame": 113,
+          "teacher_objects": 2,
+          "latency_ms": 111.779970000498
+        },
+        {
+          "frame": 114,
+          "teacher_objects": 2,
+          "latency_ms": 110.8325919994968
+        },
+        {
+          "frame": 115,
+          "teacher_objects": 4,
+          "latency_ms": 111.3326140002755
+        },
+        {
+          "frame": 116,
+          "teacher_objects": 3,
+          "latency_ms": 109.18456800027343
+        },
+        {
+          "frame": 117,
+          "teacher_objects": 3,
+          "latency_ms": 114.02587400152697
+        },
+        {
+          "frame": 118,
+          "teacher_objects": 2,
+          "latency_ms": 107.64530199958244
+        },
+        {
+          "frame": 119,
+          "teacher_objects": 2,
+          "latency_ms": 106.6934010013938
+        },
+        {
+          "frame": 120,
+          "teacher_objects": 4,
+          "latency_ms": 106.77148300055705
+        },
+        {
+          "frame": 121,
+          "teacher_objects": 4,
+          "latency_ms": 106.58468499968876
+        },
+        {
+          "frame": 122,
+          "teacher_objects": 4,
+          "latency_ms": 105.49384099977033
+        },
+        {
+          "frame": 123,
+          "teacher_objects": 5,
+          "latency_ms": 106.05100999964634
+        },
+        {
+          "frame": 124,
+          "teacher_objects": 3,
+          "latency_ms": 111.40533599973423
+        },
+        {
+          "frame": 125,
+          "teacher_objects": 5,
+          "latency_ms": 114.02932099917962
+        },
+        {
+          "frame": 126,
+          "teacher_objects": 3,
+          "latency_ms": 106.03530899970792
+        },
+        {
+          "frame": 127,
+          "teacher_objects": 3,
+          "latency_ms": 106.3069199990423
+        },
+        {
+          "frame": 128,
+          "teacher_objects": 2,
+          "latency_ms": 107.39234300126554
+        },
+        {
+          "frame": 129,
+          "teacher_objects": 5,
+          "latency_ms": 106.9030290000228
+        },
+        {
+          "frame": 130,
+          "teacher_objects": 4,
+          "latency_ms": 105.03986100047769
+        },
+        {
+          "frame": 131,
+          "teacher_objects": 1,
+          "latency_ms": 118.17982299908181
+        },
+        {
+          "frame": 132,
+          "teacher_objects": 3,
+          "latency_ms": 116.77523399885104
+        },
+        {
+          "frame": 133,
+          "teacher_objects": 3,
+          "latency_ms": 126.61802299953706
+        },
+        {
+          "frame": 134,
+          "teacher_objects": 3,
+          "latency_ms": 109.4818090004992
+        },
+        {
+          "frame": 135,
+          "teacher_objects": 3,
+          "latency_ms": 104.37586899934104
+        },
+        {
+          "frame": 136,
+          "teacher_objects": 2,
+          "latency_ms": 109.34999399978551
+        },
+        {
+          "frame": 137,
+          "teacher_objects": 3,
+          "latency_ms": 106.06522799935192
+        },
+        {
+          "frame": 138,
+          "teacher_objects": 3,
+          "latency_ms": 108.98822699891753
+        },
+        {
+          "frame": 139,
+          "teacher_objects": 1,
+          "latency_ms": 110.5767429999105
+        },
+        {
+          "frame": 140,
+          "teacher_objects": 2,
+          "latency_ms": 111.89937499875668
+        },
+        {
+          "frame": 141,
+          "teacher_objects": 2,
+          "latency_ms": 112.26620599882153
+        },
+        {
+          "frame": 142,
+          "teacher_objects": 2,
+          "latency_ms": 113.25353100073698
+        },
+        {
+          "frame": 143,
+          "teacher_objects": 5,
+          "latency_ms": 110.3902119994018
+        },
+        {
+          "frame": 144,
+          "teacher_objects": 3,
+          "latency_ms": 109.8511870004586
+        },
+        {
+          "frame": 145,
+          "teacher_objects": 3,
+          "latency_ms": 105.31976399943233
+        },
+        {
+          "frame": 146,
+          "teacher_objects": 2,
+          "latency_ms": 106.84560000117926
+        },
+        {
+          "frame": 147,
+          "teacher_objects": 1,
+          "latency_ms": 111.05120899992471
+        },
+        {
+          "frame": 148,
+          "teacher_objects": 3,
+          "latency_ms": 109.62241400011408
+        },
+        {
+          "frame": 149,
+          "teacher_objects": 1,
+          "latency_ms": 106.30430699893623
+        },
+        {
+          "frame": 150,
+          "teacher_objects": 1,
+          "latency_ms": 112.41568199875474
+        },
+        {
+          "frame": 151,
+          "teacher_objects": 2,
+          "latency_ms": 110.68499800057907
+        },
+        {
+          "frame": 152,
+          "teacher_objects": 2,
+          "latency_ms": 108.42111900092277
+        },
+        {
+          "frame": 153,
+          "teacher_objects": 2,
+          "latency_ms": 112.27234599937219
+        },
+        {
+          "frame": 154,
+          "teacher_objects": 1,
+          "latency_ms": 112.33767599878774
+        },
+        {
+          "frame": 155,
+          "teacher_objects": 2,
+          "latency_ms": 114.76920600034646
+        },
+        {
+          "frame": 156,
+          "teacher_objects": 2,
+          "latency_ms": 111.80379500001436
+        },
+        {
+          "frame": 157,
+          "teacher_objects": 3,
+          "latency_ms": 110.91279900028894
+        },
+        {
+          "frame": 158,
+          "teacher_objects": 3,
+          "latency_ms": 109.44048300007125
+        },
+        {
+          "frame": 159,
+          "teacher_objects": 3,
+          "latency_ms": 104.4176930008689
+        },
+        {
+          "frame": 160,
+          "teacher_objects": 2,
+          "latency_ms": 106.90538499875402
+        },
+        {
+          "frame": 161,
+          "teacher_objects": 3,
+          "latency_ms": 108.59757300022466
+        },
+        {
+          "frame": 162,
+          "teacher_objects": 1,
+          "latency_ms": 115.75995899875124
+        },
+        {
+          "frame": 163,
+          "teacher_objects": 3,
+          "latency_ms": 117.95775400059938
+        },
+        {
+          "frame": 164,
+          "teacher_objects": 3,
+          "latency_ms": 124.17875000028289
+        },
+        {
+          "frame": 165,
+          "teacher_objects": 2,
+          "latency_ms": 112.70297599912737
+        },
+        {
+          "frame": 166,
+          "teacher_objects": 1,
+          "latency_ms": 110.46715100019355
+        },
+        {
+          "frame": 167,
+          "teacher_objects": 1,
+          "latency_ms": 109.82834999958868
+        },
+        {
+          "frame": 168,
+          "teacher_objects": 2,
+          "latency_ms": 109.20164399976784
+        },
+        {
+          "frame": 169,
+          "teacher_objects": 3,
+          "latency_ms": 110.50005600009172
+        },
+        {
+          "frame": 170,
+          "teacher_objects": 3,
+          "latency_ms": 112.49337499975809
+        },
+        {
+          "frame": 171,
+          "teacher_objects": 2,
+          "latency_ms": 110.58283700003813
+        },
+        {
+          "frame": 172,
+          "teacher_objects": 5,
+          "latency_ms": 109.09264299880306
+        },
+        {
+          "frame": 173,
+          "teacher_objects": 4,
+          "latency_ms": 110.26008899898443
+        },
+        {
+          "frame": 174,
+          "teacher_objects": 3,
+          "latency_ms": 108.1507849994523
+        },
+        {
+          "frame": 175,
+          "teacher_objects": 3,
+          "latency_ms": 114.83265400056553
+        },
+        {
+          "frame": 176,
+          "teacher_objects": 4,
+          "latency_ms": 111.2860390003334
+        },
+        {
+          "frame": 177,
+          "teacher_objects": 4,
+          "latency_ms": 108.35559199949785
+        },
+        {
+          "frame": 178,
+          "teacher_objects": 1,
+          "latency_ms": 110.75544300001638
+        },
+        {
+          "frame": 179,
+          "teacher_objects": 4,
+          "latency_ms": 111.19108200000483
+        },
+        {
+          "frame": 180,
+          "teacher_objects": 3,
+          "latency_ms": 111.35341900080675
+        },
+        {
+          "frame": 181,
+          "teacher_objects": 4,
+          "latency_ms": 106.69289900033618
+        },
+        {
+          "frame": 182,
+          "teacher_objects": 3,
+          "latency_ms": 107.23066900027334
+        },
+        {
+          "frame": 183,
+          "teacher_objects": 1,
+          "latency_ms": 108.23222399994847
+        },
+        {
+          "frame": 184,
+          "teacher_objects": 3,
+          "latency_ms": 107.60512399974687
+        },
+        {
+          "frame": 185,
+          "teacher_objects": 4,
+          "latency_ms": 109.81804100083536
+        },
+        {
+          "frame": 186,
+          "teacher_objects": 3,
+          "latency_ms": 112.25460400055454
+        },
+        {
+          "frame": 187,
+          "teacher_objects": 4,
+          "latency_ms": 109.91310000099475
+        },
+        {
+          "frame": 188,
+          "teacher_objects": 2,
+          "latency_ms": 110.51407999912044
+        },
+        {
+          "frame": 189,
+          "teacher_objects": 4,
+          "latency_ms": 106.98794199925032
+        },
+        {
+          "frame": 190,
+          "teacher_objects": 3,
+          "latency_ms": 110.8294030000252
+        },
+        {
+          "frame": 191,
+          "teacher_objects": 3,
+          "latency_ms": 111.69180300021253
+        },
+        {
+          "frame": 192,
+          "teacher_objects": 3,
+          "latency_ms": 110.73571399901994
+        },
+        {
+          "frame": 193,
+          "teacher_objects": 3,
+          "latency_ms": 126.97019900042505
+        },
+        {
+          "frame": 194,
+          "teacher_objects": 5,
+          "latency_ms": 123.8116020012967
+        },
+        {
+          "frame": 195,
+          "teacher_objects": 4,
+          "latency_ms": 105.98766200018872
+        },
+        {
+          "frame": 196,
+          "teacher_objects": 3,
+          "latency_ms": 106.14322000037646
+        },
+        {
+          "frame": 197,
+          "teacher_objects": 2,
+          "latency_ms": 107.66781600068498
+        },
+        {
+          "frame": 198,
+          "teacher_objects": 2,
+          "latency_ms": 109.24764599985792
+        },
+        {
+          "frame": 199,
+          "teacher_objects": 3,
+          "latency_ms": 111.31381999985024
+        },
+        {
+          "frame": 200,
+          "teacher_objects": 3,
+          "latency_ms": 106.36105999947176
+        },
+        {
+          "frame": 201,
+          "teacher_objects": 5,
+          "latency_ms": 111.29555699881166
+        },
+        {
+          "frame": 202,
+          "teacher_objects": 3,
+          "latency_ms": 108.8325580003584
+        },
+        {
+          "frame": 203,
+          "teacher_objects": 3,
+          "latency_ms": 105.87599400059844
+        },
+        {
+          "frame": 204,
+          "teacher_objects": 3,
+          "latency_ms": 109.15570399993157
+        },
+        {
+          "frame": 205,
+          "teacher_objects": 4,
+          "latency_ms": 115.46802600059891
+        },
+        {
+          "frame": 206,
+          "teacher_objects": 5,
+          "latency_ms": 113.76603899952897
+        },
+        {
+          "frame": 207,
+          "teacher_objects": 3,
+          "latency_ms": 111.0545829997136
+        },
+        {
+          "frame": 208,
+          "teacher_objects": 3,
+          "latency_ms": 112.88216899993131
+        },
+        {
+          "frame": 209,
+          "teacher_objects": 3,
+          "latency_ms": 113.3080429990514
+        },
+        {
+          "frame": 210,
+          "teacher_objects": 2,
+          "latency_ms": 107.92241600029229
+        },
+        {
+          "frame": 211,
+          "teacher_objects": 2,
+          "latency_ms": 111.58264899859205
+        },
+        {
+          "frame": 212,
+          "teacher_objects": 3,
+          "latency_ms": 111.26060799870174
+        },
+        {
+          "frame": 213,
+          "teacher_objects": 3,
+          "latency_ms": 111.12274300103309
+        },
+        {
+          "frame": 214,
+          "teacher_objects": 3,
+          "latency_ms": 109.92765099945245
+        },
+        {
+          "frame": 215,
+          "teacher_objects": 4,
+          "latency_ms": 106.54043999966234
+        },
+        {
+          "frame": 216,
+          "teacher_objects": 3,
+          "latency_ms": 106.71624899987364
+        },
+        {
+          "frame": 217,
+          "teacher_objects": 3,
+          "latency_ms": 111.73233199951937
+        },
+        {
+          "frame": 218,
+          "teacher_objects": 3,
+          "latency_ms": 108.56348299967067
+        },
+        {
+          "frame": 219,
+          "teacher_objects": 3,
+          "latency_ms": 108.66217999864602
+        },
+        {
+          "frame": 220,
+          "teacher_objects": 3,
+          "latency_ms": 108.53614999905403
+        },
+        {
+          "frame": 221,
+          "teacher_objects": 3,
+          "latency_ms": 108.58969600121782
+        },
+        {
+          "frame": 222,
+          "teacher_objects": 4,
+          "latency_ms": 113.36394399950223
+        },
+        {
+          "frame": 223,
+          "teacher_objects": 4,
+          "latency_ms": 120.92940700131294
+        },
+        {
+          "frame": 224,
+          "teacher_objects": 3,
+          "latency_ms": 130.85089000014705
+        },
+        {
+          "frame": 225,
+          "teacher_objects": 2,
+          "latency_ms": 116.84710800000175
+        },
+        {
+          "frame": 226,
+          "teacher_objects": 4,
+          "latency_ms": 105.5900780011143
+        },
+        {
+          "frame": 227,
+          "teacher_objects": 2,
+          "latency_ms": 108.05125099977886
+        },
+        {
+          "frame": 228,
+          "teacher_objects": 2,
+          "latency_ms": 109.64747999969404
+        },
+        {
+          "frame": 229,
+          "teacher_objects": 2,
+          "latency_ms": 107.53659100009827
+        },
+        {
+          "frame": 230,
+          "teacher_objects": 3,
+          "latency_ms": 113.10073499953432
+        },
+        {
+          "frame": 231,
+          "teacher_objects": 3,
+          "latency_ms": 107.82484400078829
+        },
+        {
+          "frame": 232,
+          "teacher_objects": 2,
+          "latency_ms": 111.97269299918844
+        },
+        {
+          "frame": 233,
+          "teacher_objects": 3,
+          "latency_ms": 111.18347299998277
+        },
+        {
+          "frame": 234,
+          "teacher_objects": 2,
+          "latency_ms": 111.82856300001731
+        }
+      ]
+    },
+    "studentProject1": {
+      "frames": 162,
+      "wall_time_s": 21.902291530001094,
+      "per_frame": [
+        {
+          "frame": 0,
+          "teacher_objects": 2,
+          "latency_ms": 109.6177239996905
+        },
+        {
+          "frame": 1,
+          "teacher_objects": 4,
+          "latency_ms": 108.25732300145319
+        },
+        {
+          "frame": 2,
+          "teacher_objects": 3,
+          "latency_ms": 109.48010900028748
+        },
+        {
+          "frame": 3,
+          "teacher_objects": 2,
+          "latency_ms": 111.91661700104305
+        },
+        {
+          "frame": 4,
+          "teacher_objects": 1,
+          "latency_ms": 115.24800500046695
+        },
+        {
+          "frame": 5,
+          "teacher_objects": 5,
+          "latency_ms": 114.1152919990418
+        },
+        {
+          "frame": 6,
+          "teacher_objects": 2,
+          "latency_ms": 109.49940499995137
+        },
+        {
+          "frame": 7,
+          "teacher_objects": 2,
+          "latency_ms": 111.45350600054371
+        },
+        {
+          "frame": 8,
+          "teacher_objects": 2,
+          "latency_ms": 109.8722179995093
+        },
+        {
+          "frame": 9,
+          "teacher_objects": 2,
+          "latency_ms": 113.3750909993978
+        },
+        {
+          "frame": 10,
+          "teacher_objects": 1,
+          "latency_ms": 113.04184800064832
+        },
+        {
+          "frame": 11,
+          "teacher_objects": 1,
+          "latency_ms": 109.91353099961998
+        },
+        {
+          "frame": 12,
+          "teacher_objects": 2,
+          "latency_ms": 108.89923299873772
+        },
+        {
+          "frame": 13,
+          "teacher_objects": 2,
+          "latency_ms": 109.79243799920368
+        },
+        {
+          "frame": 14,
+          "teacher_objects": 2,
+          "latency_ms": 116.13781000050949
+        },
+        {
+          "frame": 15,
+          "teacher_objects": 3,
+          "latency_ms": 107.6777870002843
+        },
+        {
+          "frame": 16,
+          "teacher_objects": 2,
+          "latency_ms": 111.05882300034864
+        },
+        {
+          "frame": 17,
+          "teacher_objects": 1,
+          "latency_ms": 111.74586800007091
+        },
+        {
+          "frame": 18,
+          "teacher_objects": 3,
+          "latency_ms": 120.16760000005888
+        },
+        {
+          "frame": 19,
+          "teacher_objects": 3,
+          "latency_ms": 126.44029700095416
+        },
+        {
+          "frame": 20,
+          "teacher_objects": 4,
+          "latency_ms": 119.04169199988246
+        },
+        {
+          "frame": 21,
+          "teacher_objects": 3,
+          "latency_ms": 108.83114399985061
+        },
+        {
+          "frame": 22,
+          "teacher_objects": 1,
+          "latency_ms": 112.12002700085577
+        },
+        {
+          "frame": 23,
+          "teacher_objects": 3,
+          "latency_ms": 108.50167199896532
+        },
+        {
+          "frame": 24,
+          "teacher_objects": 2,
+          "latency_ms": 110.58086299999559
+        },
+        {
+          "frame": 25,
+          "teacher_objects": 1,
+          "latency_ms": 114.62779000066803
+        },
+        {
+          "frame": 26,
+          "teacher_objects": 3,
+          "latency_ms": 111.61936200005584
+        },
+        {
+          "frame": 27,
+          "teacher_objects": 1,
+          "latency_ms": 110.56550200009951
+        },
+        {
+          "frame": 28,
+          "teacher_objects": 1,
+          "latency_ms": 114.78299000009429
+        },
+        {
+          "frame": 29,
+          "teacher_objects": 2,
+          "latency_ms": 113.78719000094861
+        },
+        {
+          "frame": 30,
+          "teacher_objects": 1,
+          "latency_ms": 112.93967900019197
+        },
+        {
+          "frame": 31,
+          "teacher_objects": 1,
+          "latency_ms": 111.10918300073536
+        },
+        {
+          "frame": 32,
+          "teacher_objects": 2,
+          "latency_ms": 110.01519100136647
+        },
+        {
+          "frame": 33,
+          "teacher_objects": 2,
+          "latency_ms": 112.56203899938555
+        },
+        {
+          "frame": 34,
+          "teacher_objects": 1,
+          "latency_ms": 109.15105999993102
+        },
+        {
+          "frame": 35,
+          "teacher_objects": 1,
+          "latency_ms": 108.88434899970889
+        },
+        {
+          "frame": 36,
+          "teacher_objects": 2,
+          "latency_ms": 113.6893359998794
+        },
+        {
+          "frame": 37,
+          "teacher_objects": 2,
+          "latency_ms": 111.19392700129538
+        },
+        {
+          "frame": 38,
+          "teacher_objects": 2,
+          "latency_ms": 111.52514399873326
+        },
+        {
+          "frame": 39,
+          "teacher_objects": 2,
+          "latency_ms": 111.2309929994808
+        },
+        {
+          "frame": 40,
+          "teacher_objects": 1,
+          "latency_ms": 108.74037400026282
+        },
+        {
+          "frame": 41,
+          "teacher_objects": 2,
+          "latency_ms": 112.28731899973354
+        },
+        {
+          "frame": 42,
+          "teacher_objects": 1,
+          "latency_ms": 110.49800000000687
+        },
+        {
+          "frame": 43,
+          "teacher_objects": 1,
+          "latency_ms": 111.79334799999197
+        },
+        {
+          "frame": 44,
+          "teacher_objects": 2,
+          "latency_ms": 110.09137300061411
+        },
+        {
+          "frame": 45,
+          "teacher_objects": 1,
+          "latency_ms": 105.33475800002634
+        },
+        {
+          "frame": 46,
+          "teacher_objects": 1,
+          "latency_ms": 107.05030999997689
+        },
+        {
+          "frame": 47,
+          "teacher_objects": 4,
+          "latency_ms": 112.78043300080753
+        },
+        {
+          "frame": 48,
+          "teacher_objects": 3,
+          "latency_ms": 126.9231749993196
+        },
+        {
+          "frame": 49,
+          "teacher_objects": 2,
+          "latency_ms": 129.934257000059
+        },
+        {
+          "frame": 50,
+          "teacher_objects": 1,
+          "latency_ms": 110.96375799934322
+        },
+        {
+          "frame": 51,
+          "teacher_objects": 1,
+          "latency_ms": 110.57438799980446
+        },
+        {
+          "frame": 52,
+          "teacher_objects": 2,
+          "latency_ms": 111.90367400013201
+        },
+        {
+          "frame": 53,
+          "teacher_objects": 2,
+          "latency_ms": 106.9225240007654
+        },
+        {
+          "frame": 54,
+          "teacher_objects": 2,
+          "latency_ms": 107.01690099995176
+        },
+        {
+          "frame": 55,
+          "teacher_objects": 3,
+          "latency_ms": 110.52385900075024
+        },
+        {
+          "frame": 56,
+          "teacher_objects": 3,
+          "latency_ms": 107.95148299985158
+        },
+        {
+          "frame": 57,
+          "teacher_objects": 2,
+          "latency_ms": 113.96738800067396
+        },
+        {
+          "frame": 58,
+          "teacher_objects": 2,
+          "latency_ms": 107.7722129994072
+        },
+        {
+          "frame": 59,
+          "teacher_objects": 2,
+          "latency_ms": 106.04964300000574
+        },
+        {
+          "frame": 60,
+          "teacher_objects": 2,
+          "latency_ms": 104.89091400086181
+        },
+        {
+          "frame": 61,
+          "teacher_objects": 2,
+          "latency_ms": 109.7379170005297
+        },
+        {
+          "frame": 62,
+          "teacher_objects": 1,
+          "latency_ms": 107.46133099928556
+        },
+        {
+          "frame": 63,
+          "teacher_objects": 2,
+          "latency_ms": 106.32509899915021
+        },
+        {
+          "frame": 64,
+          "teacher_objects": 2,
+          "latency_ms": 105.81094100052724
+        },
+        {
+          "frame": 65,
+          "teacher_objects": 2,
+          "latency_ms": 111.34776000108104
+        },
+        {
+          "frame": 66,
+          "teacher_objects": 2,
+          "latency_ms": 110.98318899894366
+        },
+        {
+          "frame": 67,
+          "teacher_objects": 2,
+          "latency_ms": 108.63579299984849
+        },
+        {
+          "frame": 68,
+          "teacher_objects": 2,
+          "latency_ms": 111.35295699932612
+        },
+        {
+          "frame": 69,
+          "teacher_objects": 1,
+          "latency_ms": 108.73917900062224
+        },
+        {
+          "frame": 70,
+          "teacher_objects": 1,
+          "latency_ms": 109.79775299892935
+        },
+        {
+          "frame": 71,
+          "teacher_objects": 3,
+          "latency_ms": 119.90663899996434
+        },
+        {
+          "frame": 72,
+          "teacher_objects": 2,
+          "latency_ms": 106.29057500045747
+        },
+        {
+          "frame": 73,
+          "teacher_objects": 3,
+          "latency_ms": 110.78988299959747
+        },
+        {
+          "frame": 74,
+          "teacher_objects": 2,
+          "latency_ms": 106.73026000040409
+        },
+        {
+          "frame": 75,
+          "teacher_objects": 3,
+          "latency_ms": 106.29912199874525
+        },
+        {
+          "frame": 76,
+          "teacher_objects": 1,
+          "latency_ms": 105.63354500118294
+        },
+        {
+          "frame": 77,
+          "teacher_objects": 2,
+          "latency_ms": 105.18038800000795
+        },
+        {
+          "frame": 78,
+          "teacher_objects": 2,
+          "latency_ms": 106.98408099960943
+        },
+        {
+          "frame": 79,
+          "teacher_objects": 1,
+          "latency_ms": 125.4853770005866
+        },
+        {
+          "frame": 80,
+          "teacher_objects": 1,
+          "latency_ms": 123.76622200099519
+        },
+        {
+          "frame": 81,
+          "teacher_objects": 1,
+          "latency_ms": 120.00830800025142
+        },
+        {
+          "frame": 82,
+          "teacher_objects": 2,
+          "latency_ms": 134.25960300082806
+        },
+        {
+          "frame": 83,
+          "teacher_objects": 2,
+          "latency_ms": 136.236201000429
+        },
+        {
+          "frame": 84,
+          "teacher_objects": 2,
+          "latency_ms": 139.3812109999999
+        },
+        {
+          "frame": 85,
+          "teacher_objects": 2,
+          "latency_ms": 129.3016079998779
+        },
+        {
+          "frame": 86,
+          "teacher_objects": 1,
+          "latency_ms": 139.22876899960102
+        },
+        {
+          "frame": 87,
+          "teacher_objects": 2,
+          "latency_ms": 137.91426200077694
+        },
+        {
+          "frame": 88,
+          "teacher_objects": 2,
+          "latency_ms": 143.45449699976598
+        },
+        {
+          "frame": 89,
+          "teacher_objects": 3,
+          "latency_ms": 143.31019400015066
+        },
+        {
+          "frame": 90,
+          "teacher_objects": 2,
+          "latency_ms": 144.54665000084788
+        },
+        {
+          "frame": 91,
+          "teacher_objects": 2,
+          "latency_ms": 136.46177199916565
+        },
+        {
+          "frame": 92,
+          "teacher_objects": 3,
+          "latency_ms": 138.91657100066368
+        },
+        {
+          "frame": 93,
+          "teacher_objects": 1,
+          "latency_ms": 146.21792700017977
+        },
+        {
+          "frame": 94,
+          "teacher_objects": 3,
+          "latency_ms": 121.15440299930924
+        },
+        {
+          "frame": 95,
+          "teacher_objects": 3,
+          "latency_ms": 116.29422199985129
+        },
+        {
+          "frame": 96,
+          "teacher_objects": 3,
+          "latency_ms": 110.6746010009374
+        },
+        {
+          "frame": 97,
+          "teacher_objects": 4,
+          "latency_ms": 111.29855200124439
+        },
+        {
+          "frame": 98,
+          "teacher_objects": 2,
+          "latency_ms": 112.86606499925256
+        },
+        {
+          "frame": 99,
+          "teacher_objects": 3,
+          "latency_ms": 115.82254899985855
+        },
+        {
+          "frame": 100,
+          "teacher_objects": 2,
+          "latency_ms": 112.13580799994816
+        },
+        {
+          "frame": 101,
+          "teacher_objects": 1,
+          "latency_ms": 111.39978100072767
+        },
+        {
+          "frame": 102,
+          "teacher_objects": 1,
+          "latency_ms": 109.53434699877107
+        },
+        {
+          "frame": 103,
+          "teacher_objects": 2,
+          "latency_ms": 109.32633800075564
+        },
+        {
+          "frame": 104,
+          "teacher_objects": 1,
+          "latency_ms": 109.8971100000199
+        },
+        {
+          "frame": 105,
+          "teacher_objects": 2,
+          "latency_ms": 111.5755539995007
+        },
+        {
+          "frame": 106,
+          "teacher_objects": 2,
+          "latency_ms": 115.20373699931952
+        },
+        {
+          "frame": 107,
+          "teacher_objects": 2,
+          "latency_ms": 115.30089500047325
+        },
+        {
+          "frame": 108,
+          "teacher_objects": 4,
+          "latency_ms": 119.83762299860246
+        },
+        {
+          "frame": 109,
+          "teacher_objects": 2,
+          "latency_ms": 115.20020399984787
+        },
+        {
+          "frame": 110,
+          "teacher_objects": 2,
+          "latency_ms": 111.33487999904901
+        },
+        {
+          "frame": 111,
+          "teacher_objects": 2,
+          "latency_ms": 111.10708699925453
+        },
+        {
+          "frame": 112,
+          "teacher_objects": 3,
+          "latency_ms": 111.90005100070266
+        },
+        {
+          "frame": 113,
+          "teacher_objects": 2,
+          "latency_ms": 113.57861100077571
+        },
+        {
+          "frame": 114,
+          "teacher_objects": 2,
+          "latency_ms": 116.741836998699
+        },
+        {
+          "frame": 115,
+          "teacher_objects": 1,
+          "latency_ms": 132.49591200110444
+        },
+        {
+          "frame": 116,
+          "teacher_objects": 1,
+          "latency_ms": 125.63212199893314
+        },
+        {
+          "frame": 117,
+          "teacher_objects": 3,
+          "latency_ms": 119.19012299949827
+        },
+        {
+          "frame": 118,
+          "teacher_objects": 4,
+          "latency_ms": 125.01318899921898
+        },
+        {
+          "frame": 119,
+          "teacher_objects": 2,
+          "latency_ms": 125.10952100092254
+        },
+        {
+          "frame": 120,
+          "teacher_objects": 1,
+          "latency_ms": 120.5747940002766
+        },
+        {
+          "frame": 121,
+          "teacher_objects": 4,
+          "latency_ms": 118.2354899992788
+        },
+        {
+          "frame": 122,
+          "teacher_objects": 2,
+          "latency_ms": 117.4366370014468
+        },
+        {
+          "frame": 123,
+          "teacher_objects": 3,
+          "latency_ms": 109.96551200150861
+        },
+        {
+          "frame": 124,
+          "teacher_objects": 2,
+          "latency_ms": 113.2954749991768
+        },
+        {
+          "frame": 125,
+          "teacher_objects": 2,
+          "latency_ms": 108.80110499965667
+        },
+        {
+          "frame": 126,
+          "teacher_objects": 2,
+          "latency_ms": 112.42585600120947
+        },
+        {
+          "frame": 127,
+          "teacher_objects": 2,
+          "latency_ms": 109.45366299893067
+        },
+        {
+          "frame": 128,
+          "teacher_objects": 2,
+          "latency_ms": 113.53547900034755
+        },
+        {
+          "frame": 129,
+          "teacher_objects": 1,
+          "latency_ms": 112.52384999897913
+        },
+        {
+          "frame": 130,
+          "teacher_objects": 3,
+          "latency_ms": 114.93727400011267
+        },
+        {
+          "frame": 131,
+          "teacher_objects": 3,
+          "latency_ms": 117.92487099955906
+        },
+        {
+          "frame": 132,
+          "teacher_objects": 2,
+          "latency_ms": 109.73310800000036
+        },
+        {
+          "frame": 133,
+          "teacher_objects": 3,
+          "latency_ms": 113.69266600013361
+        },
+        {
+          "frame": 134,
+          "teacher_objects": 1,
+          "latency_ms": 111.3487160000659
+        },
+        {
+          "frame": 135,
+          "teacher_objects": 1,
+          "latency_ms": 130.69219200042426
+        },
+        {
+          "frame": 136,
+          "teacher_objects": 1,
+          "latency_ms": 111.02360499899078
+        },
+        {
+          "frame": 137,
+          "teacher_objects": 4,
+          "latency_ms": 109.89769600018917
+        },
+        {
+          "frame": 138,
+          "teacher_objects": 3,
+          "latency_ms": 110.88965599992662
+        },
+        {
+          "frame": 139,
+          "teacher_objects": 2,
+          "latency_ms": 106.88526300145895
+        },
+        {
+          "frame": 140,
+          "teacher_objects": 2,
+          "latency_ms": 108.3371980002994
+        },
+        {
+          "frame": 141,
+          "teacher_objects": 1,
+          "latency_ms": 109.95461300080933
+        },
+        {
+          "frame": 142,
+          "teacher_objects": 1,
+          "latency_ms": 109.35559500103409
+        },
+        {
+          "frame": 143,
+          "teacher_objects": 2,
+          "latency_ms": 110.07396300010441
+        },
+        {
+          "frame": 144,
+          "teacher_objects": 1,
+          "latency_ms": 120.5601250003383
+        },
+        {
+          "frame": 145,
+          "teacher_objects": 2,
+          "latency_ms": 143.61552599984861
+        },
+        {
+          "frame": 146,
+          "teacher_objects": 1,
+          "latency_ms": 124.91815099929227
+        },
+        {
+          "frame": 147,
+          "teacher_objects": 2,
+          "latency_ms": 124.23827499878826
+        },
+        {
+          "frame": 148,
+          "teacher_objects": 2,
+          "latency_ms": 122.81981600062863
+        },
+        {
+          "frame": 149,
+          "teacher_objects": 2,
+          "latency_ms": 124.09442599891918
+        },
+        {
+          "frame": 150,
+          "teacher_objects": 4,
+          "latency_ms": 121.5072009999858
+        },
+        {
+          "frame": 151,
+          "teacher_objects": 2,
+          "latency_ms": 112.43867499979388
+        },
+        {
+          "frame": 152,
+          "teacher_objects": 4,
+          "latency_ms": 120.25080900093599
+        },
+        {
+          "frame": 153,
+          "teacher_objects": 2,
+          "latency_ms": 111.05565599973488
+        },
+        {
+          "frame": 154,
+          "teacher_objects": 2,
+          "latency_ms": 107.42141599985189
+        },
+        {
+          "frame": 155,
+          "teacher_objects": 1,
+          "latency_ms": 109.06595200140146
+        },
+        {
+          "frame": 156,
+          "teacher_objects": 2,
+          "latency_ms": 115.27385500085074
+        },
+        {
+          "frame": 157,
+          "teacher_objects": 3,
+          "latency_ms": 116.90538000038941
+        },
+        {
+          "frame": 158,
+          "teacher_objects": 4,
+          "latency_ms": 121.54152199946111
+        },
+        {
+          "frame": 159,
+          "teacher_objects": 1,
+          "latency_ms": 119.29760299972259
+        },
+        {
+          "frame": 160,
+          "teacher_objects": 2,
+          "latency_ms": 117.72425599883718
+        },
+        {
+          "frame": 161,
+          "teacher_objects": 2,
+          "latency_ms": 112.08649299987883
+        }
+      ]
+    }
+  },
+  "model_hashes": {
+    "yolo11n.pt": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+    "voxelnext_nuscenes.pth": "9409dd8c13c8c8ca546c8c5af024856d03029e2def8d5fc0fa3bfe4477e7d88b"
+  }
+}

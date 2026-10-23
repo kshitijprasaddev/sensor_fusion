@@ -22,6 +22,7 @@ def main():
     p.add_argument('--output', default='/results/ros_smoke.json')
     p.add_argument('--rviz', action='store_true', help='Also require the real RViz subscriptions')
     p.add_argument('--min-images', type=int, default=1)
+    p.add_argument('--middle', action='store_true', help='Also require independent middle fusion detections')
     p.add_argument('--enhanced-scene', action='store_true', help='Check oriented boxes, distance rings and the proposal layer')
     args = p.parse_args()
     rclpy.init()
@@ -33,11 +34,16 @@ def main():
     def observe(name, msg):
         nonlocal colored_points
         counts[name] += 1
-        if name == 'objects':
+        if name in ('objects', 'detector_objects'):
             if msg.header.frame_id != 'velodyne':
                 errors.append('Wrong object frame')
             for detection in msg.detections:
-                ids.add(detection.id)
+                if name == 'objects':
+                    ids.add(detection.id)
+                elif detection.id:
+                    errors.append('Independent detection received an invented persistent ID')
+                if name == 'detector_objects':
+                    counts['independent_detections'] += 1
                 point = detection.bbox.center.position
                 if not all(math.isfinite(v) for v in [point.x, point.y, point.z]):
                     errors.append('Nonfinite object coordinates')
@@ -63,7 +69,7 @@ def main():
                 marker_namespaces.add(marker.ns)
                 if not all(math.isfinite(v) for p in marker.points for v in (p.x, p.y, p.z)):
                     errors.append('Nonfinite marker geometry')
-                if marker.ns in ('box_outlines', 'unfused_lidar_boxes') and len(marker.points) != 24:
+                if marker.ns in ('box_outlines', 'unfused_lidar_boxes', 'middle_fusion_boxes') and len(marker.points) != 24:
                     errors.append('Invalid cuboid edge count')
 
     subscriptions = []
@@ -75,6 +81,8 @@ def main():
                              (String, '/fusion/metrics', 'metrics')]:
         qos = qos_profile_sensor_data if typ in (Image, PointCloud2) else 10
         subscriptions.append(node.create_subscription(typ, topic, lambda msg, n=name: observe(n, msg), qos))
+    if args.middle:
+        subscriptions.append(node.create_subscription(Detection3DArray, '/fusion/detector_objects', lambda msg: observe('detector_objects', msg), 10))
     if args.enhanced_scene:
         for topic, name in (('/fusion/proposals', 'proposals'), ('/fusion/boxes', 'boxes'), ('/fusion/motion', 'motion')):
             subscriptions.append(node.create_subscription(MarkerArray, topic, lambda msg, n=name: observe(n, msg), 10))
@@ -94,11 +102,17 @@ def main():
     if not ids:
         errors.append('No confirmed tracks observed')
     if args.enhanced_scene:
-        required = {'box_outlines', 'box_footprints', 'track_labels', 'distance_rings', 'unfused_lidar_boxes'}
+        required = {'box_outlines', 'box_footprints', 'track_labels', 'distance_rings',
+                    'middle_fusion_boxes' if args.middle else 'unfused_lidar_boxes'}
         if required - marker_namespaces:
             errors.append(f'Missing scene layers: {sorted(required - marker_namespaces)}')
         if not colored_points:
             errors.append('No colored object points received')
+    if args.middle:
+        if not counts['independent_detections']:
+            errors.append('No independent fused detections received')
+        if not metrics or any(row.get('pipeline') != 'middle' for row in metrics):
+            errors.append('Expected middle pipeline metrics throughout')
     rviz_subscriptions = {}
     if args.rviz:
         topics = ['/fusion/markers', '/fusion/image', '/velodyne/points_raw', '/PointCloudDetection']

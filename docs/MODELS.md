@@ -3,6 +3,8 @@
 > Historical classical baseline, validated 17 October 2026. The neural extension
 > added 22 October 2026 is documented in [AI pipeline](AI_PIPELINE.md),
 > [results](AI_RESULTS.md) and [literature review](LITERATURE_REVIEW.md).
+> The current stable profile is [QueryFusion v2](FUSION_V2.md). The separate
+> [middle profile](MIDDLE_FUSION.md) adds spatial feature fusion and independent detection.
 
 | Input or stage | Implementation | Learned weights | Output |
 | --- | --- | --- | --- |

@@ -275,7 +275,7 @@ class SceneRenderer:
             result.append(
                 line(
                     header,
-                    "unfused_lidar_boxes",
+                    ("middle_fusion_boxes" if proposal.get("origin") == "BEV fusion" else "unfused_lidar_boxes"),
                     index,
                     [corners[i] for edge in BOX_EDGES for i in edge],
                     (0.57, 0.65, 0.75),
@@ -286,10 +286,10 @@ class SceneRenderer:
             result.append(
                 text(
                     header,
-                    "unfused_lidar_labels",
+                    ("middle_fusion_labels" if proposal.get("origin") == "BEV fusion" else "unfused_lidar_labels"),
                     index,
                     box[:3] + [0, 0, box[5] / 2 + 0.3],
-                    f"LiDAR only: {proposal['label']}",
+                    f"{proposal.get('origin', 'LiDAR only')}: {proposal['label']}",
                     (0.65, 0.73, 0.8),
                     0.25,
                 )

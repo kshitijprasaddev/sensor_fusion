@@ -114,6 +114,7 @@ Full validation takes several minutes and uses the GPU.
 | Command or configuration | Purpose |
 | --- | --- |
 | `ai-demo` | Current neural v2: all three modalities |
+| `mid-demo` | Experimental spatial feature fusion before an independent 3D detector |
 | `ai-demo config:=.../fusion_ai_v1.yaml` | Preserved neural v1 |
 | `demo` | Original classical baseline |
 | Baseline `--modality lidar` | LiDAR-only geometric baseline |
@@ -202,6 +203,65 @@ Keep the window size unchanged during recording. Use a fresh output filename;
 the script refuses overwrites. Full videos stay local under `results/`. The
 GitHub README uses a smaller GIF for browser preview. Recording increases GPU
 and CPU load, so do not use recording timings as a controlled speed benchmark.
+
+## 10. Try the experimental spatial middle profile
+
+The existing `ai-*` commands still select QueryFusion v2. The new `mid-*`
+commands select a separate model that fuses spatial camera, LiDAR and radar
+features before predicting its own 3D detections. Read
+[middle fusion explained](MIDDLE_FUSION.md) before presenting its results.
+It uses weak detector labels and approximate camera geometry, so it is an
+experimental comparison rather than an accuracy-validated replacement.
+
+```bash
+cd /home/kshitij0/sensor_fusion
+./scripts/run.sh mid-build
+./scripts/run.sh mid-test
+./scripts/run.sh mid-demo
+```
+
+`mid-build` builds the same `group8-sensor-fusion:ai` image from `Dockerfile.ai`.
+The demo selects `fusion_middle.yaml` and the middle checkpoint, while the visual
+tracker still uses the camera proposal engine. It plays at 0.1 speed. Stop v2
+before starting it because both use `group8-rviz` by default. Middle RViz
+preferences are saved separately in `results/fusion_middle_masks.rviz`.
+
+```bash
+# Second recording, after stopping the earlier demo
+./scripts/run.sh mid-demo bag:=/data/studentProject1
+
+# Evaluate without opening RViz
+./scripts/run.sh mid-evaluate /data/studentProject1 \
+  --weights /models/yolo11n.engine \
+  --output /results/my_middle_evaluation --video
+
+# GPU runtime guard and full validation
+./scripts/run.sh mid-check
+./scripts/run.sh mid-validate /results/my_middle_validation
+
+# Interactive container shell
+./scripts/run.sh mid-shell
+```
+
+Check the saved reports for the actual model version and pass/fail results.
+Use a fresh result directory for each experiment. Runtime execution and
+agreement with the VoxelNeXt teacher do not establish real detection accuracy.
+
+To reproduce the middle feature cache and train a separate checkpoint:
+
+```bash
+./scripts/run.sh mid-extract --output /results/middle_features_reproduced
+./scripts/run.sh mid-train \
+  --features /results/middle_features_reproduced \
+  --output /models/middle_fusion_reproduced.pt \
+  --report /results/middle_training_reproduced.json
+```
+
+The default model is `/models/middle_fusion.pt`. A newly named checkpoint does
+not automatically change the demo. Copy `fusion_middle.yaml`, update the
+checkpoint path in that copy and pass the copied configuration explicitly.
+Changes to calibration require feature re-extraction and retraining; the model
+must not silently use a new camera matrix with an old trained feature cache.
 
 ## Where everything lives
 

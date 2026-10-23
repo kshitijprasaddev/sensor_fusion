@@ -32,7 +32,7 @@ def main():
     if args.stride < 1 or args.limit < 0:
         p.error('stride must be positive and limit nonnegative')
     cfg = load_config(args.config)
-    if cfg.get('pipeline') == 'neural' and args.modality != 'all':
+    if cfg.get('pipeline') in ('neural', 'middle') and args.modality != 'all':
         p.error('Neural profile supports --modality all; use the baseline config for classical ablations')
     if args.weights:
         cfg['model']['weights'] = args.weights
@@ -42,8 +42,12 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     bag = Bag(args.bag)
     detector = CameraDetector(cfg['model']) if args.modality in ('all', 'camera_lidar') else None
+    torch_runtime = None
+    if cfg.get('pipeline') in ('neural', 'middle'):
+        import torch as torch_runtime
+        torch_runtime.cuda.reset_peak_memory_stats()
     processor = make_processor(cfg, bag.lidar_from('cam0'), bag.lidar_from('radar'), detector)
-    rows, track_rows = [], []
+    rows, track_rows, detector_rows = [], [], []
     video = None
     skipped = 0
     tolerance = int(cfg['synchronization']['tolerance_ms'] * 1e6)
@@ -65,6 +69,10 @@ def main():
         metrics.update({'frame': i, 'lidar_delta_ms': (lidar[0] - timestamp) / 1e6,
                         'radar_delta_ms': (radar[0] - timestamp) / 1e6 if radar else None})
         rows.append(metrics)
+        for detection in result.get('detector_objects', []):
+            detector_rows.append(dict(frame=i, time=timestamp / 1e9,
+                                      box=detection['box'].tolist(), label=detection['label'],
+                                      confidence=detection['confidence']))
         for t in result['tracks']:
             track_rows.append({'frame': i, 'time': timestamp / 1e9, 'id': t.id,
                                'x': float(t.state[0]), 'y': float(t.state[1]),
@@ -100,6 +108,8 @@ def main():
         writer.writeheader()
         writer.writerows(rows)
     (out / 'tracks.json').write_text(json.dumps(track_rows, indent=2) + '\n')
+    if cfg.get('pipeline') == 'middle':
+        (out / 'detector_objects.json').write_text(json.dumps(detector_rows, indent=2) + '\n')
     weight = Path(cfg['model']['weights'])
     summary = {'bag': Path(args.bag).name, 'modality': args.modality, 'frames': len(rows),
                'skipped_no_lidar': skipped, 'wall_time_s': time.perf_counter() - started,
@@ -113,7 +123,11 @@ def main():
                'pipeline': cfg.get('pipeline', 'classical'),
                'fusion_schema': getattr(processor, 'fusion_schema', None),
                'fusion_weights_sha256': getattr(processor, 'checkpoint_sha256', None),
-               'radar_count_unit': 'filtered_points' if cfg.get('pipeline') == 'neural' else 'clusters',
+               'middle_detector_weights_sha256': getattr(processor, 'middle_checkpoint_sha256', None),
+               'independent_detector_objects': len(detector_rows) if cfg.get('pipeline') == 'middle' else None,
+               'radar_count_unit': 'filtered_points' if cfg.get('pipeline') in ('neural', 'middle') else 'clusters',
+               'torch_peak_allocated_mib': torch_runtime.cuda.max_memory_allocated() / 1024 ** 2 if torch_runtime else None,
+               'memory_boundary': 'PyTorch allocator including encoders, SAM, association and middle head; excludes TensorRT and driver allocations' if torch_runtime else None,
                'accuracy_metrics': 'Unavailable: no labeled ground truth, true camera intrinsics or ego pose supplied.'}
     (out / 'summary.json').write_text(json.dumps(summary, indent=2) + '\n')
     print(json.dumps({k: v for k, v in summary.items() if k != 'configuration'}, indent=2))

@@ -1,15 +1,17 @@
 # Learned multi-sensor perception and tracking
 
-Review date: 22 October 2026. This is a targeted implementation-oriented review,
+Review date: 23 October 2026. This is a targeted implementation-oriented review,
 not an exhaustive survey or a claim to reproduce every recent paper. Primary
 papers and official repositories are linked below. Published benchmark results
 are not measurements on our recordings.
 
 ## Research question and original baseline
 
-Can pretrained neural representations and learned cross-modal association replace
-our hand-designed obstacle clustering, position matching and motion tracker on
-one camera, one LiDAR and recorded radar detections, using an 8 GB RTX laptop?
+Can pretrained neural representations, learned sensor association and a spatial
+fusion detector improve our hand-designed obstacle clustering, position matching
+and motion tracker on one camera, one LiDAR and recorded radar detections, using
+an 8 GB RTX laptop? The spatial detector is a separate experimental profile;
+it does not replace the stable association profile without comparative evidence.
 
 The original YOLO11n + DBSCAN + Kalman/Hungarian implementation remains a
 classical baseline. Those algorithms are useful comparison tools, but the
@@ -52,10 +54,11 @@ motivates attention-based association, but our compact head does not reproduce
 TransFusion's architecture or training. [Paper](https://arxiv.org/abs/2203.11496).
 
 **BEVFusion, ICRA 2023.** Liu et al. place modality features in a shared bird's-eye
-view representation. It is relevant to a future calibrated dense feature-fusion
-system. Our system uses object-query features instead of reproducing dense BEV
-lifting. The original implementation is archived and has a different dependency
-stack. [Paper](https://arxiv.org/abs/2205.13542),
+view representation. It motivates the new spatial middle profile. QueryFusion
+v2 uses object-query features, while the new profile combines metric feature
+maps before its own detector head. Neither reproduces BEVFusion's lifting,
+architecture or training. The original implementation is archived and has a
+different dependency stack. [Paper](https://arxiv.org/abs/2205.13542),
 [official implementation](https://github.com/mit-han-lab/bevfusion).
 
 **LiRaFusion, 2024.** Song et al. combine LiDAR and radar through joint voxel
@@ -108,6 +111,9 @@ and selective fusion rather than just increasing model size.
 [Primary paper record](https://arxiv.org/abs/2607.04587). We do not have the
 reliability labels or weather evaluation used there, and do not claim to
 implement RAF. Its published results are not our measurements.
+[Official implementation](https://github.com/parkie0517/RAF). The frozen-backbone
+training strategy is particularly relevant to our limited hardware and data;
+our learned feature gates do not reproduce RAF's supervised pixel reliability.
 
 **Confidence calibration.** Guo et al. study temperature scaling for neural
 probabilities. [Paper](https://arxiv.org/abs/1706.04599). V2 searches a fixed small
@@ -122,6 +128,69 @@ mass over nearby plausible returns rather than forcing a single nearest return.
 The geometric radius remains a disclosed hand-set assumption. This is an
 original compact engineering experiment, not a new state-of-the-art paper.
 See [paired measurements and limitations](FUSION_V2.md).
+
+## Spatial middle fusion and recent research
+
+The next question is different from association: can sensor evidence be
+combined before a new detector decides where an object is? A spatial shared
+representation makes that distinction explicit. A finished LiDAR box may be a
+training target, but it must not secretly remain the new detector's answer.
+
+**CVFusion, ICCV 2025.** Zhong et al. combine radar and image features in BEV to
+generate proposals, then refine them using point, image and BEV views. This
+illustrates that intermediate fusion can be followed by a separate refinement
+stage. The important distinction is where features interact before prediction,
+not whether a system contains any proposals at all.
+[Primary paper](https://openaccess.thecvf.com/content/ICCV2025/html/Zhong_CVFusion_Cross-View_Fusion_of_4D_Radar_and_Camera_for_3D_ICCV_2025_paper.html),
+[authors' repository](https://github.com/zhzhzhzhzhz/CVFusion).
+Our compact grid model does not implement its two-stage architecture or claim
+its benchmark gains.
+
+**DLRFusion, ICCV 2025.** Chae et al. keep radar power and Doppler representations
+distinct and iteratively exchange evidence with LiDAR. This supports preserving
+radar's attributes instead of treating radar points as sparse LiDAR with no
+additional information. [Primary paper](https://openaccess.thecvf.com/content/ICCV2025/html/Chae_Doppler-Aware_LiDAR-RADAR_Fusion_for_Weather-Robust_3D_Detection_ICCV_2025_paper.html).
+The project has recorded radar point attributes, not the original radar tensor
+or verified absolute-velocity convention. Its small radar raster and learned
+encoder are not a DLRFusion reproduction, and do not establish weather robustness.
+
+**RLG-TPV, August 2026 preprint.** Dokgoz, Doruk and Ates use radar and
+training-time LiDAR guidance while constructing a tri-perspective spatial
+representation. They also study radar-informed temporal aggregation.
+[Primary paper record](https://arxiv.org/abs/2608.29194). This highlights the
+importance of geometry during feature lifting. Our fixed-height BEV
+sampling is much simpler: it does not implement ray-guided deformable lifting,
+learned camera depth, tri-perspective occupancy or Doppler-based warping.
+We review this recent preprint as a direction, not an executed model.
+
+**Implementation choice.** The experimental middle profile uses frozen YOLO11n
+P3/P4 image features, the full VoxelNeXt pre-detection sparse spatial features
+and an eight-channel radar raster. They are aligned on a 64 by 64 BEV grid
+covering 0 to 48 m forward and -24 to 24 m laterally, with 0.75 m cells. Learned
+modality encoders, gates and a local window transformer feed a new dense class
+and 3D geometry head. VoxelNeXt's original detection head supplies pseudo-labels
+during training-data preparation and is not executed by the middle detector at
+inference. The existing visual association and temporal stages follow detection.
+See [the plain-language middle-fusion guide](MIDDLE_FUSION.md).
+
+This is a project-specific experiment with limited training data. Its camera
+features are sampled using approximate intrinsics at three fixed LiDAR-frame
+heights (-1, 0 and 1 m), averaging only valid samples. These heights are a
+heuristic, not measured surfaces or learned depth, so neither a BEV grid nor
+attention solves the calibration problem.
+Availability masks and feature gates organize incomplete evidence; they do not
+prove a model knows when it is wrong. Coordinate transforms, rasterization,
+projection and output decoding remain disclosed non-learned processing.
+
+Only the new fusion and detection modules are trained together. Frozen cached
+camera/LiDAR features mean there are no gradient updates to their pretrained
+backbones. The SAM identity and GRU tracking stages are not jointly optimized
+by the detection loss. Calling the entire raw-input-to-track pipeline
+"end-to-end trained" would therefore be inaccurate. Joint fine-tuning and
+independent accuracy evaluation remain separate future experiments.
+A one-frame raw-input backward guard can establish gradient reachability into
+selected backbone parameters. It is a feasibility check, not evidence that
+the multi-epoch run jointly optimized the backbones or improved accuracy.
 
 ## Temporal identity and neural motion
 
@@ -163,13 +232,24 @@ are available. [Paper](https://arxiv.org/abs/2510.19981).
 The project has 397 camera frames, no ground-truth 3D boxes/IDs, approximate
 camera intrinsics and no validated ego pose. Training a large fusion model from
 scratch on this data would not establish generalization. We freeze published
-encoders and train only a compact association/motion head.
+encoders. QueryFusion trains a compact association/motion head; the experimental
+middle profile trains a new fusion/detection head.
 
 Weak LiDAR targets come from compatible-class projected-box overlap. Weak radar
 targets come from nearby points relative to that selected LiDAR box. Motion
 targets are clipped finite differences of weak 3D observations with the same SAM
 identity. These are explicitly fallible pseudo-labels. There is no supervision
 from manually annotated accuracy labels.
+
+The middle detector instead uses confidence-filtered VoxelNeXt boxes as
+distillation targets. It can measure teacher agreement without needing the
+camera-overlap association teacher, but those boxes still are not ground truth.
+The teacher and student share the LiDAR backbone, so their errors and features
+are not independent. Teacher-empty cells are not verified free space. Results
+must distinguish target agreement, prediction coverage and runtime robustness
+from detection accuracy. The new profile's reports record its exact split and
+training settings; it inherits the same requirement to call bag 2 development
+data after earlier inspection.
 
 Both versions use the first 70% of bag 1 for training and the next 10% as a purge
 gap. V1 used the final 20% for checkpoint selection. V2 divides that final
@@ -194,10 +274,11 @@ and moving-frame relative velocities remain unchanged limitations.
 | VoxelNeXt | Executed LiDAR detector/features | Authors' nuScenes checkpoint |
 | SAM 2.1 tiny | Executed temporal mask identities | Published checkpoint via Ultralytics |
 | QueryFusion v1/v2 attention | Implemented and locally trained | Weak associations from first bag only |
+| Experimental spatial middle profile | Separate fusion/detection path; evidence recorded after validation | Frozen spatial encoders, locally trained head and VoxelNeXt pseudo-labels |
 | GRU relative velocity | Implemented and locally trained | Weak position differences; no ego compensation |
-| BEVFusion, TransFusion, LiRaFusion, RCBEVDet, RaCFormer | Literature comparisons | Not installed or claimed evaluated |
+| BEVFusion, TransFusion, LiRaFusion, RCBEVDet, RaCFormer, CVFusion, DLRFusion | Literature comparisons | Not installed or claimed evaluated |
 | PTv3, CoTracker3, TrackFormer, MOTIP, FutrTrack | Literature alternatives | Not installed or claimed evaluated |
-| MoME and RAF | Reliability research comparisons | Not installed or claimed evaluated |
+| MoME, RAF and RLG-TPV | Reliability and representation research comparisons | Not installed or claimed evaluated |
 
 See [AI implementation and commands](AI_PIPELINE.md) and the machine-readable
 validation evidence for measured execution results and checkpoint provenance.
