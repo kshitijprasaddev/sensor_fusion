@@ -3,6 +3,8 @@
 This guide explains what we built and what you can honestly tell the supervisor.
 For exact measurements, read [results](AI_RESULTS.md) and [v2 experiments](FUSION_V2.md).
 For terminal instructions, use the [run guide](RUN_GUIDE.md).
+For the 0.65 review cutoff, SAM versus GRU explanation, and separate LiDAR and
+radar diagnostic commands, read [sensor processing](SENSOR_PROCESSING_REVIEW.md).
 For the current mask/point display and runtime safeguards, read
 [display and robustness](DISPLAY_AND_ROBUSTNESS.md).
 The separate [experimental middle-fusion guide](MIDDLE_FUSION.md) explains how

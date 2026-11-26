@@ -32,6 +32,9 @@ for the architecture, commands, training boundaries and evaluation limits.
 [step-by-step terminal commands](docs/RUN_GUIDE.md), and
 [v2 improvements and tradeoffs](docs/FUSION_V2.md).
 
+For the **0.65 confidence review profile**, SAM versus GRU, and separate
+LiDAR/radar processing views, see [sensor processing and review commands](docs/SENSOR_PROCESSING_REVIEW.md).
+
 The current display emphasizes **camera masks and colored LiDAR object points**.
 Misleading image-space cuboids are off, while 3D boxes and redesigned relative
 motion vectors are optional RViz layers. A runtime continuity check withholds
